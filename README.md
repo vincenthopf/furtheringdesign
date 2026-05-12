@@ -1,4 +1,4 @@
-# furtheringdesign-system
+# furtheringdesign
 
 Teaching AI to *reason* about design, not copy patterns.
 
