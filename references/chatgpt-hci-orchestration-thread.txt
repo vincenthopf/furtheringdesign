@@ -1,0 +1,2974 @@
+
+
+=== user ===
+Uploaded a file
+I need to perform research on source material to study regarding the latest techniques in HCI covering UX, UI, landing pages, design theory, game design. This short attached blurb looks at the trends of 2026. I look at fluid generated UI and UX that follow underlying rules concerning compatibility and space. That context should also reflect what the user is engaged with. That the users should always be able to change their current engagement and understand choices. That AI should understand the user's values and automate choices on behalf of the user while enabling the user to provide feedback. That users have precise things that they want to know or do. I believe that there are likely many areas of research and whitepapers that look into this new frontier of HCI. Many of my UIs and UX are completely generated with very few concerns and normally exist in general spaces that are shaped around what the user is doing and managing. Furthermore, fragment UI/UX particular to a given application is not useful. Users want to see UI/UX in a common space that connects all of their applications everywhere, so UI/UX must be able to be shipped and agents must be able to communicate with the agents of the application. Application agents  must be able to construct UI/UX and the user's own agent must be able to integrate it. Application's should surface themselves in the user's space. The user shouldn't have to go to the application. The application comes to the user. This reduces friction. As part of general application design in HCI, applications must have the smallest footprint possible to reduce friction and potential incompatibilities.
+
+I do not need a bespoke report. I need material that covers this information, current best practices and cutting edge theories. I also need material that engages with the idea of HCI as communication. Understanding the user. The audience. Copywriting. Presenting material to a user framed around their particular needs. Static text is no longer good enough. Cater it to the user.
+
+Then we still need to understand traditional design theory to understand rules that govern spaces where generated UI is produced. How generated UI can be themed to mesh together seamlessly within a user's space. Spacing. Interaction behaviors. Animations. I look a lot at physical UI and physical experiences. UI governed by physics. I look a lot at light and shadow. I also look a lot at asymmetry. What are the rules governing how information is presented to the user for any particular interaction and how does the interaction change the priorities, which in turn change how that information is presented?
+
+I believe you will need to perform research, synthesize, and understand how to piece material together to achieve these objectives. You'll also need to understand the problem space. UI/UX in this style is for all intents and purposes unbounded. How is that reconciled? What does the new user experience look like? If AI is an assistant to a user, what assists the AI in accomplishing the user's objectives and communicating to the user?
+
+The other thing I look at is AI not communicating by text or speech but communicating through UI and visual mediums and interacting with the user over those mediums. Text is high friction. Speech is slow. A user can ingest the right visuals immediately. Choosing between options in text is more difficult than choose between options in a visual medium. How does the user provide feedback as well?
+
+The other thing I research is UI/UX planning from visuals. Using svgs to draft. Composites to control placement. Layering over many low-res visual elements driven by high capability multi-modal models to eventually converge on design presentations and store these for rapid recall and configuration. There are likely a few settled answers to how information is presented with configurations to integrate that information.
+Show more
+
+
+=== assistant ===
+I’ll treat your blurb as the thesis and build a research map of source clusters, standards, and study paths across agentic/generated UI, adaptive UX, visual communication, design theory, physical interaction, and implementation practice.
+
+
+=== assistant ===
+Use the attached blurb as a directional thesis, not as the research corpus. Its strongest framing is that HCI is moving from explicit screens and flows toward intent, delegation, invisible interfaces, multimodal context, personalization, trust, transparency, and intervention. It also correctly identifies the key design burden: when the UI recedes, users still need observability, explainability, verification, and control. 
+
+Pasted text
+
+ 
+
+Pasted text
+
+Below is the source map I would use.
+
+1. Agentic HCI, delegation, and user control
+
+Start here because this is the control theory for everything else. Your problem is not “how do we generate screens?” It is “how does a user safely delegate goals to a system that acts across tools?”
+
+Study:
+
+Microsoft HAX Toolkit / Guidelines for Human-AI Interaction — practical design patterns for AI systems across first use, normal use, failure, and long-term adaptation. It is especially relevant for observability, user correction, graceful failure, and trust calibration. 
+Microsoft
+
+Google PAIR Guidebook — strong on mental models, setting user expectations, feedback loops, co-learning, explaining what the system can and cannot do, and avoiding dead-end AI experiences. 
+Pair with Google
+
+Eric Horvitz, “Principles of Mixed-Initiative User Interfaces” — foundational for when initiative should shift between human and machine, which is central to agentic UI. 
+Eric Horvitz
+
+NIST AI Risk Management Framework — useful for governance, transparency, accountability, and human-centered evaluation in higher-stakes AI systems. 
+NIST
+
+Ben Shneiderman, Human-Centered AI — the broader design philosophy: high automation without removing human agency.
+
+Key idea to extract: delegate execution, not responsibility. The user’s agent can act, but the interface must keep alive the user’s ability to inspect, redirect, undo, approve, and teach.
+
+2. Generative UI, malleable UI, and interface generation
+
+This is the most directly relevant research cluster for your generated UI direction.
+
+Study:
+
+CHI 2026 Workshop: “What does Generative UI mean for HCI Practice?” — a current research signal that GenUI is becoming a formal HCI topic, not just a product trend. The workshop frames generative UI as AI-created interfaces that may transform design methods, UX workflows, and HCI practice. 
+Microsoft
+
+“Generative and Malleable User Interfaces with Generative and Evolving Task-Driven Data Model” — highly relevant because it does not treat UI generation as freeform code generation. It uses task-driven data models that users can modify through natural language and direct manipulation, then maps those models into UI specifications. 
+arXiv
+
+GenerativeGUI — research on dynamically generated graphical interfaces for conversational AI, tailored to the ongoing conversation rather than fixed ahead of time. 
+ACM Digital Library
+
+“Generative Interfaces for Language Models” — directly aligned with the idea that language models should answer through generated interfaces, not only text. The paper evaluates proactive UI generation and reports user preference for generated interfaces in many cases. 
+arXiv
+
+NN/g on GenUI — useful as industry-facing synthesis: generative UI shifts UX from static designs for many users to dynamic, user-specific experiences. 
+Nielsen Norman Group
+
+Key idea to extract: generated UI should not be “unbounded.” It should be bounded by task model, user model, app capability model, design tokens, layout constraints, accessibility rules, and intervention policy.
+
+3. Common user space, application agents, and inter-agent protocols
+
+Your claim that “the application comes to the user” is now becoming a product and protocol direction. The relevant source material is not only HCI; it is also agent interoperability.
+
+Study:
+
+Model Context Protocol, MCP — an open protocol for connecting LLM applications to external tools, systems, and contextual data. It gives a way for applications to expose capabilities to agents instead of forcing the user to manually navigate each app. 
+Model Context Protocol
+
+MCP tool safety and UI affordances — important because tools exposed to agents require user-visible indications, confirmation prompts, and human-in-the-loop denial paths. 
+Model Context Protocol
+
+Google Agent2Agent, A2A — directly relevant to application agents communicating with other agents. It covers capability discovery, task management, artifacts, collaboration, and multimodal UX negotiation. 
+Google Developers Blog
+
+Linux Foundation Agent2Agent project — relevant because A2A moved into vendor-neutral governance, which matters if you are thinking about interoperable application agents rather than isolated proprietary assistants. 
+Linux Foundation
+
+OpenAI Apps SDK — a concrete example of apps surfacing inside a user’s conversational workspace through interactive components built on MCP. It is especially relevant to your point that apps should appear where the user already is. 
+OpenAI
+
+OpenAI Apps SDK UI components — useful because it shows a specific model where structured tool results become human-friendly UI components inside a host environment. 
+OpenAI Developers
+
+Key idea to extract: the future UI surface is less like “one app, one interface” and more like a personal operating space where app agents expose capabilities, negotiate context, and render temporary interface fragments under the user agent’s control.
+
+4. Visual and multimodal UI agents
+
+This is the source cluster for AI communicating through UI and visuals instead of text or speech.
+
+Study:
+
+ScreenAI — a vision-language model specialized for UI and infographic understanding. It treats UI screens and infographics as a shared visual language for human-machine interaction. 
+arXiv
+
+OmniParser — parses screenshots into structured UI elements and improves vision-language model grounding for GUI action. This is directly relevant to planning from visuals, screenshots, composites, and low-resolution visual elements. 
+arXiv
+
+SeeAct — research on web agents that use multimodal models to understand and act on live websites; useful for grounding problems and visual action selection. 
+arXiv
+
+OSWorld — important because it shows the gap between impressive demos and reliable real-world computer-use agents. In its benchmark, humans completed far more tasks than the best model, showing that GUI grounding and operational knowledge remain hard. 
+arXiv
+
+Key idea to extract: visual UI is not just output. It becomes a shared working memory between user and agent: options, state, uncertainty, affordances, previews, tradeoffs, and corrections can all be represented visually.
+
+5. HCI as communication
+
+This is central to your framing. UI is not decoration around functionality; UI is communication between designer, system, agent, and user.
+
+Study:
+
+Clarisse de Souza, Semiotic Engineering of Human-Computer Interaction — essential. It frames HCI as communication between designers and users through interface words, graphics, and behavior. 
+MIT Press
+
+Lucy Suchman, Plans and Situated Actions — foundational for understanding why interaction cannot be fully reduced to preplanned flows; user action is situated, contextual, and contingent. 
+Google Books
+
+Terry Winograd and Fernando Flores, Understanding Computers and Cognition — important for language, action, breakdowns, commitments, and design as coordination.
+
+Communication-oriented HCI chapters and surveys — useful for thinking about interfaces as mediated communication rather than mere control surfaces. 
+OUP Academic
+
+Key idea to extract: generated UI should be treated as a situated communicative act. The interface is saying: “Here is what I think you are trying to do, here are the meaningful choices, here is what I can do, here is what is uncertain, and here is how you can redirect me.”
+
+6. Copywriting, landing pages, and personalized presentation
+
+Static text is not enough, but traditional web writing and landing-page research still matter because they teach information priority, scanning behavior, persuasion, and progressive disclosure.
+
+Study:
+
+NN/g, “How Users Read on the Web” — still foundational: users scan rather than read linearly, so generated text must be scannable, structured, and immediately useful. 
+Nielsen Norman Group
+
+NN/g on UX copy and microcopy — useful for labels, errors, calls to action, confirmations, and guidance that does not interrupt flow. 
+Nielsen Norman Group
+
+NN/g UX writing study guides — practical source material for error messages, labels, onboarding, and task guidance.
+
+Baymard Institute research — especially for landing pages, navigation, ecommerce UX, filtering, product pages, checkout, and high-friction decision flows. Their benchmark material is useful because it is based on large-scale UX testing rather than theory alone. 
+Baymard Institute
+
+Books: Content Design by Sarah Richards, Strategic Writing for UX by Torrey Podmajersky, Letting Go of the Words by Janice Redish, Microcopy by Kinneret Yifrah.
+
+Key idea to extract: personalization is not merely changing words. It is changing what is foregrounded, what is suppressed, what is visualized, what is offered as the next action, and what evidence is shown.
+
+7. Design systems, theming, tokens, and compatibility
+
+This is the practical answer to “how can generated UI mesh into a user’s space?”
+
+Study:
+
+W3C Design Tokens Community Group specification — important because design tokens provide a vendor-neutral way to express color, typography, spacing, themes, and cross-platform design decisions. The 2025.10 specification is explicitly framed around production-ready interoperability. 
+W3C
+
+DTCG design-token format — relevant to theming, multi-brand systems, and sharing visual language across tools, platforms, and codebases. 
+Design Tokens
+
+Material Design 3 — useful for component grammar, adaptive UI, elevation, motion, accessibility, and theming.
+
+Microsoft Fluent Design / Windows design guidance — useful for color hierarchy, elevation, geometry, layout, materials, and motion in a system-level design language. 
+Microsoft Learn
+
+Apple Human Interface Guidelines — especially spatial layout, visionOS, depth, focus, legibility, and platform-level consistency.
+
+Key idea to extract: a generated UI should not invent its visual language each time. It should generate within a design grammar: tokens, spacing scale, typography scale, elevation system, motion rules, accessibility constraints, interaction patterns, and platform affordances.
+
+8. Physical UI, spatial UI, light, shadow, motion, and materiality
+
+Your interest in physical experience, physics, light, shadow, asymmetry, and motion maps to spatial computing, motion design, game feel, and material design systems.
+
+Study:
+
+Apple Liquid Glass / WWDC design sessions — useful because Apple explicitly frames UI as material: optical properties, depth, dynamic light, lensing, shadow, layering, and physical-feeling interaction. 
+Apple Developer
+
+visionOS design material — useful for spatial widgets, anchored UI, depth, presence, and user-controlled spatial environments. 
+Apple
+
+Microsoft Fluent Motion — useful for easing, transitions, choreography, elevation, hierarchy, and attention direction. 
+Fluent 2 Design System
+
+NN/g on animation and UX — important corrective: motion should support feedback, state change, navigation, and spatial understanding, not decoration. 
+Nielsen Norman Group
+
+Google Material motion guidance — useful because it grounds motion in physical metaphors such as gravity, friction, resistance, and continuity. 
+Google Design
+
+Foundational theory: Rudolf Arnheim, Art and Visual Perception; Don Norman, The Design of Everyday Things; Juhani Pallasmaa, The Eyes of the Skin; Mark Weiser, Calm Technology; Ishii and Ullmer, Tangible Bits; Paul Dourish, Where the Action Is.
+
+Key idea to extract: physicality helps generated UI remain understandable. Depth, shadow, motion, and spatial persistence tell the user what is primary, what is secondary, what changed, what can be touched, what is temporary, and what belongs together.
+
+9. Information architecture, visualization, and visual cognition
+
+This is the body of work for “what should be shown for this interaction, and how should priority change as the interaction changes?”
+
+Study:
+
+Edward Tufte, The Visual Display of Quantitative Information
+
+Jacques Bertin, Semiology of Graphics
+
+Colin Ware, Information Visualization: Perception for Design
+
+Tamara Munzner, Visualization Analysis and Design
+
+Card, Mackinlay, and Shneiderman, Readings in Information Visualization
+
+Pirolli and Card, information foraging theory
+
+Cognitive load theory
+
+Gestalt principles
+
+Müller-Brockmann, Grid Systems in Graphic Design
+
+Robert Bringhurst, The Elements of Typographic Style
+
+Key idea to extract: generated UI needs a priority engine. It must decide what information deserves position, size, contrast, persistence, animation, proximity, grouping, and interaction cost.
+
+10. Game design, feedback, and “game feel”
+
+Game design is highly relevant because games are advanced interactive systems for feedback, motivation, agency, state communication, and embodied control.
+
+Study:
+
+MDA Framework: Mechanics, Dynamics, Aesthetics — useful for separating system rules, emergent behavior, and user experience. This maps cleanly onto generated UI: underlying task rules, dynamic interaction state, and user-facing experience. 
+Northwestern Computer Science
+
+Steve Swink, Game Feel — important for responsiveness, control, motion, feedback, and moment-to-moment interaction quality. 
+Google Books
+
+Juicy feedback research — useful for understanding why abundant audiovisual feedback can make interactions feel more responsive and motivating. 
+DiGRA Digital Library
+
+CHI 2024 research on juicy game feedback — relevant to motivation, feedback timing, and perceived agency. 
+ACM Digital Library
+
+Books: Rules of Play by Salen and Zimmerman, The Art of Game Design by Jesse Schell, A Theory of Fun by Raph Koster.
+
+Key idea to extract: the interface should make the user feel the system is alive, responsive, legible, and under control. Feedback is not cosmetic; it is how the system communicates causality.
+
+The synthesis: what the new UX looks like
+
+The emerging model is:
+
+User intent + user values + current context + app capabilities + task state → generated visual workspace → user feedback/intervention → agent execution → verification → memory/update.
+
+The new UX is not a screen. It is a personal adaptive workspace where:
+
+the user states or implies intent;
+
+the user’s agent understands goals, preferences, constraints, and values;
+
+application agents expose capabilities instead of forcing navigation through apps;
+
+UI fragments are generated into the user’s space;
+
+those fragments inherit common design tokens, spatial rules, motion rules, and accessibility constraints;
+
+the system presents choices visually when visual comparison is faster than text;
+
+the user can redirect, correct, approve, undo, or teach the system;
+
+the system learns, but remains inspectable.
+
+The unboundedness is reconciled by constraints. Generated UI should be bounded by:
+
+Task model — what the user is trying to accomplish.
+
+Data model — what entities, relationships, and states matter.
+
+Capability model — what tools and app agents can actually do.
+
+User model — values, preferences, habits, permissions, expertise, and current cognitive load.
+
+Design grammar — tokens, typography, spacing, hierarchy, motion, layout, depth, and theming.
+
+Context model — device, environment, time, current activity, urgency, and risk.
+
+Control model — approval, undo, explanation, intervention, fallback, and recovery.
+
+Evaluation model — whether the generated UI improved outcome quality, not merely reduced clicks.
+
+What assists the AI?
+
+The AI needs more than a language prompt. It needs structured design and action infrastructure:
+
+Tool and capability manifests from apps, using protocols such as MCP and A2A. 
+Model Context Protocol
++1
+
+Design tokens for compatible color, typography, spacing, elevation, density, and theme inheritance. 
+W3C
+
+Task-driven data models so the UI is generated from the user’s actual task structure rather than arbitrary component guesses. 
+arXiv
+
+Visual parsers and GUI grounding models so agents can understand existing visual states, not only text descriptions. 
+arXiv
++1
+
+Interaction memory containing previous user corrections, preferences, layouts, and approved automations.
+
+Approval and recovery policies defining what can be automated, what requires confirmation, what must be previewed, and what can be undone.
+
+Evaluation harnesses such as OSWorld-style task benchmarks, usability testing, A/B testing, error analysis, and user-effort measurement. 
+arXiv
+
+Best study order
+
+Human-AI control: HAX, PAIR, Horvitz, NIST, Shneiderman.
+
+HCI as communication: de Souza, Suchman, Winograd/Flores, content design, UX writing.
+
+Generated UI: CHI 2026 GenUI workshop, malleable UI/task-driven data models, GenerativeGUI, Generative Interfaces for LMs.
+
+Agent interoperability: MCP, A2A, Apps SDK, tool safety, app-agent capability models.
+
+Visual agents: ScreenAI, OmniParser, SeeAct, OSWorld.
+
+Design grammar: design tokens, Material, Fluent, Apple HIG, typography, grids, Gestalt, information visualization.
+
+Spatial and physical interaction: Liquid Glass, visionOS, motion design, tangible interaction, calm technology.
+
+Game feel: MDA, Game Feel, juicy feedback, feedback timing, responsiveness, agency.
+
+The most important conceptual shift: UI becomes the medium through which AI communicates intent, uncertainty, options, progress, and consequence. Text remains useful, but in this model text is not the primary interface. The primary interface is a generated, situated, visual control surface that lets the user understand, steer, and trust the agent.
+
+
+=== user ===
+Uploaded a file
+Uploaded a file
+Now we need to organize the strategy of planning and producing UI and communication through risk assessment and problem definition. The theory behind multi-agent system design to arrive at a correct answer. For that I present a book on the fundamentals of AI engineering as well as a repository demonstrating those fundamentals. This shows the structure in which design, UI/UX, etc is produced and planned. How rules are applied. This doesn't necessarily show the content but it shows the strategy that is used to navigate that content and make it usable. In the same way we have many workflows and flavors inside of models.zip, your job is to design from a high level a new workflow. New orchestrators. New agents. New documentation. Use the fundamentals of AI engineering and examples to understand the requirements. Use those fundamentals to drive your own decision making and processes. Understand the current landscape to understand the steps that the workflow needs to be able to take. Understand the various potential flavors based on the situation. Allow this workflow to be filled in by the material when research is conducted on the content of the material.
+Show more
+
+
+=== assistant ===
+I’ll treat the book as the governing process model, inspect models.zip for existing workflow patterns, then design a high-level workflow that can later absorb HCI/design research artifacts.
+
+
+=== user ===
+You have to understand the fundamental theories behind how those orchestrations are constructed
+
+
+=== assistant ===
+I found the repo is a reusable workflow library with small bounded operators, route-by-result orchestration, proposer/critic gates, durable artifacts, audits, and approval handoffs.
+
+
+=== assistant ===
+I’ll make the orchestration theory explicit first: agents exist to isolate reasoning operations, risk surfaces, and verifiable artifacts, governed by routing, state, verification, memory, and convergence.
+
+
+=== assistant ===
+Agreed. The workflow should be constructed from orchestration theory, not from an arbitrary list of agents.
+
+The correct abstraction is:
+
+A workflow is a governed reasoning system.
+An orchestrator is the mechanism that decides what reasoning operation runs next, what artifact has authority, when evidence is sufficient, when the system must stop, and how discoveries update the higher-level problem definition.
+
+For generated UI/UX, this matters because the design space is unbounded. You do not control it by enumerating every possible UI. You control it by defining the terrain, values, communication rules, design grammar, risk model, and verification gates that any generated UI must respect.
+
+1. Foundational orchestration theory
+1. Problem-first control theory
+
+The governing artifact is not a requirements list. It is the problem map.
+
+The attached AI-engineering material explicitly distinguishes three layers: problems define the terrain, values define the direction, and proposals are candidate moves inside that terrain. This means the workflow should not start by asking “what UI should we produce?” It should start by asking “what interaction problem, communication problem, user-control problem, and risk problem does this surface contain?” 
+
+problem-first-ai-engineering
+
+For generated UI, this becomes:
+
+Problem: The user needs to understand, decide, act, redirect, or delegate.
+
+Values: The interface should minimize friction without hiding control.
+
+Proposal: Generate a visual surface, dashboard, choice panel, flow, ambient indicator, or agentic control surface.
+
+The proposal is always challengeable. The problem and values govern it.
+
+2. Values as decision infrastructure
+
+Generated UI cannot be governed by generic rules like “make it clean,” “make it modern,” or “make it intuitive.” Those are too weak. The workflow needs explicit decision axes: simplicity vs expressiveness, automation vs user control, personalization vs predictability, visual density vs cognitive ease, ambient behavior vs explicit visibility, and so on.
+
+The attached book is explicit that philosophy must be written as decision axes with positions and reasoning, because flat values do not resolve tradeoffs. 
+
+problem-first-ai-engineering
+
+For this workflow, the philosophy layer should govern questions like:
+
+When should an agent act automatically?
+
+When must it ask?
+
+When should it show visual evidence?
+
+When should it use text?
+
+When should UI disappear?
+
+When does personalization become loss of control?
+
+When does visual richness become distraction?
+
+When should generated UI preserve application identity versus blend into the user’s common space?
+
+This is the layer that prevents generated UI from becoming arbitrary.
+
+3. Proposal-as-probe theory
+
+A generated UI proposal is not only a candidate design. It is also a probe that reveals missing structure in the problem map.
+
+The book describes proposals as instruments that reveal new problem surfaces, emergent sub-problems, and gaps. The convergence loop terminates only when alignment checks stop producing meaningful surprises. 
+
+problem-first-ai-engineering
+
+That is crucial for HCI because many problems are only visible after a concrete interface exists. A visual proposal may reveal that the user needs a recovery path, that the automation is too opaque, that two values conflict, or that a supposedly “simple” UI hides too much state.
+
+So the workflow should not treat early UI proposals as deliverables. It should treat them as diagnostic instruments.
+
+4. Workflow-first, agent-second theory
+
+Modern agent guidance makes a useful distinction between workflows, where the sequence is controlled by code or explicit structure, and agents, where the model dynamically decides what to do. Anthropic’s guidance recommends starting with the simplest structure and adding autonomy only when it clearly improves outcomes. 
+Anthropic
+
+That maps directly to this system:
+
+Use workflow orchestration for predictable phases: intake, research, problem mapping, philosophy generation, proposal review, risk assessment, documentation.
+
+Use agentic behavior only where the path cannot be predetermined: open-ended research, exploratory visual synthesis, adversarial critique, interaction-model discovery, and context-sensitive proposal generation.
+
+The workflow owns the lifecycle. Agents perform bounded reasoning operations.
+
+5. Reasoning-operation theory
+
+Agents should be organized by reasoning operation, not by domain.
+
+The book explicitly warns that domain-organized agents recreate the “super-agent” problem because a “frontend agent” still has to research, propose, implement, and verify. It recommends organizing agents by reasoning operation: explore, propose, evaluate, implement, verify. 
+
+problem-first-ai-engineering
+
+For this workflow, do not create only:
+
+UX Agent
+
+UI Agent
+
+Copywriting Agent
+
+Game Design Agent
+
+HCI Agent
+
+Instead create agents like:
+
+Problem Cartographer
+
+Evidence Researcher
+
+Value-Axis Extractor
+
+Communication Modeler
+
+Visual Grammar Synthesizer
+
+Interaction Proposal Generator
+
+Risk Assessor
+
+Problem Alignment Judge
+
+Philosophy Alignment Judge
+
+User-Control Auditor
+
+Generated-UI Compatibility Auditor
+
+Documentation Curator
+
+Domain knowledge enters through artifacts. Reasoning roles stay reusable.
+
+6. Creator/evaluator separation
+
+A generator should not certify its own work. The book treats creator/evaluator separation as structural, not optional: creators defend their own assumptions, while fresh evaluators catch drift. 
+
+problem-first-ai-engineering
+
+For generated UI, this means:
+
+The agent that proposes a visual system should not judge whether it preserves user control.
+
+The agent that writes adaptive copy should not judge whether the copy is manipulative.
+
+The agent that designs an invisible interface should not judge whether enough observability remains.
+
+The agent that generates a design grammar should not judge whether it is compatible with the user’s existing space.
+
+Evaluation must be separate, artifact-grounded, and rubric-driven.
+
+7. Risk-proportional process theory
+
+The book separates change risk from verification risk. Change risk concerns blast radius, reversibility, observability, and confidence. Verification risk concerns whether the checks themselves are adequate. 
+
+problem-first-ai-engineering
+
+For UI/UX, this becomes:
+
+A small visual tweak may have low change risk but high communication risk if it changes how the user interprets an option.
+
+An invisible automation may reduce interaction cost but increase verification risk because the user may not notice incorrect behavior.
+
+A personalized interface may improve speed but reduce predictability.
+
+A generated UI fragment may look good but fail compatibility with the user’s broader workspace.
+
+The workflow must scale process to risk, not to artifact size.
+
+8. Three-dimensional verification theory
+
+The book defines three verification dimensions:
+
+Behavioral: Does it work?
+
+Problem: Does it address the terrain?
+
+Value: Does it embody the principles?
+
+It also recommends specialized reviewers because one reviewer checking everything performs worse than separate checks for structure, behavior, problem coverage, and value alignment. 
+
+problem-first-ai-engineering
+
+For generated UI, the equivalent is:
+
+Behavioral: Can the user complete the task?
+
+Problem coverage: Does the UI address the real interaction, communication, control, and context problems?
+
+Value alignment: Does it preserve the intended tradeoffs: low friction, user agency, visual clarity, trust, reversibility, compatibility?
+
+A UI can be behaviorally functional and still be wrong.
+
+9. Event-driven coordination theory
+
+The workflow should not be a fixed linear script. The book recommends routing by results, event-driven coordination, and explicit state machines. A producing agent should report what happened; a routing layer should decide what runs next. 
+
+problem-first-ai-engineering
+
+This is essential for HCI research because research can invalidate the original framing, proposals can reveal missing problems, and risk checks can force deeper evidence gathering.
+
+The orchestrator should route by events:
+
+research_insufficient → run deeper research
+
+problem_map_changed → rerun philosophy extraction
+
+proposal_revealed_new_axis → expand problem map
+
+high_control_risk → require user-control audit
+
+visual_grammar_conflict → run compatibility review
+
+personalization_opacity_detected → require transparency pattern
+
+alignment_passed → generate execution spec or prototype plan
+
+human_value_needed → stop and surface decision
+
+10. Durable-artifact theory
+
+Long-running agents degrade. The book emphasizes short sessions, durable handoffs, decision logs, traceability, and history to prevent re-derivation. 
+
+problem-first-ai-engineering
+
+This aligns with current agent engineering practice. LangGraph emphasizes durable execution and resuming without reprocessing after interruption, while Anthropic’s long-running-agent guidance focuses on preserving state across context windows. 
+LangChain Docs
++1
+
+For this workflow, the memory is not the agent. The memory is the artifact stack.
+
+2. The new workflow: Problem-First HCI / Generated-UI Orchestration
+
+Name it:
+
+Adaptive Interface & Communication Workflow
+
+Purpose:
+
+To transform HCI research, user context, design theory, communication goals, and agentic system constraints into a governed UI/UX strategy that can later generate compatible, personalized, inspectable, visually communicative interfaces.
+
+This workflow should not produce one static UX report. It should produce the decision infrastructure that lets future research, design, and UI generation happen safely.
+
+3. Core artifact stack
+
+The workflow should generate and maintain these artifacts.
+
+1. problem-map.md
+
+Defines the terrain.
+
+Sections:
+
+User intent problems
+
+Communication problems
+
+Control and intervention problems
+
+Visual comprehension problems
+
+Trust and transparency problems
+
+Personalization problems
+
+Context-awareness problems
+
+Application-agent integration problems
+
+Common-space compatibility problems
+
+Failure modes
+
+Stakeholder realities
+
+Axis reference table
+
+Authority: governs proposals.
+
+2. hci-philosophy.md
+
+Defines decision axes.
+
+Example axes:
+
+Automation ↔ user control
+
+Personalization ↔ predictability
+
+Invisible UI ↔ observable state
+
+Visual density ↔ cognitive ease
+
+Speed ↔ explainability
+
+Ambient behavior ↔ explicit confirmation
+
+User-agent authority ↔ application-agent authority
+
+Common-space consistency ↔ app-specific identity
+
+Physicality/materiality ↔ abstraction
+
+Expressive motion ↔ calmness
+
+Thematic cohesion ↔ contextual differentiation
+
+Authority: governs tradeoffs.
+
+3. communication-model.md
+
+Defines HCI as communication.
+
+Sections:
+
+Audience model
+
+User values model
+
+Intent interpretation model
+
+Message hierarchy
+
+Visual vs textual communication rules
+
+Copy adaptation rules
+
+Explanation rules
+
+Feedback and correction channels
+
+Trust signals
+
+Confirmation and undo language
+
+When text is acceptable
+
+When visuals are required
+
+Authority: governs how the system speaks to the user through UI.
+
+4. generated-ui-grammar.md
+
+Defines rules for generated surfaces.
+
+Sections:
+
+Layout constraints
+
+Spacing scale
+
+Density rules
+
+Typography hierarchy
+
+Visual grouping
+
+Motion rules
+
+Physics/material rules
+
+Light/shadow rules
+
+Depth/elevation rules
+
+Asymmetry rules
+
+Theming and token inheritance
+
+Accessibility constraints
+
+Interaction affordances
+
+State visualization
+
+Error/recovery presentation
+
+Cross-application compatibility
+
+Authority: governs UI generation.
+
+5. agentic-interaction-contracts.md
+
+Defines how application agents and user agents communicate.
+
+Sections:
+
+App-agent capability manifest
+
+User-agent integration rules
+
+Permission model
+
+Delegation boundaries
+
+Tool invocation policy
+
+Approval thresholds
+
+Generated UI fragment contract
+
+Data/context disclosure rules
+
+Visual component payload schema
+
+Handoff rules between agents
+
+Failure and rollback protocol
+
+This should map well to the current direction of MCP, A2A, and Apps SDK-style systems, where apps expose tools/resources and agents negotiate tasks, artifacts, and UI components inside a host environment. 
+OpenAI Developers
++3
+Model Context Protocol
++3
+Google Developers Blog
++3
+
+6. risk-register.md
+
+Tracks risk by axis.
+
+Risk categories:
+
+Misunderstood intent
+
+Over-automation
+
+Hidden state
+
+Loss of user control
+
+Visual ambiguity
+
+Context misclassification
+
+Personalization drift
+
+Theming incompatibility
+
+Agent-agent mismatch
+
+App-agent overreach
+
+Communication manipulation
+
+Accessibility failure
+
+Safety/security/privacy failure
+
+Verification false confidence
+
+Authority: scales process.
+
+7. proposal.md
+
+Structured proposal.
+
+Required sections:
+
+Problems addressed
+
+Values embodied
+
+Communication strategy
+
+Generated UI strategy
+
+Agent interaction model
+
+Design grammar implications
+
+Risks
+
+Open questions
+
+Human judgment required
+
+Traceability to problem axes
+
+8. alignment-reviews/
+
+Separate reviews:
+
+Problem alignment
+
+Philosophy alignment
+
+Communication alignment
+
+Visual grammar alignment
+
+User-control alignment
+
+Risk alignment
+
+Agent-contract alignment
+
+9. decision-log.md
+
+Records:
+
+What was decided
+
+Why
+
+Alternatives considered
+
+Evidence used
+
+What would invalidate the decision
+
+Which artifacts are affected
+
+The book treats this kind of continuity as necessary because otherwise later agents re-derive decisions and may reach inconsistent conclusions. 
+
+problem-first-ai-engineering
+
+10. handoff.md
+
+Self-contained continuation package.
+
+Contains:
+
+Current workflow state
+
+Active problem axes
+
+Active value tensions
+
+Current proposal status
+
+Open decisions
+
+Blocking risks
+
+Next recommended operation
+
+Artifacts changed
+
+Artifacts needing review
+
+4. Workflow state machine
+
+The workflow should run as a state machine, not a linear checklist.
+
+State	Purpose	Main orchestrator	Output	Exit condition
+intake	Convert user request into problem/value/proposal hypotheses	Intake Orchestrator	Intake brief	Enough to route
+problem_exploration	Map terrain without proposing solutions	Problem Cartographer	Draft problem map	Major axes identified
+research_fanout	Gather and classify source material	Research Orchestrator	Evidence map	Evidence sufficient for current scope
+problem_integration	Merge research into problem map	Problem Map Integrator	Revised problem map	No obvious unmapped axes
+philosophy_definition	Define decision axes	Philosophy Orchestrator	HCI philosophy	Human-owned value tensions explicit
+communication_modeling	Define UI as communication	Communication Orchestrator	Communication model	Audience, message, feedback rules explicit
+ui_grammar_definition	Define generated UI rules	Design Grammar Orchestrator	UI grammar	Layout, motion, theming, interaction rules explicit
+agent_contract_definition	Define user-agent/app-agent interaction	Agent Contract Orchestrator	Agentic contracts	Delegation and UI-fragment rules explicit
+proposal_generation	Generate candidate approaches	Proposal Orchestrator	Proposal variants	At least one traceable candidate
+alignment_cycle	Check proposal against governing artifacts	Alignment Orchestrator	Alignment reviews	No meaningful surprises
+risk_assessment	Assess change and verification risk	Risk Orchestrator	Risk register	Process scaled to risk
+prototype_planning	Convert accepted proposal into prototype/storyboard plan	Prototype Orchestrator	Prototype dossier	Prototype bounded and evaluable
+evaluation_planning	Define how success will be measured	Evaluation Orchestrator	Evaluation plan	Behavioral/problem/value checks defined
+documentation_closeout	Preserve decisions and handoff	Continuity Orchestrator	Decision log + handoff	Fresh agent can continue
+
+Non-forward states:
+
+blocked_missing_evidence
+
+blocked_human_value_needed
+
+failed_alignment
+
+failed_risk_gate
+
+needs_problem_expansion
+
+needs_philosophy_expansion
+
+needs_research_depth
+
+archived_superseded
+
+5. Orchestrators to add
+1. HCI Work Manager Orchestrator
+
+This is the top-level router.
+
+Responsibilities:
+
+Classify request type.
+
+Select workflow flavor.
+
+Initialize state.
+
+Dispatch first orchestrator.
+
+Prevent agent self-routing.
+
+Maintain workflow state.
+
+Routes:
+
+Research-only request → Research Orchestrator
+
+Design strategy request → Full Adaptive Interface Workflow
+
+Existing proposal review → Alignment Orchestrator
+
+Prototype request → Prototype Planning Workflow
+
+UI implementation request → Implementation Pipeline after proposal approval
+
+Safety/trust question → Risk + Control Review
+
+Documentation/library update → Continuity Orchestrator
+
+This follows the principle that the producing agent should not choose its own successor; a routing layer decides based on the result. 
+
+problem-first-ai-engineering
+
+2. Problem Cartographer Orchestrator
+
+Purpose:
+
+Build the problem terrain before generating UI proposals.
+
+Agents:
+
+Problem Explorer
+
+Stakeholder Perspective Agent
+
+Failure Physics Agent
+
+Context Boundary Agent
+
+Cross-Axis Interaction Agent
+
+Outputs:
+
+Problem map
+
+Axis reference table
+
+Stakeholder realities
+
+Known unknowns
+
+Initial risk surfaces
+
+No proposals allowed in this phase.
+
+3. Research Orchestrator
+
+Purpose:
+
+Gather source material and classify it by problem axis, not by topic alone.
+
+Agents:
+
+Source Finder
+
+Primary Source Classifier
+
+Evidence Quality Assessor
+
+Prior Art Mapper
+
+Contradiction Finder
+
+Research Synthesizer
+
+Outputs:
+
+Source dossier
+
+Evidence map
+
+Claim-to-source table
+
+Research gaps
+
+Open questions
+
+Research should be routed by problem axes: user control, generated UI, visual cognition, agent interaction, design systems, communication, game feel, physical UI, multimodal input, personalization, and trust.
+
+4. Philosophy Orchestrator
+
+Purpose:
+
+Convert values into operational decision axes.
+
+Agents:
+
+Value Extractor
+
+Tradeoff Axis Generator
+
+Conflict Detector
+
+Human Judgment Question Generator
+
+Philosophy Drafting Agent
+
+Outputs:
+
+hci-philosophy.md
+
+Decision-axis table
+
+Human judgment questions
+
+Tension list
+
+The AI may enumerate axes, but the human owns value positions. That is consistent with the book’s position that AI helps with coverage while humans provide judgment. 
+
+problem-first-ai-engineering
+
+5. Communication Orchestrator
+
+Purpose:
+
+Treat UI/UX as communication between agent, system, application, and user.
+
+Agents:
+
+Audience Modeler
+
+Intent Interpreter
+
+Visual Communication Strategist
+
+Adaptive Copy Strategist
+
+Feedback Channel Designer
+
+Explanation Pattern Designer
+
+Outputs:
+
+communication-model.md
+
+Message hierarchy
+
+Visual/text decision matrix
+
+Feedback and correction model
+
+Explanation rules
+
+Copy adaptation rules
+
+This connects directly to the HCI trend blurb: as agents become the interface and UI becomes a fallback layer, design must preserve observability, explainability, intervention, transparency, and trust. 
+
+Pasted text
+
+6. Generated UI Grammar Orchestrator
+
+Purpose:
+
+Create the rules that bound generated UI.
+
+Agents:
+
+Layout Grammar Agent
+
+Visual Hierarchy Agent
+
+Motion/Physics Agent
+
+Material/Light/Shadow Agent
+
+Theming/Token Agent
+
+Accessibility Agent
+
+Spatial Compatibility Agent
+
+Outputs:
+
+generated-ui-grammar.md
+
+Component compatibility rules
+
+Layout constraints
+
+Motion constraints
+
+Theming/token inheritance rules
+
+Visual density rules
+
+Physicality rules
+
+Accessibility constraints
+
+This is the layer that reconciles “unbounded generated UI” with design coherence.
+
+7. Agentic Interaction Contract Orchestrator
+
+Purpose:
+
+Define how application agents surface themselves into the user’s space.
+
+Agents:
+
+Capability Manifest Agent
+
+Permission Boundary Agent
+
+UI Fragment Contract Agent
+
+Tool-Use Policy Agent
+
+User-Agent Integration Agent
+
+App-Agent Negotiation Agent
+
+Outputs:
+
+agentic-interaction-contracts.md
+
+Capability schema
+
+UI-fragment schema
+
+Approval policy
+
+Delegation policy
+
+Recovery and rollback protocol
+
+Current agent platforms are moving in this direction: OpenAI’s Agents SDK frames agents as systems that plan, call tools, collaborate across specialists, and maintain state, while the Apps SDK uses MCP to connect tools and UI components inside ChatGPT. 
+OpenAI Developers
++2
+OpenAI Developers
++2
+
+8. Proposal Orchestrator
+
+Purpose:
+
+Generate candidate UI/UX strategies against the problem map and philosophy.
+
+Agents:
+
+Proposal Generator
+
+Alternative Generator
+
+Tradeoff Explainer
+
+Scope Boundary Agent
+
+Traceability Writer
+
+Outputs:
+
+Proposal variants
+
+Traceability links
+
+Scope boundaries
+
+Open questions
+
+Human decision points
+
+The proposal must cite which problem axes and value axes it serves at generation time, because generation-time traceability reduces later many-to-many auditing risk. 
+
+problem-first-ai-engineering
+
+9. Alignment Orchestrator
+
+Purpose:
+
+Run directional checks until convergence.
+
+Agents:
+
+Problem Alignment Judge
+
+Philosophy Alignment Judge
+
+Communication Alignment Judge
+
+Visual Grammar Alignment Judge
+
+User-Control Judge
+
+Agent-Contract Judge
+
+Alignment Synthesizer
+
+Outputs:
+
+Alignment review reports
+
+Required revisions
+
+Problem expansions
+
+Philosophy expansions
+
+Approval or block
+
+This follows the book’s model that alignment is directional, not exhaustive, and catches different failure modes than behavioral verification. 
+
+problem-first-ai-engineering
+
+10. Risk Orchestrator
+
+Purpose:
+
+Decide how much process the work requires.
+
+Agents:
+
+Change Risk Assessor
+
+Verification Risk Assessor
+
+Control Risk Assessor
+
+Communication Risk Assessor
+
+Privacy/Safety Risk Assessor
+
+Compatibility Risk Assessor
+
+Red-Team Critic
+
+Outputs:
+
+Risk register
+
+Required gates
+
+Blocking risks
+
+Advisory risks
+
+Evaluation burden
+
+Human approval requirements
+
+11. Prototype Planning Orchestrator
+
+Purpose:
+
+Convert accepted strategy into visual exploration without pretending it is final.
+
+Agents:
+
+Storyboard Planner
+
+SVG Draft Planner
+
+Composite Layout Planner
+
+Multimodal Prompt Planner
+
+Interaction Scenario Planner
+
+Prototype Evaluation Planner
+
+Outputs:
+
+Prototype dossier
+
+Visual exploration plan
+
+Scenario tests
+
+Success criteria
+
+Anti-scope
+
+Recall/configuration plan
+
+This fits your interest in SVGs, composites, layered low-res elements, multimodal refinement, and rapid recall. The orchestrator should produce the planning structure, not necessarily the final visual design.
+
+12. Continuity Orchestrator
+
+Purpose:
+
+Preserve the work so a future agent can continue without re-deriving it.
+
+Agents:
+
+Decision Logger
+
+Handoff Writer
+
+Artifact Indexer
+
+Staleness Checker
+
+Traceability Auditor
+
+Library Curator
+
+Outputs:
+
+Decision log
+
+Handoff
+
+Workflow state
+
+Artifact index
+
+Superseded artifact list
+
+Reuse candidates
+
+6. Agent classes
+
+The new workflow should define agents by cognitive function.
+
+Agent class	What it does	Must not do
+Explorer	Maps problem terrain	Propose solutions
+Researcher	Finds and classifies evidence	Decide design direction
+Synthesizer	Integrates findings	Hide uncertainty
+Philosophy Agent	Extracts tradeoff axes	Choose human values
+Proposer	Generates candidate strategies	Certify its own proposal
+Critic	Attacks assumptions	Rewrite solution directly
+Judge	Checks one alignment dimension	Perform broad holistic review
+Risk Assessor	Sizes change and verification risk	Approve work alone
+Contract Agent	Defines schemas and boundaries	Implement app behavior
+Visual Grammar Agent	Defines design generation rules	Generate arbitrary visuals
+Prototype Planner	Plans visual exploration	Treat prototype as final
+Curator	Preserves artifacts and decisions	Change governing values
+
+Every agent needs:
+
+Input artifacts
+
+One reasoning operation
+
+Output schema
+
+Prohibitions
+
+Stop condition
+
+Escalation condition
+
+Traceability requirement
+
+This matches the uploaded book’s agent checklist: one reasoning operation per agent, explicit input artifacts, defined output contracts, prohibitions, centralized routing, and fail-closed uncertainty handling. 
+
+problem-first-ai-engineering
+
+7. Workflow flavors
+
+The workflow needs flavors because not every HCI problem deserves the same process.
+
+Flavor A: hci-max
+
+Use for:
+
+Platform-level generated UI
+
+Common user-space architecture
+
+Agent/app interoperability
+
+Persistent design grammar
+
+High-risk automation
+
+New product direction
+
+Characteristics:
+
+Full problem map
+
+Full research fanout
+
+Multiple stakeholder perspectives
+
+Formal philosophy
+
+Communication model
+
+Generated UI grammar
+
+Agentic contracts
+
+Adversarial validation
+
+Red-team pass
+
+Multi-stage alignment
+
+Human value gates
+
+Output:
+
+Complete strategy package.
+
+Flavor B: hci-pragmatic
+
+Use for:
+
+Specific feature design
+
+Focused UX problem
+
+Landing page strategy
+
+Bounded generated UI pattern
+
+Interaction model for one domain
+
+Characteristics:
+
+Focused problem map
+
+Targeted research
+
+Smaller philosophy delta
+
+One or two proposals
+
+Required alignment checks
+
+Risk-scaled evaluation
+
+Output:
+
+Bounded proposal and prototype plan.
+
+Flavor C: hci-prototype
+
+Use for:
+
+Visual exploration
+
+Early concept testing
+
+UI storyboard generation
+
+SVG/composite planning
+
+Taste exploration
+
+Characteristics:
+
+Lightweight problem framing
+
+Explicit anti-scope
+
+Rapid visual proposal generation
+
+Strong labeling as exploratory
+
+No final design authority
+
+Must feed discoveries back into problem map
+
+Output:
+
+Prototype dossier and unresolved-risk list.
+
+Flavor D: hci-review
+
+Use for:
+
+Existing proposal
+
+Existing generated UI
+
+Existing landing page
+
+Existing communication strategy
+
+Characteristics:
+
+Extract problems/values/proposals from existing artifact
+
+Run alignment checks
+
+Identify hidden assumptions
+
+Recommend revisions
+
+Preserve traceability
+
+Output:
+
+Review report and revision plan.
+
+Flavor E: hci-research-only
+
+Use for:
+
+Studying HCI material
+
+Building source corpus
+
+Mapping research landscape
+
+Preparing future design work
+
+Characteristics:
+
+No proposal generation
+
+Evidence-first
+
+Classify sources by problem axis
+
+Summarize theories, methods, failure modes
+
+Produce research gaps
+
+Output:
+
+Source dossier and research map.
+
+8. The actual orchestration loop
+
+The core loop should be:
+
+intake
+→ extract problem/value/proposal hypotheses
+→ map problem terrain
+→ research by problem axis
+→ integrate evidence into problem map
+→ define philosophy axes
+→ define communication model
+→ define generated UI grammar
+→ define agent/app contracts
+→ generate proposal variants
+→ run alignment checks
+→ expand problem/philosophy if needed
+→ revise proposal
+→ repeat until convergence
+→ assess risk
+→ define prototype/evaluation plan
+→ preserve decisions and handoff
+
+The important part is the loop:
+
+proposal → alignment → discovery → artifact update → proposal revision
+
+This prevents the workflow from converging on the first plausible design. The attached book treats convergence as the point where new checks stop producing meaningful surprises, not as an arbitrary number of review rounds. 
+
+problem-first-ai-engineering
+
+9. Routing rules
+
+The HCI Work Manager should use rules like these.
+
+Research routing
+if claim lacks source support:
+    route to Research Orchestrator
+
+if source material conflicts:
+    route to Contradiction Finder
+
+if evidence is old, vendor-biased, or weak:
+    route to Evidence Quality Assessor
+Problem routing
+if proposal addresses something not in problem_map:
+    route to Problem Expansion Classifier
+
+if repeated concern appears across domains:
+    add or update domain-spanning axis
+
+if user gives feature request:
+    extract value/problem/proposal before accepting it
+Philosophy routing
+if proposal makes an unstated tradeoff:
+    route to Philosophy Expansion Classifier
+
+if values conflict:
+    surface human judgment question
+
+if philosophy is silent on recurring decision:
+    add candidate decision axis
+UI grammar routing
+if generated UI cannot inherit theme:
+    route to Compatibility Auditor
+
+if UI state is hidden:
+    route to Observability Auditor
+
+if motion changes meaning:
+    route to Motion/Interaction Auditor
+
+if personalization changes available choices:
+    route to Control Risk Auditor
+Agentic contract routing
+if app agent exposes capability:
+    require capability manifest
+
+if app agent returns UI fragment:
+    require UI fragment contract
+
+if user agent must integrate fragment:
+    check common-space compatibility
+
+if action is irreversible or high impact:
+    require approval policy
+Failure routing
+if missing evidence:
+    block
+
+if ambiguous value:
+    ask human
+
+if alignment fails:
+    revise proposal
+
+if risk is high:
+    require staged prototype or red-team pass
+
+if no progress after repeated transitions:
+    surface liveness failure
+10. Documentation to create in the repository
+
+Add a new workflow folder, likely:
+
+workflows/adaptive-interface-communication/
+
+Suggested files:
+
+workflows/adaptive-interface-communication/
+  workflow.md
+  index.json
+  routing.md
+  states.md
+  artifacts.md
+  flavors.md
+  gates.md
+  failure-modes.md
+  prompts/
+    intake.md
+    problem-cartography.md
+    research-router.md
+    philosophy-builder.md
+    communication-modeler.md
+    ui-grammar-builder.md
+    agent-contract-builder.md
+    proposal-generator.md
+    problem-alignment.md
+    philosophy-alignment.md
+    communication-alignment.md
+    ui-grammar-alignment.md
+    risk-assessment.md
+    prototype-planner.md
+    handoff-writer.md
+
+Add new orchestrators:
+
+orchestrators/hci-work-manager.md
+orchestrators/problem-cartographer.md
+orchestrators/hci-research-orchestrator.md
+orchestrators/hci-philosophy-orchestrator.md
+orchestrators/communication-model-orchestrator.md
+orchestrators/generated-ui-grammar-orchestrator.md
+orchestrators/agentic-interaction-contract-orchestrator.md
+orchestrators/hci-proposal-orchestrator.md
+orchestrators/hci-alignment-orchestrator.md
+orchestrators/hci-risk-orchestrator.md
+orchestrators/hci-prototype-planning-orchestrator.md
+orchestrators/hci-continuity-orchestrator.md
+
+Add new artifact templates:
+
+templates/hci/problem-map.md
+templates/hci/philosophy.md
+templates/hci/communication-model.md
+templates/hci/generated-ui-grammar.md
+templates/hci/agentic-interaction-contracts.md
+templates/hci/proposal.md
+templates/hci/alignment-review.md
+templates/hci/risk-register.md
+templates/hci/prototype-dossier.md
+templates/hci/evaluation-plan.md
+templates/hci/decision-log-entry.md
+templates/hci/handoff.md
+
+Add conventions:
+
+conventions/hci/generated-ui-compatibility.md
+conventions/hci/visual-communication.md
+conventions/hci/user-control.md
+conventions/hci/invisible-interface.md
+conventions/hci/personalization-boundaries.md
+conventions/hci/app-agent-ui-contracts.md
+conventions/hci/design-token-inheritance.md
+conventions/hci/motion-physics.md
+11. How this workflow handles generated UI
+
+Generated UI becomes safe only when the generator is not free to invent the whole experience.
+
+It must generate inside a bounded structure:
+
+user intent
++ user values
++ current context
++ problem map
++ communication model
++ design grammar
++ agent/app contracts
++ risk policy
++ evaluation constraints
+= generated UI proposal
+
+The UI generator should receive:
+
+Current user objective
+
+User context
+
+Relevant app capabilities
+
+Design tokens
+
+Layout rules
+
+Communication rules
+
+Control requirements
+
+Allowed automation level
+
+Required feedback affordances
+
+Required intervention affordances
+
+Compatibility constraints
+
+Accessibility constraints
+
+It should output:
+
+UI fragment
+
+Purpose
+
+Problems addressed
+
+User choices exposed
+
+Hidden assumptions
+
+State shown
+
+State hidden
+
+User feedback paths
+
+Undo/recovery paths
+
+Traceability to design grammar
+
+Traceability to communication model
+
+Traceability to risk policy
+
+That is how “unbounded UI” becomes governed.
+
+12. How this workflow handles AI communicating through visuals
+
+The communication model should make a hard distinction:
+
+text = explanation
+visual UI = situated communication
+interaction = negotiation
+feedback = correction signal
+
+The system should prefer visual communication when:
+
+the user must compare options
+
+the user needs spatial or relational understanding
+
+the user needs to see state
+
+the user needs to choose among tradeoffs
+
+the user needs confidence before delegation
+
+the user needs to correct the system
+
+the agent needs to expose uncertainty
+
+Text should be used when:
+
+precision matters
+
+legal/compliance traceability matters
+
+the system needs to explain reasoning
+
+the user asks for detail
+
+the visual would hide a critical assumption
+
+The current HCI trend material you attached already points toward this: as agents take over multi-step workflows, UI becomes a fallback layer for oversight, correction, and edge cases, and invisible interfaces require restraint because users still need observability and intervention. 
+
+Pasted text
+
+13. How this workflow handles app agents surfacing into user space
+
+The generated UI surface should not belong to the application alone. It should be integrated by the user’s agent.
+
+The contract is:
+
+application agent exposes capability
+→ user agent interprets capability in user context
+→ UI fragment is generated or requested
+→ user-space grammar adapts it
+→ user reviews / acts / delegates
+→ user feedback updates memory and policy
+
+This maps to current protocol direction. MCP gives a way for servers to expose tools, resources, prompts, progress, cancellation, logging, and user-control expectations; A2A defines agent-to-agent task coordination, artifacts, and UX negotiation; Apps SDK-style systems show how structured tool results can become UI components inside a host environment. 
+Model Context Protocol
++2
+Google Developers Blog
++2
+
+The workflow should therefore require every application agent to declare:
+
+What it can do
+
+What data it needs
+
+What UI it wants to surface
+
+What state it exposes
+
+What actions are reversible
+
+What actions require confirmation
+
+What uncertainty exists
+
+What feedback it can accept
+
+What user-agent constraints it must respect
+
+14. Correctness model
+
+The workflow should not define “correct answer” as one final UI.
+
+For this space, correctness means:
+
+A proposal is correct enough when it accounts for the mapped problem terrain, embodies the chosen values, communicates appropriately to the user, preserves user control, fits the generated UI grammar, satisfies agent/app contracts, and passes risk-scaled verification without producing new meaningful surprises.
+
+That is the convergence model.
+
+A generated UI is not “right” because it looks good. It is right because it is traceable:
+
+UI element
+→ communication purpose
+→ user intent
+→ problem axis
+→ value axis
+→ design grammar rule
+→ risk policy
+→ evaluation result
+
+If that chain breaks, the UI is not governed.
+
+15. What should be built first
+
+Do not start by implementing all agents.
+
+Start with the orchestration substrate:
+
+workflow.md defining purpose, phases, states, and routing.
+
+artifacts.md defining required artifacts and schemas.
+
+flavors.md defining hci-max, hci-pragmatic, hci-prototype, hci-review, and hci-research-only.
+
+gates.md defining alignment and risk gates.
+
+problem-map.md template.
+
+hci-philosophy.md template.
+
+communication-model.md template.
+
+generated-ui-grammar.md template.
+
+agentic-interaction-contracts.md template.
+
+One minimal orchestrator: hci-work-manager.
+
+Three initial agents:
+
+Problem Cartographer
+
+Philosophy Builder
+
+Alignment Judge
+
+Then add research, visual grammar, agent-contract, and prototype planning agents.
+
+This follows the same principle as the book and the existing workflow examples: build the artifact authority and routing rules first; add autonomy only where the structure requires it.
+
+
+=== user ===
+There are expansions to the theory within models.zip. New axes of risk for example. New types of orchestrators. Operators. Clients. Retrofits. Flavors. One such risk is understanding and researching prior state. I think the expansions really apply largely to software development. However, something like prior state translates to user ergonomics within a particular space. I don't think that you conducted enough research into the practices and techniques models.zip brings to the table that are not present in the book. You don't necessarily need to look at the agents. You can look at the workflows and the operators. That will be much more compressed and will largely get you the information you need. If you are curious about what an agent in a workflow represents, then you can read that agent file. You want to start AGENTS.md, operators, workflows. Your purpose is to understand the underlying theories that are being employed.
+Show more
+
+
+=== assistant ===
+I’ll use the repository as the primary source now, reading AGENTS.md plus workflow/operator layers to extract recurring orchestration mechanics. Agent files stay secondary unless needed.
+
+
+=== assistant ===
+The missing layer is that workflows function as auditable state machines, adding prior-state profiling, per-surface risk, process-tree auditing, and durable question/history artifacts.
+
+
+=== assistant ===
+You’re right. The missing layer is that models.zip is not just an example repository. It is an operational theory of orchestration layered on top of the book’s problem-first theory.
+
+The book gives the epistemic structure: problem map, values/philosophy, proposals, alignment, verification, durable continuity, routing by results, and avoidance of many-to-many verification failure. 
+
+problem-first-ai-engineering
+
+ 
+
+problem-first-ai-engineering
+
+
+models.zip adds the operating system: operators, clients, workflows, flavors, prior-state profiles, process-tree audits, currentness checks, risk-reduction loops, structured questions, retrofits, prototypes, and staleness handling.
+
+The updated thesis is:
+
+Generated UI/UX should not be produced by a design agent. It should be produced by a current-state-aware, risk-profiled, artifact-governed orchestration system.
+
+That is the important correction.
+
+1. The theory in models.zip beyond the book
+
+The book says: understand the problem before proposing; define values before implementation; use durable artifacts; route by results; separate creators from evaluators; fail closed on uncertainty. 
+
+problem-first-ai-engineering
+
+models.zip turns those principles into a working topology.
+
+The most important files I used were:
+
+AGENTS.md
+VALUES.md
+
+agents/operator-file-format.md
+agents/work-manager-operator.md
+agents/work-manager-operator-max.md
+agents/work-manager-operator-pragmatic.md
+agents/work-manager-operator-hackerman.md
+
+workflows/implementation-pipeline.md
+workflows/feature-development.md
+workflows/build-prototype.md
+workflows/research.md
+workflows/roadmap.md
+workflows/risk-reduction.md
+workflows/audit.md
+workflows/code-quality.md
+
+conventions/risk-profile.md
+conventions/code-quality.md
+conventions/agent-questions-and-session-graph.md
+conventions/audit-history.md
+conventions/workflow-execution-violations.md
+conventions/review-convergence.md
+
+I did not need to read every agent file. The workflows, operators, and conventions expose the underlying theory more compactly.
+
+2. The core orchestration theories
+A. Ecosystem theory: workflows compose operators, tools, clients, and conventions
+
+VALUES.md defines the repository as an ecosystem of small specialized pieces:
+
+operators do operator-shaped work
+clients wrap external services
+tools perform small mechanical tasks
+workflows compose operators, tools, and clients
+conventions encode rules
+
+That matters for HCI because a generated UI system should not become one giant “UX agent.”
+
+The correct architecture is:
+
+HCI workflow
+  → calls HCI operators
+  → uses lean app/context/design-token clients
+  → follows HCI conventions
+  → writes durable artifacts
+  → routes by risk, currentness, and results
+
+For generated UI, this means:
+
+The workflow owns lifecycle and routing.
+
+The operators perform bounded reasoning operations.
+
+The clients expose external app/user/context/design systems.
+
+The conventions define the design and safety rules.
+
+The artifacts preserve state, decisions, and traceability.
+
+The generated UI is only the output surface. The workflow is the controlling system.
+
+B. Routing theory: AGENTS.md is a topology catalog, not just documentation
+
+AGENTS.md is not simply a list of agents. It is a routing table that decides which orchestration topology applies.
+
+The key pattern is:
+
+Classify the work
+→ select strategy
+→ select flavor
+→ dispatch the correct workflow/operator
+→ preserve artifacts
+→ audit the process
+
+For HCI, this means the system must first classify the requested work:
+
+HCI request shape	Correct route
+“Research this design frontier”	HCI research workflow
+“Design a new generated UI strategy”	Full adaptive-interface workflow
+“Review this existing UI/proposal”	HCI audit / review-first workflow
+“Explore visual directions”	HCI prototype workflow
+“Ship a bounded UI behavior”	HCI implementation pipeline
+“Coordinate multiple UI/application-agent changes”	HCI feature-development workflow
+“Reduce known ergonomic risk”	HCI risk-reduction workflow
+
+That is different from simply dispatching “UX agent” or “UI agent.”
+
+C. Flavor theory: strategy and risk posture are separate
+
+The Work Manager flavor files are important. They show that the same workflow can run under different risk postures:
+
+manager-max
+manager-pragmatic
+manager-hackerman
+
+These are not different workflows. They are different risk appetites.
+
+Translated to HCI:
+
+Flavor	Use case	Risk posture
+hci-max	persistent user-space UI, agent delegation, high-stakes workflows, cross-app automation	All major gates must return LOW. No opacity/control residuals.
+hci-pragmatic	bounded UI improvement, internal tool, local visual refinement	Accept narrow MEDIUM residuals only when they do not affect control, safety, accessibility, or trust.
+hci-prototype / hci-hackerman	visual exploration, speculative interaction model, fast answer-seeking	Can tolerate mess during exploration, but must end in a dossier with risk profile and spawned follow-up work.
+
+This is critical for generated UI. The workflow may be the same, but a UI fragment that automates a financial decision requires a different risk posture than a throwaway visual storyboard.
+
+D. Prior-state theory: before proposing, understand the existing surface
+
+This is the biggest thing my earlier answer underweighted.
+
+workflows/implementation-pipeline.md adds Phase 2.5: Existing-State Risk Profile. Before proposal, the workflow maps the current touched surface:
+
+problem map
+coverage inventory
+lifecycle map
+entrypoints
+duplicates
+cross-language trace
+risk profile
+
+This is software-oriented in the repo, but the theory transfers directly to HCI.
+
+In software, prior state means: what code, tests, contracts, entrypoints, duplicate systems, and lifecycle already exist.
+
+In HCI, prior state means:
+
+what the user is already doing
+what the user already understands
+where they are in the task lifecycle
+which apps/surfaces already represent the task
+which modalities can enter the flow
+which visual states already exist
+which user corrections/preferences already exist
+which app agents already expose capability
+which parts of the user’s space are stable
+which parts are fragmented or stale
+
+Generated UI without prior-state understanding is dangerous because it can overwrite the user’s mental model. It can make a “better” UI that is ergonomically wrong because it fails to account for what the user already knows, sees, expects, and trusts.
+
+The HCI translation of Phase 2.5 should be:
+
+Phase 2.5: Existing Ergonomic State Profile
+
+Required artifacts:
+
+hci-current-state-map.md
+interaction-lifecycle-map.md
+entrypoints-and-modalities.md
+duplicate-surface-inventory.md
+cross-app-agent-trace.md
+user-space-coverage-inventory.md
+hci-risk-profile.md
+
+This becomes the baseline that any generated UI proposal must improve.
+
+E. Per-surface risk theory: risk is not global
+
+conventions/risk-profile.md is a major expansion. It says the risk profile is not a single score. It is a per-surface scored map. A single work unit can be lean in one surface and exhaustive in another.
+
+That should become a rule for generated UI:
+
+Do not assign one risk level to the whole interface. Score each interaction surface.
+
+For HCI, a “surface” can be:
+
+choice panel
+confirmation flow
+ambient notification
+generated dashboard
+cross-app command surface
+personalized recommendation
+undo/recovery path
+agent progress view
+visual comparison layout
+app-agent UI fragment
+voice/gesture/text multimodal entrypoint
+
+Each surface gets its own risk profile and mode:
+
+LOW     → lean generation/evaluation
+MEDIUM  → lean with explicit callouts
+HIGH    → exhaustive research, review, and testing
+
+This avoids the bad global decision: either over-process everything or under-process the dangerous part.
+
+F. LOW-only gate theory
+
+The repository repeatedly uses LOW-only gates for pipeline-callable checks. MEDIUM and HIGH are not “acceptable residuals” in those contexts. They trigger revision, remediation, rerun, or decomposition.
+
+That is a strong orchestration theory:
+
+A gate is not advice if downstream work depends on it.
+
+For HCI, LOW-only gates should apply to:
+
+user-control risk
+transparency risk
+accessibility risk
+app-agent contract risk
+irreversible-action risk
+personalization opacity risk
+safety/privacy risk
+cross-app automation risk
+
+For example:
+
+If generated UI hides why an option changed → personalization opacity risk is not LOW.
+If the user cannot undo or intervene → control risk is not LOW.
+If app-agent capability semantics are unclear → agent-contract risk is not LOW.
+If visual state looks complete but omits uncertainty → communication risk is not LOW.
+
+A generated UI should not advance just because it looks polished.
+
+G. Currentness and staleness theory
+
+models.zip has a much stronger staleness model than the book alone.
+
+Prior reviews, audits, LOW verdicts, risk profiles, and assumptions become stale after substantive changes unless exact identity/currentness can be proven. The repo uses concepts like target identity, content hashes, current audit bundles, and stale LOW invalidation.
+
+For generated UI, this is extremely important.
+
+A prior UI review can become stale when:
+
+the user’s context changed
+the user corrected the system
+an app capability changed
+a design token changed
+the app-agent contract changed
+the task lifecycle changed
+a new modality was added
+a new UI fragment was introduced
+the user’s values changed
+the surrounding workspace changed
+
+A generated UI system should not say “this was approved before” unless it can prove the relevant state is still current.
+
+This creates a new HCI artifact:
+
+hci-currentness-record.md
+
+It should record:
+
+user-state version
+design-token version
+app-agent contract version
+capability manifest version
+layout/theme version
+known user preference version
+last review target identity
+what changed since review
+which prior findings are stale
+
+That prevents stale ergonomic assumptions from becoming current UI.
+
+H. Prototype theory: when framing is unclear, the deliverable is a dossier
+
+workflows/build-prototype.md is not just “build a prototype.” It has a different theory:
+
+When you do not yet know what to build, do not pretend you can gate a proposal.
+Explore quickly.
+Then stabilize the answer.
+Then produce a dossier.
+
+For HCI/generated UI this is essential. Many visual and interaction questions cannot be answered by research alone.
+
+The prototype workflow should be used when:
+
+the visual grammar is unknown
+the interaction state space is unclear
+the user feedback loop is not understood
+the app-agent integration surface is unknown
+the common-space theming problem is unresolved
+the generated UI needs taste/feel exploration
+the problem is too large to split safely
+
+But the prototype branch/mockup is not the authority. The dossier is.
+
+The HCI prototype dossier should include:
+
+answer.md
+visual-evidence/
+interaction-recordings/
+risk-profile.md
+challenges.md
+spawned-tickets.md
+branch-disposition.md
+design-grammar-findings.md
+user-feedback-findings.md
+app-agent-contract-findings.md
+
+This fits your SVG/composite/visual exploration direction. Visual drafting can be exploratory, but the output must preserve what was learned.
+
+I. Risk-reduction theory: pay down ergonomic debt between work units
+
+workflows/risk-reduction.md introduces a pattern that should transfer almost directly.
+
+In software:
+
+coverage gap
+behavioral ambiguity
+duplicate systems
+language fragmentation
+brittleness
+lifecycle invisibility
+
+become targeted risk-reduction work.
+
+In HCI:
+
+unclear user state
+ambiguous visual semantics
+duplicate app surfaces
+modality fragmentation
+hidden lifecycle transitions
+stale personalization
+unobservable automation
+inconsistent theming
+missing recovery paths
+
+should produce risk-reduction tickets.
+
+A key rule from the repo: one item = one axis × one surface.
+
+So not:
+
+Improve generated UI consistency
+
+Instead:
+
+Reduce duplicate-surface risk for task-status presentation across Calendar, Tasks, and Email fragments.
+
+Or:
+
+Reduce lifecycle-visibility risk for delegated booking flow by making pending, blocked, approved, and completed states visually persistent.
+
+And success requires re-scoring the risk profile.
+
+J. Structured question theory: user input is an artifact, not a casual interruption
+
+conventions/agent-questions-and-session-graph.md is an important expansion.
+
+Sub-agents do not ask the user directly. They emit structured question artifacts. The root orchestrator surfaces the question, records the answer, and resumes the blocked work.
+
+For HCI this becomes a theory of user feedback:
+
+The user’s corrections, overrides, values, and scope decisions should be durable structured artifacts.
+
+Generated UI should not merely ask:
+
+Do you like this?
+
+It should produce structured feedback opportunities:
+
+This layout assumes speed matters more than explanation.
+A: keep speed-first
+B: show more explanation
+C: make this decision contextual
+D: never automate this class of choice
+
+The answer updates:
+
+user-value model
+personalization policy
+communication model
+design grammar
+risk profile
+decision log
+
+That is how feedback becomes usable by future agents.
+
+K. Process-tree theory: the process itself must be auditable
+
+process-tree-auditor, workflow-process-auditor, and workflow-execution-violations.md establish a deeper rule:
+
+A workflow’s claim of success is not proof that it followed the required process.
+
+For generated UI, this means the system should be able to prove:
+
+research happened before proposal
+current-state map existed before proposal
+risk profile existed before design
+evaluation criteria existed before UI generation
+creator and evaluator were separate
+user-value questions were routed correctly
+stale reviews were not reused as current
+HIGH/MEDIUM gate failures were not accepted as residuals
+
+This is especially important if AI generates UI dynamically. The user may see only the final surface. But the system needs internal provenance proving that the surface was generated under the right constraints.
+
+3. Translation of software concepts into HCI concepts
+
+This is the central bridge.
+
+models.zip concept	Software meaning	HCI / generated-UI meaning
+Existing-state risk profile	Understand touched code before proposing	Understand the user’s current ergonomic state before generating UI
+Coverage inventory	What behavior is already tested	What user states, choices, and feedback paths are already represented
+Lifecycle map	Process start/end/state transitions	User task lifecycle, engagement state, interruption/resume paths
+Entrypoints	CLI/API/jobs/events	Voice, gesture, text, app event, sensor, notification, direct manipulation
+Duplicates inventory	Parallel implementations	Fragmented app UIs representing the same concept differently
+Cross-language trace	Contracts across Python/TS/etc.	Contracts across apps, agents, modalities, UI fragments, design systems
+Language fragmentation	Implicit contracts across languages	Semantic fragmentation across modalities/apps
+Change-path entropy	Same change touches many places	Same UI/meaning rule must be updated across many surfaces
+Lifecycle visibility	Can the process be drawn?	Can the user understand where they are and what the agent is doing?
+Coverage gap	Behavior untested	User cannot see, verify, or correct an important state
+Behavioral ambiguity	Intended behavior unclear	User intent, system action, or UI meaning unclear
+Blast radius	Scope of breakage	Number of apps/tasks/decisions affected by generated UI or automation
+Risk-reduction ticket	Pay down structural risk	Pay down ergonomic/communication/control debt
+Code-quality single-role rule	One function should do one kind of work	One UI fragment should have one communicative job
+Push-vs-pull coupling	Push into common interface instead of pulling from uncontrolled source	App agents should expose capability/state contracts instead of user agent scraping app-specific UI
+Prototype dossier	Answer, evidence, risk, spawned tickets	Visual/interaction answer, evidence, ergonomic risks, next design tickets
+Question artifact	Structured human input for blocked work	Structured user feedback, value choice, override, or personalization correction
+Audit history	Prevent re-litigation and stale review	Preserve design decisions, user corrections, invalidation conditions
+
+This is where “prior state” becomes ergonomics.
+
+In generated UI, prior state is not a technical afterthought. It is the user’s current lived interface.
+
+4. Revised workflow: Adaptive Interface Communication Pipeline
+
+The workflow should not start with research or design. It should start with current ergonomic state.
+
+0. Route and select flavor
+1. Existing ergonomic state profile
+2. HCI/content research
+3. Problem + value + communication synthesis
+4. Generated UI proposal
+5. Risk gates
+6. Hookpoint / app-agent / design-token research
+7. Prototype or production generation path
+8. Review and audit gates
+9. Risk-reduction updates
+10. Documentation, handoff, and decision log
+Phase 0 — Route and select flavor
+
+The top-level HCI Work Manager decides:
+
+research-only
+review-first
+retrofit
+prototype
+single-surface implementation
+feature-level generated UI
+risk-reduction
+
+Then it selects flavor:
+
+hci-max
+hci-pragmatic
+hci-prototype / hci-hackerman
+
+Strategy comes before flavor. A multi-surface user-facing generated UI feature should enter feature-development even if the active flavor is pragmatic.
+
+Phase 1 — Existing ergonomic state profile
+
+Produce:
+
+hci-current-state-map.md
+interaction-lifecycle-map.md
+entrypoints-and-modalities.md
+duplicate-surface-inventory.md
+cross-app-agent-trace.md
+user-space-coverage-inventory.md
+hci-risk-profile.md
+
+Questions:
+
+What is the user already doing?
+What does the user already see?
+What state is visible?
+What state is hidden?
+Where can the user intervene?
+Where can the user undo?
+Which apps represent this same task?
+Which surfaces duplicate each other?
+Which modalities can initiate or alter the task?
+Which app agents expose capability?
+Which UI fragments are stale or incompatible?
+
+No design proposals yet.
+
+Phase 2 — HCI/content research
+
+Use workflows/research.md style:
+
+primary sources first
+research separated from proposal
+fanout by problem axis
+synthesis once
+evidence attached at generation time
+
+Research axes:
+
+generated UI
+agentic delegation
+visual communication
+HCI as communication
+personalization
+trust/control/transparency
+design systems/tokens
+spatial/material UI
+motion/physics
+game feel
+copywriting/adaptive content
+multimodal interaction
+accessibility
+app-agent interoperability
+
+The attached HCI blurb’s core shift is that agents become the interface and UI becomes a fallback layer for oversight, correction, and edge cases; that makes observability, explainability, intervention, transparency, and trust central design constraints. 
+
+Pasted text
+
+Phase 3 — Problem, value, and communication synthesis
+
+Produce:
+
+hci-problem-map.md
+hci-philosophy.md
+communication-model.md
+generated-ui-grammar.md
+agentic-interaction-contracts.md
+
+The problem map should include cross-domain axes:
+
+communication
+control
+trust
+timing
+context
+personalization
+state visibility
+visual priority
+interaction cost
+reversibility
+compatibility
+agent authority
+app-agent negotiation
+
+The philosophy should include decision axes:
+
+automation ↔ user control
+personalization ↔ predictability
+invisible UI ↔ observable state
+speed ↔ explanation
+visual density ↔ cognitive ease
+ambient behavior ↔ explicit confirmation
+common-space consistency ↔ app identity
+material/physical richness ↔ calmness
+agent initiative ↔ user initiative
+delegation ↔ approval
+Phase 4 — Generated UI proposal
+
+The proposal must be structured, traceable, and current-state-aware.
+
+Required sections:
+
+Problems addressed
+Current ergonomic state being changed
+Proposal
+Why this fits the philosophy
+Communication strategy
+Generated UI grammar implications
+App-agent contract implications
+User-control model
+Personalization model
+Feedback/recovery model
+Supported user-space track
+Assumption register
+Test/evaluation intent
+Resolved questions
+Unresolved questions
+Anti-scope
+Human judgment required
+
+The proposal should explicitly say how it reduces current ergonomic risk.
+
+A proposal that creates a beautiful new surface but increases hidden state, duplicate UI, or personalization opacity should fail.
+
+Phase 5 — HCI risk gates
+
+Run separate judges/operators.
+
+Suggested gates:
+
+Gate	Question
+Communication risk	Will the user understand the right thing at the right time?
+Control risk	Can the user observe, intervene, override, and undo?
+Personalization opacity risk	Can the user understand and correct adaptation?
+Compatibility risk	Does it fit the user’s common space, design grammar, and tokens?
+App-agent contract risk	Are capabilities, permissions, state, and UI fragments explicit?
+Accessibility risk	Can the surface be used across ability, device, and modality constraints?
+Visual ambiguity risk	Does the visual hierarchy communicate state, priority, and consequence?
+Lifecycle visibility risk	Can the user understand start, pending, blocked, delegated, completed, failed, and resumed states?
+Feedback/recovery risk	Can the user correct the system and recover from error?
+
+For hci-max, all must be LOW.
+
+For hci-pragmatic, MEDIUM can survive only if it is non-blocking, explicitly recorded, and not about control, trust, safety, accessibility, or irreversible action.
+
+For prototype mode, these gates run after exploration, not during.
+
+Phase 6 — Hookpoint / app-agent / token research
+
+This is the HCI equivalent of hookpoint research.
+
+Questions:
+
+Which application agents expose capabilities?
+Which app contracts are explicit?
+Which UI fragments can be requested?
+Which design tokens should be inherited?
+Which surfaces should be deleted or consolidated?
+Which app identities must remain visible?
+Which user-space grammar governs layout, motion, depth, and theme?
+Which existing user preferences or corrections apply?
+
+Outputs:
+
+app-agent-capability-map.md
+design-token-inheritance-map.md
+ui-fragment-contract-map.md
+hookpoint-and-deletion-candidates.md
+cross-app-state-contract.md
+
+This is where “the application comes to the user” becomes operational. The app does not ship an arbitrary UI fragment. It exposes a capability and maybe a proposed fragment; the user agent integrates it into the user’s common space.
+
+Phase 7 — Prototype or production path
+Prototype path
+
+Use when shape is unknown.
+
+Output is not “a mockup.” Output is:
+
+prototype dossier
+risk profile
+visual evidence
+interaction evidence
+spawned tickets
+branch/disposition plan
+
+Use this for:
+
+visual grammar exploration
+SVG/composite layout exploration
+spatial/material UI experiments
+multimodal feedback loops
+agent visual communication experiments
+Production path
+
+Use when the shape is known enough.
+
+Split into:
+
+contract/evaluation criteria first
+then UI generation
+then independent review
+
+The HCI equivalent of tests-before-code is:
+
+evaluation intent before UI generation
+
+That means define:
+
+what the user must understand
+what choices must be visible
+what state must be inspectable
+what actions require confirmation
+what recovery path must exist
+what feedback the user can provide
+what personalization can and cannot change
+
+Then generate the UI.
+
+Phase 8 — Review and audit gates
+
+Separate creator and evaluator.
+
+Suggested review operators:
+
+hci-problem-alignment-judge
+hci-philosophy-alignment-judge
+hci-communication-judge
+hci-control-transparency-judge
+hci-visual-grammar-judge
+hci-accessibility-judge
+hci-agent-contract-judge
+hci-process-tree-auditor
+hci-currentness-auditor
+
+The reviewer should not only ask “is this good?”
+
+It should ask:
+
+Which problem axes does this surface address?
+Which user states are still hidden?
+Which personalization assumptions are unproven?
+Which app-agent contract is implicit?
+Which user correction path is missing?
+Which prior-state assumption may now be stale?
+Which design-token or visual grammar rule is violated?
+Phase 9 — Risk-reduction update
+
+Every generated UI feature should update a project/user-space risk profile.
+
+New risk-reduction tickets should be created for:
+
+duplicate surfaces
+unclear lifecycle states
+modality fragmentation
+hidden personalization
+inconsistent visual language
+unclear app-agent contracts
+missing undo/recovery
+unobservable automation
+stale ergonomic assumptions
+
+Each ticket should target:
+
+one axis × one surface
+
+Example:
+
+Reduce personalization-opacity risk for generated task-priority cards.
+
+Not:
+
+Improve personalization UX.
+Phase 10 — Continuity
+
+Preserve:
+
+decision-log.md
+audit-history.md
+handoff.md
+currentness-record.md
+user-feedback-artifacts/
+risk-profile.md
+
+A future agent should be able to answer:
+
+Why does this UI exist?
+Which problem does it address?
+Which value tradeoff does it embody?
+Which user correction influenced it?
+Which assumptions would invalidate it?
+Which app-agent contract does it depend on?
+Which review is still current?
+Which risks remain?
+5. New HCI risk axes
+
+These should be added to the workflow as the HCI analogue of conventions/risk-profile.md.
+
+Axis	LOW	MEDIUM	HIGH
+Visual/communication coverage gap	All important states, choices, and consequences are visible or inspectable	Some states require explanation or secondary inspection	User cannot see material state, uncertainty, or consequence
+Intent ambiguity	User intent is clear from explicit action or reliable context	Intent is plausible but partly inferred	System acts on weak or conflicting intent
+Interaction blast radius	Affects one local surface	Affects adjacent surfaces/apps	Affects many apps, permissions, automations, or irreversible tasks
+Lifecycle visibility	Start, pending, blocked, delegated, completed, failed, and resumed states are clear	Some lifecycle stages are implicit	User cannot tell where they are or what the agent is doing
+Duplicate-surface count	One canonical representation	One primary plus known legacy/alternate surface	Multiple surfaces represent the same task differently
+Modality fragmentation	Voice/text/touch/gesture/visual semantics align	One modality has special-case behavior	Modalities conflict or create different meanings
+Personalization opacity	User can understand, override, and reset adaptation	Adaptation is partly explainable	User cannot tell why UI or choices changed
+Feedback/recovery gap	User can correct, undo, retry, or teach the system	Recovery exists but is indirect	No clear intervention or recovery path
+App-agent contract ambiguity	Capabilities, permissions, state, and UI payloads are explicit	Some implied contract remains	App agent behavior is opaque or underspecified
+Theme/space incompatibility	Surface inherits common-space tokens, density, motion, and depth	Minor incompatibility	Surface feels foreign, conflicting, or semantically inconsistent
+Ergonomic brittleness markers	No repeated confusion/correction/workaround	One or two signs	Repeated correction, abandonment, workaround, or explainability patching
+Change-path entropy	Rule can be changed in one place	Small predictable propagation	Same semantic change must be edited across many apps/fragments
+Trust/accountability gap	User can see who/what acted and why	Partial accountability	Action provenance is hidden
+
+These are not checklist decoration. They decide the mode of the workflow.
+
+6. New operators to add
+
+The first operators should be operational, not domain-persona agents.
+
+hci-work-manager-operator.md
+hci-current-state-profiler.md
+hci-risk-profiler.md
+hci-research-orchestrator.md
+hci-problem-map-builder.md
+hci-philosophy-builder.md
+hci-communication-modeler.md
+hci-generated-ui-grammar-builder.md
+hci-agent-contract-builder.md
+hci-proposal-generator.md
+hci-communication-risk-judge.md
+hci-control-risk-judge.md
+hci-personalization-risk-judge.md
+hci-compatibility-risk-judge.md
+hci-agent-contract-risk-judge.md
+hci-accessibility-risk-judge.md
+hci-currentness-auditor.md
+hci-process-tree-auditor.md
+hci-prototype-orchestrator.md
+hci-risk-reduction-operator.md
+hci-handoff-writer.md
+
+Each operator should follow agents/operator-file-format.md:
+
+Role
+Use When
+Do Not Use When
+Inputs
+Procedure
+Outputs
+Stop Conditions
+Escalation
+
+Do not begin with:
+
+UX agent
+UI agent
+copywriting agent
+game design agent
+
+Those are domain labels. The repository’s theory says operators should be scoped by reasoning operation and workflow function.
+
+7. Clients to add
+
+Clients should be thin wrappers, not orchestration logic.
+
+Suggested clients:
+
+clients/app-agent-registry/
+clients/design-token-registry/
+clients/user-context-store/
+clients/user-feedback-store/
+clients/ui-fragment-renderer/
+clients/capability-manifest/
+clients/visual-memory-index/
+clients/prototype-artifact-store/
+
+Rules:
+
+client wraps external system
+operator interprets meaning
+workflow coordinates lifecycle
+convention governs rules
+artifact preserves state
+
+For your “application comes to the user” model, the app-agent registry is especially important.
+
+The user agent should not scrape or reinterpret every application’s private UI. App agents should expose:
+
+capabilities
+permissions
+state
+supported actions
+UI fragment contracts
+reversibility
+uncertainty
+feedback channels
+
+Then the user agent integrates that into the common user space.
+
+This mirrors the repository’s push-vs-pull coupling rule: prefer controlled push into a shared interface over uncontrolled pull from fragmented surfaces.
+
+8. Retrofits
+
+The repo’s review_first and plug_existing_review modes matter for HCI.
+
+Many generated UI systems will not start from scratch. They will retrofit existing apps, dashboards, flows, and surfaces.
+
+Retrofit workflow:
+
+existing UI / app-agent / design-system surface
+→ review-first audit
+→ existing ergonomic state profile
+→ currentness check
+→ stale finding classification
+→ proposal
+→ risk gates
+→ consolidation or generated UI integration
+
+Retrofit rules:
+
+Do not trust an old UX audit as current.
+Do not trust an old design-system review if tokens changed.
+Do not trust prior user feedback if the task context changed.
+Do not trust app-agent contracts if capabilities changed.
+Do not merge generated UI into a common space until duplicate surfaces are mapped.
+
+A retrofit is not a normal greenfield design. It is a currentness and compatibility problem.
+
+9. The corrected high-level workflow definition
+
+The new workflow should be called something like:
+
+workflows/adaptive-interface-communication.md
+
+It should declare:
+
+Purpose:
+  Produce generated UI/UX and agentic communication surfaces only after
+  mapping current ergonomic state, HCI problem terrain, user values,
+  app-agent contracts, design grammar, and per-surface risk.
+
+Primary authority:
+  hci-current-state-map.md
+  hci-problem-map.md
+  hci-philosophy.md
+  communication-model.md
+  generated-ui-grammar.md
+  agentic-interaction-contracts.md
+  hci-risk-profile.md
+
+Non-goals:
+  Does not generate UI directly from a prompt.
+  Does not accept app-specific UI fragments without integration review.
+  Does not let the proposal generator certify its own work.
+  Does not treat visual polish as evidence of correctness.
+  Does not reuse stale reviews as current.
+
+The workflow’s core loop:
+
+route
+→ map existing ergonomic state
+→ research
+→ synthesize problem/value/communication artifacts
+→ generate proposal
+→ run HCI risk gates
+→ research hookpoints/contracts/tokens
+→ prototype or produce
+→ audit
+→ update risk profile
+→ preserve continuity
+10. The key strategic correction
+
+The previous answer treated the workflow too much like:
+
+research HCI material
+→ define theory
+→ create HCI agents
+→ produce generated UI strategy
+
+The repository points to a stronger architecture:
+
+route by work shape
+→ select flavor
+→ map prior/current state
+→ score per-surface risk
+→ research only the axes that matter
+→ generate proposal against current state + problem map + values
+→ run LOW-only gates where downstream safety depends on them
+→ prototype only when framing is genuinely unknown
+→ preserve decisions, questions, reviews, and currentness
+→ reduce accumulated ergonomic risk between features
+
+That is the right theory for unbounded generated UI.
+
+The user experience is not just generated. It is orchestrated under constraints.
+
+The central design question becomes:
+
+What current user-space state, risk profile, communication objective, app-agent contract, and design grammar must be true before this UI is allowed to appear?
+
+That is the missing bridge between models.zip and HCI.

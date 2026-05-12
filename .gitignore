@@ -1,0 +1,35 @@
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editor
+.idea/
+.vscode/
+*.iml
+
+# Python (for any research scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+*.log
+
+# Local env / secrets
+.env
+.env.local
+*.key
+
+# Research workspace scratch (session files, intermediate caches)
+**/sessions/*.json
+**/sessions/*.jsonl
+*.tmp
+
+# Local notes that shouldn't be public
+NOTES.local.md
+TODO.local.md
