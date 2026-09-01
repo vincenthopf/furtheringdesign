@@ -21,3 +21,6 @@ jobs:
       - run: npm run validate:example
       - run: npm run evaluate:example
       - run: npm run plan:example
+      - run: npm run validate:strict
+      - run: npm run evaluate:strict
+      - run: npm run plan:strict
