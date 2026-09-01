@@ -1,0 +1,70 @@
+name: apply runtime v0.2 source
+
+on:
+  push:
+    branches:
+      - feat/furthering-design-protocol
+    paths:
+      - .github/workflows/apply-runtime-v02-source.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and apply source package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat \
+            .github/runtime-v02-payload/part-000 \
+            .github/runtime-v02-payload/part-001 \
+            .github/runtime-v02-payload/part-002 \
+            .github/runtime-v02-payload/part-003 \
+            .github/runtime-v02-payload/part-004a \
+            .github/runtime-v02-payload/part-004b \
+            .github/runtime-v02-payload/part-004c \
+            .github/runtime-v02-payload/part-005 \
+            .github/runtime-v02-payload/part-006 \
+            .github/runtime-v02-payload/part-007 \
+            .github/runtime-v02-payload/part-008 \
+            .github/runtime-v02-payload/part-009 \
+            .github/runtime-v02-payload/part-010 \
+            .github/runtime-v02-payload/part-011 \
+            .github/runtime-v02-payload/part-012 \
+            .github/runtime-v02-payload/part-013 \
+            .github/runtime-v02-payload/part-014a \
+            .github/runtime-v02-payload/part-014b \
+            .github/runtime-v02-payload/part-014c1 \
+            .github/runtime-v02-payload/part-014c2 \
+            .github/runtime-v02-payload/part-014c3 \
+            .github/runtime-v02-payload/part-014c4 \
+            .github/runtime-v02-payload/part-014c5 \
+            .github/runtime-v02-payload/part-014c6 \
+            > /tmp/runtime-v02.b64
+          test "$(wc -c < /tmp/runtime-v02.b64)" -eq 88852
+          echo "4224ad866b7131b47e5b3ecde2b0df574121abaf08fba3b1ee7902533e34468c  /tmp/runtime-v02.b64" | sha256sum -c -
+          base64 -d /tmp/runtime-v02.b64 > /tmp/runtime-v02.tar.gz
+          echo "169f06a4397d95797ca9e97a42ea06fdb383baf7f44c2feb54eb53322786b0f5  /tmp/runtime-v02.tar.gz" | sha256sum -c -
+          python - <<'PY'
+          import tarfile
+          from pathlib import PurePosixPath
+          with tarfile.open('/tmp/runtime-v02.tar.gz', 'r:gz') as archive:
+              for member in archive.getmembers():
+                  path = PurePosixPath(member.name)
+                  if path.is_absolute() or '..' in path.parts:
+                      raise SystemExit(f'unsafe archive path: {member.name}')
+          PY
+          tar --exclude='./.github/workflows/runtime.yml' -xzf /tmp/runtime-v02.tar.gz
+          rm -rf .github/runtime-v02-payload
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "feat: verify design reasoning in rendered artifacts"
+          git push origin HEAD
