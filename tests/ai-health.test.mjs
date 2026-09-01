@@ -8,10 +8,15 @@ const directory = new URL("../examples/ai-health/", import.meta.url);
 const names = ["evidence-thread", "care-ledger", "daily-compass"];
 const readJson = async (name) => JSON.parse(await readFile(new URL(name, directory), "utf8"));
 
-test("AI health intent validates without warnings", async () => {
+const legacyEvidenceWarnings = [
+  "intent has no principles; rationale fidelity cannot be verified",
+  "intent has no executable workflows; functional task completion cannot be verified"
+];
+
+test("AI health intent validates with explicit legacy evidence limits", async () => {
   const result = validateIntent(await readJson("intent.json"));
   assert.equal(result.valid, true, result.errors.join("\n"));
-  assert.deepEqual(result.warnings, []);
+  assert.deepEqual(result.warnings, legacyEvidenceWarnings);
   assert.deepEqual(result.conflicts, []);
 });
 
