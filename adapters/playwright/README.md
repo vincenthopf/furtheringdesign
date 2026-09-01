@@ -1,51 +1,60 @@
 # Playwright evidence adapter
 
-This optional adapter captures the declared state matrix in Chromium, Firefox, and WebKit and executes intent workflows in fresh browser contexts.
+This optional adapter turns rendered browser states into protocol evidence. It is the boundary between a generated artifact and the runtime's evidence contract.
 
-It emits protocol-compatible evidence for:
-
-- critical and serious axe-core findings
-- visible keyboard focus traces
-- horizontal overflow
-- clipped text
-- overlapping interactive controls
-- heading and landmark structure
-- duplicate DOM IDs
-- long reading measure
-- small interactive-target warnings
-- screenshot and node-map SHA-256 digests for content-addressed evidence
-- browser-derived layout, palette, typography, and density profiles
-- bounded automated intent-principle and candidate-commitment checks
-- browser-executed workflow steps, assertions, final screenshots, and task signals
-
-Install and run:
+## Install
 
 ```bash
+cd adapters/playwright
 npm install
-npx playwright install --with-deps
-node capture.mjs \
+npx playwright install chromium firefox webkit
+```
+
+## Capture
+
+```bash
+npm run capture -- \
   --url http://127.0.0.1:3000 \
-  --intent ../../examples/saas-launch/intent.json \
-  --manifest ../../examples/saas-launch/candidate-signal-foundry.json \
-  --artifact-ref git:<candidate-commit> \
-  --out ../../artifacts/signal-foundry
+  --intent ../../examples/implementation-fidelity/intent.json \
+  --manifest ../../examples/implementation-fidelity/candidate-evidence-path.json \
+  --artifact-ref git:exact-candidate-commit \
+  --out ../../artifacts/evidence-path
 ```
 
-`--manifest` supplies candidate commitments and the candidate id. `--candidate` remains available when no manifest is supplied. `--artifact-ref` should be a Git commit, Git tree, or content digest and must match the candidate manifest in strict runs.
+`--manifest` is preferred because candidate commitments can be checked while the browser is open. `--candidate` remains available when no manifest exists.
 
-Intent states can declare `path` to capture route-specific screens. Intent workflows use semantic locators and a bounded action and assertion vocabulary. Each workflow is rerun independently per declared browser so previous workflow state cannot make a later run pass.
+For a multi-candidate application whose routes differ by candidate, pass a state-to-route map:
 
-An obligation can include a bounded Playwright automation record:
-
-```json
-{
-  "source": "playwright",
-  "metric": "outline.horizontalOverflowPx",
-  "operator": "eq",
-  "expected": 0
-}
+```bash
+npm run capture -- \
+  --url http://127.0.0.1:4173 \
+  --intent ../../examples/ai-health/intent.json \
+  --candidate evidence-thread \
+  --artifact-ref git:exact-candidate-commit \
+  --route-map ../../examples/ai-health/capture/routes-evidence-thread.json \
+  --out ../../artifacts/ai-health/evidence-thread
 ```
 
-Supported metric roots are `outline`, `focus`, `axe`, and `profile`. The adapter performs value comparison only. It does not evaluate arbitrary JavaScript from the contract.
+The route-map wrapper writes a temporary intent with candidate-specific state paths, invokes the strict capture implementation, and removes the temporary file.
 
-The adapter does not declare a design good. It supplies structural, rendered, accessibility, and behavioural evidence for later validation and critique. Automated accessibility output remains incomplete. Manual screen-reader, reading-order, zoom, content, interaction, cultural-context, aesthetic, and product-state review remains required.
+## Output
+
+Each browser-state capture records:
+
+- screenshot and node-map paths
+- SHA-256 hashes for both artifacts
+- viewport, URL, browser, and state reference
+- axe violations
+- focus-order traces
+- heading, landmark, ID, and target-size structure
+- horizontal overflow, clipped text, interactive overlap, and long-line findings
+- layout, palette, typography, and density render fingerprints
+- Playwright-verifiable intent principles and candidate commitments
+
+Declared intent workflows are executed separately. Their results include every semantic action, completion assertion, grounded node reference, screenshot hash, duration, and derived status.
+
+## Boundaries
+
+This adapter does not decide whether a candidate is good. It collects evidence. `runtime/lib/evidence.mjs` validates the contract, `runtime/lib/fidelity.mjs` checks implementation fidelity, `runtime/lib/rendered-diversity.mjs` checks render coverage and direction collapse, and `runtime/lib/tournament.mjs` decides eligibility and selection.
+
+Browser evidence is incomplete by design. It does not prove business impact, cultural fit, real-user comprehension, assistive-technology quality, or production performance. Those require separate evidence sources and human review.

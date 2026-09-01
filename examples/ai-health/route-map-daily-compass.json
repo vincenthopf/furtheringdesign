@@ -1,0 +1,7 @@
+{
+  "marketing-desktop-light": "/?candidate=daily-compass",
+  "marketing-mobile-light": "/?candidate=daily-compass",
+  "dashboard-desktop-light": "/app?candidate=daily-compass",
+  "dashboard-mobile-light": "/app?candidate=daily-compass",
+  "dashboard-desktop-dark-reduced": "/app?candidate=daily-compass"
+}

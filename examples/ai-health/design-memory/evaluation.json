@@ -1,0 +1,707 @@
+{
+  "status": "selected",
+  "selectedCandidateId": "evidence-thread",
+  "recommendedCandidateId": "evidence-thread",
+  "reason": "Top eligible candidate is Pareto-efficient and clears automatic-selection thresholds.",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "intent": {
+      "schemaVersion": "1.0.0",
+      "id": "intent-arcwell-health-experience",
+      "title": "Arcwell AI health marketing site and personal dashboard",
+      "scope": {
+        "level": "product",
+        "surface": "marketing-site-and-authenticated-web-app",
+        "parentIntentId": null
+      },
+      "outcome": {
+        "problem": "People who collect health data across wearables, symptoms, medications, and appointments still struggle to understand what changed, what is reliable, and what to discuss with a clinician.",
+        "desiredChange": "A health-conscious adult can understand recent non-diagnostic patterns, inspect their sources and limits, take one appropriate next step, and prepare a concise clinician-ready summary without mistaking AI output for medical advice.",
+        "antiGoals": [
+          "Diagnose a condition or replace a licensed clinician",
+          "Create anxiety through alarmist scoring or constant notifications",
+          "Hide uncertainty, source quality, data gaps, or the product safety boundary",
+          "Imitate a competitor's visual system or conversion sequence"
+        ]
+      },
+      "audiences": [
+        {
+          "id": "health-tracker",
+          "label": "Adult managing health between appointments",
+          "context": "Uses a wearable and keeps occasional symptom or medication notes, but sees data in separate tools and wants useful context before an upcoming appointment.",
+          "needs": [
+            "See what changed without interpreting raw charts alone",
+            "Know which source and time range support an insight",
+            "Prepare useful questions for a clinician",
+            "Control connected data and AI processing"
+          ],
+          "anxieties": [
+            "An AI system making an unsafe diagnosis",
+            "Sensitive health data being sold or used unexpectedly",
+            "Normal variation being presented as a crisis",
+            "Missing or delayed device data creating a false conclusion"
+          ],
+          "capabilities": [
+            "Can connect a wearable account",
+            "Can review a plain-language evidence trail",
+            "Can contact a clinician or emergency service when directed"
+          ]
+        },
+        {
+          "id": "care-partner",
+          "label": "Trusted family member or care partner",
+          "context": "Helps another adult organize appointments, medication details, and recent changes with explicit permission.",
+          "needs": [
+            "Understand what information is shared",
+            "See upcoming care tasks and a concise history",
+            "Avoid changing clinical information accidentally"
+          ],
+          "anxieties": [
+            "Access extending beyond the person's consent",
+            "Confusing wellness guidance with a care plan"
+          ],
+          "capabilities": [
+            "Can review and export a summary",
+            "Can help prepare appointment questions"
+          ]
+        }
+      ],
+      "tasks": {
+        "primary": {
+          "actorId": "health-tracker",
+          "action": "review",
+          "object": "a source-grounded weekly health brief and choose an appropriate next step",
+          "completionSignal": "the user opens the evidence behind the weekly brief and saves or dismisses one next step"
+        },
+        "secondary": [
+          {
+            "actorId": "health-tracker",
+            "action": "prepare",
+            "object": "a clinician conversation summary",
+            "completionSignal": "the user exports or copies the summary with sources, date range, questions, and AI limitations"
+          },
+          {
+            "actorId": "health-tracker",
+            "action": "control",
+            "object": "connected data and AI permissions",
+            "completionSignal": "the user reviews data sources and changes, exports, or deletes a permission"
+          },
+          {
+            "actorId": "care-partner",
+            "action": "inspect",
+            "object": "the explicitly shared care summary",
+            "completionSignal": "the care partner views the permitted summary without access to excluded data"
+          }
+        ]
+      },
+      "brand": {
+        "values": [
+          {
+            "name": "grounded clarity",
+            "expression": "Every insight names the observation, source, time range, confidence, and appropriate next step in plain language.",
+            "avoid": "Opaque health scores, unexplained recommendations, or clinical-sounding certainty."
+          },
+          {
+            "name": "calm agency",
+            "expression": "The interface prioritizes useful action and user control without manufacturing urgency.",
+            "avoid": "Fear-based alerts, streak pressure, or moral judgment about health behavior."
+          },
+          {
+            "name": "visible boundaries",
+            "expression": "Safety limits, data gaps, privacy controls, and escalation paths are part of the main experience.",
+            "avoid": "Disclaimers hidden in legal copy or trust claims without operational detail."
+          }
+        ],
+        "voice": [
+          "plain",
+          "measured",
+          "specific",
+          "non-diagnostic"
+        ],
+        "distinctiveAssets": [
+          "longitudinal health thread",
+          "source chips",
+          "confidence bands",
+          "clinician conversation brief"
+        ],
+        "referencePolicy": "abstract-principles-only"
+      },
+      "experience": {
+        "emotionalRegister": [
+          "calm",
+          "capable",
+          "respected"
+        ],
+        "density": "The marketing site is spacious around decisions and explicit around proof; the dashboard is information-rich but reveals evidence in layers.",
+        "familiarity": "Conventional navigation, forms, tables, and dialogs support a distinctive longitudinal health-thread composition.",
+        "motion": "Short transitions explain changes in time range or source; all meaning remains available when reduced motion is active.",
+        "hierarchy": "One current health brief and one next step lead the dashboard; source quality, care preparation, and data controls remain directly reachable."
+      },
+      "success": {
+        "criteria": [
+          {
+            "id": "qualified-start",
+            "signal": "Visitors who understand the non-diagnostic boundary and start a connected-data trial",
+            "direction": "increase",
+            "target": "At least 10 percent of qualified marketing sessions",
+            "weight": 0.3
+          },
+          {
+            "id": "brief-evidence-review",
+            "signal": "Active users who inspect evidence behind a weekly brief before acting",
+            "direction": "increase",
+            "target": "At least 60 percent",
+            "weight": 0.35
+          },
+          {
+            "id": "clinician-preparation",
+            "signal": "Active users who save or export a clinician conversation summary before an appointment",
+            "direction": "increase",
+            "target": "At least 35 percent of users with an appointment in the next 14 days",
+            "weight": 0.25
+          },
+          {
+            "id": "unsafe-interpretation",
+            "signal": "Research participants who believe Arcwell provides a diagnosis or emergency monitoring",
+            "direction": "decrease",
+            "target": "Below 5 percent",
+            "weight": 0.1
+          }
+        ],
+        "qualityProfile": {
+          "weights": {
+            "intentAlignment": 0.18,
+            "taskClarity": 0.16,
+            "accessibility": 0.16,
+            "safetyClarity": 0.16,
+            "hierarchy": 0.1,
+            "visualCoherence": 0.09,
+            "distinctiveness": 0.05,
+            "responsiveResilience": 0.06,
+            "maintainability": 0.04
+          },
+          "floors": {
+            "accessibility": 0.85,
+            "safetyClarity": 0.88,
+            "taskClarity": 0.78,
+            "responsiveResilience": 0.75
+          },
+          "uncertaintyPenalty": 0.2
+        }
+      },
+      "constraints": {
+        "hard": [
+          {
+            "id": "non-diagnostic-boundary",
+            "category": "safety",
+            "statement": "The product must not claim to diagnose, treat, prevent, or monitor emergencies; every AI insight must identify its source, date range, uncertainty, and appropriate escalation boundary.",
+            "verification": "Claim review, interface copy audit, required evidence fields, and task walkthrough"
+          },
+          {
+            "id": "emergency-path",
+            "category": "safety",
+            "statement": "Possible emergency content must bypass normal AI guidance and present direct emergency-service instructions without delay.",
+            "verification": "Emergency-state fixture and deterministic content assertion"
+          },
+          {
+            "id": "privacy-controls",
+            "category": "privacy",
+            "statement": "Users must be able to inspect connected sources, understand data use, disconnect a source, export data, delete data, and manage care-partner access.",
+            "verification": "Control inventory, interaction test, and privacy-copy review"
+          },
+          {
+            "id": "health-literacy",
+            "category": "content",
+            "statement": "Essential health information and actions must use plain language, short explanations, descriptive headings, and progressive disclosure.",
+            "verification": "Content review against current HHS Health Literacy Online guidance and user comprehension testing"
+          },
+          {
+            "id": "accessibility",
+            "category": "accessibility",
+            "statement": "Meet WCAG 2.2 AA for tested states with complete keyboard operation and meaning that does not depend on color or motion.",
+            "verification": "axe-core, keyboard trace, contrast measurement, reduced-motion capture, and manual review"
+          },
+          {
+            "id": "safe-change",
+            "category": "implementation",
+            "statement": "Implementation must preserve the protocol runtime and research repository outside declared paths.",
+            "verification": "Baseline reference, path allowlist, protected-path review, complete diff, tests, and build"
+          }
+        ],
+        "soft": [
+          {
+            "id": "performance",
+            "category": "performance",
+            "statement": "The initial marketing and dashboard views should remain responsive on a mid-range mobile device and avoid unnecessary animation or media weight.",
+            "verification": "Production build inspection and browser trace"
+          },
+          {
+            "id": "realistic-fixtures",
+            "category": "content",
+            "statement": "Demonstration data must be clearly labeled, internally consistent, and avoid implying a real person's medical record.",
+            "verification": "Fixture review"
+          },
+          {
+            "id": "design-memory",
+            "category": "maintainability",
+            "statement": "Selected tokens, structural decisions, evidence, and known limitations must remain retrievable for later agents.",
+            "verification": "Design-memory artifact review"
+          }
+        ]
+      },
+      "freedoms": {
+        "fixed": [
+          "Arcwell product name for this prototype",
+          "Non-diagnostic wellness and care-preparation scope",
+          "Marketing site and authenticated dashboard in one responsive web application",
+          "Source, date range, confidence, and safety boundary on every AI insight",
+          "Clear emergency and clinician escalation paths"
+        ],
+        "open": [
+          "Page composition and navigation model",
+          "Typography and color system",
+          "Health-thread visualization",
+          "Dashboard density and progressive disclosure",
+          "Illustration and icon treatment",
+          "Pricing presentation for the prototype"
+        ],
+        "forbidden": [
+          "Diagnostic or treatment claims",
+          "Fabricated regulatory clearance, clinical outcomes, customer logos, testimonials, or security certifications",
+          "Continuous emergency monitoring claims",
+          "Fear-based health scoring",
+          "Stock photos of clinicians or patients",
+          "Generic glowing gradient hero, glass card field, or bento feature grid",
+          "Hidden data deletion, export, or permission controls"
+        ]
+      },
+      "states": [
+        {
+          "id": "marketing-desktop-light",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "colorScheme": "light",
+          "reducedMotion": false,
+          "locale": "en-US"
+        },
+        {
+          "id": "marketing-mobile-light",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "colorScheme": "light",
+          "reducedMotion": false,
+          "locale": "en-US"
+        },
+        {
+          "id": "dashboard-desktop-light",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "colorScheme": "light",
+          "reducedMotion": false,
+          "locale": "en-US"
+        },
+        {
+          "id": "dashboard-mobile-light",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "colorScheme": "light",
+          "reducedMotion": false,
+          "locale": "en-US"
+        },
+        {
+          "id": "dashboard-desktop-dark-reduced",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "colorScheme": "dark",
+          "reducedMotion": true,
+          "locale": "en-US"
+        }
+      ],
+      "content": {
+        "sourceOfTruth": "Official health-AI, privacy, accessibility, and health-literacy research captured for this run plus explicitly labeled fictional product fixtures",
+        "missingPolicy": "mark-todo",
+        "claimsRequireEvidence": true
+      },
+      "risks": [
+        {
+          "id": "false-medical-authority",
+          "severity": "critical",
+          "statement": "Visual polish or AI language could cause users to infer diagnosis, treatment, or clinician oversight that the prototype does not provide.",
+          "control": "Use non-diagnostic labels, evidence trails, uncertainty, explicit scope, and direct escalation guidance throughout the primary interface."
+        },
+        {
+          "id": "privacy-overclaim",
+          "severity": "high",
+          "statement": "The interface could imply HIPAA coverage or security certification without an implemented service and verified operating controls.",
+          "control": "Describe prototype privacy controls as product behavior and avoid certification or compliance claims."
+        },
+        {
+          "id": "data-gap-misread",
+          "severity": "high",
+          "statement": "Users could act on an insight generated from delayed, missing, or low-quality device data.",
+          "control": "Show source freshness, missing periods, confidence, and a no-conclusion state before recommendations."
+        },
+        {
+          "id": "alert-fatigue",
+          "severity": "high",
+          "statement": "Frequent low-value warnings could increase anxiety and reduce attention to meaningful changes.",
+          "control": "Use one ranked brief, adjustable notification thresholds, calm language, and dismiss or snooze controls."
+        },
+        {
+          "id": "design-drift",
+          "severity": "medium",
+          "statement": "Later edits could flatten the selected health-thread direction into generic SaaS cards.",
+          "control": "Persist candidate decisions, tokens, evidence, and protected structural patterns in design memory."
+        }
+      ],
+      "assumptions": [
+        "The prototype demonstrates product behavior with fictional data and does not process protected health information.",
+        "The first market is US adults using consumer wearables and self-entered health notes.",
+        "A real release would require legal, clinical safety, privacy, security, and user-research review beyond this design run.",
+        "Pricing and integrations shown in the prototype are illustrative and require commercial validation."
+      ],
+      "openQuestions": [
+        "Which connected sources and jurisdictions should a production pilot support first?",
+        "What clinical safety governance process approves insight templates and escalation rules?",
+        "Which users benefit from care-partner access without increasing privacy risk?",
+        "What evidence threshold should suppress an AI brief entirely rather than lower confidence?"
+      ]
+    }
+  },
+  "rankedCandidates": [
+    {
+      "id": "evidence-thread",
+      "title": "Evidence Thread",
+      "eligible": true,
+      "pareto": true,
+      "evidenceScore": 0.9193,
+      "pairwiseScore": 1,
+      "diversityScore": 0.9167,
+      "uncertainty": 0.1514,
+      "finalScore": 0.937,
+      "hardFailures": [],
+      "unresolvedHardObligations": [],
+      "floorFailures": [],
+      "missingDimensions": [],
+      "unknownSignals": [
+        "evidence-thread-marketing-desktop-light-webkit-focus",
+        "evidence-thread-marketing-mobile-light-webkit-focus",
+        "evidence-thread-dashboard-desktop-light-webkit-focus",
+        "evidence-thread-dashboard-mobile-light-webkit-focus",
+        "evidence-thread-dashboard-desktop-dark-reduced-webkit-focus"
+      ],
+      "dimensions": {
+        "intentAlignment": {
+          "mean": 0.96,
+          "confidence": 0.88,
+          "disagreement": 0,
+          "uncertainty": 0.12,
+          "lowerBound": 0.936,
+          "signalCount": 1
+        },
+        "taskClarity": {
+          "mean": 0.8849,
+          "confidence": 0.8063,
+          "disagreement": 0.0169,
+          "uncertainty": 0.2107,
+          "lowerBound": 0.8427,
+          "signalCount": 16
+        },
+        "accessibility": {
+          "mean": 0.9865,
+          "confidence": 0.8363,
+          "disagreement": 0.0217,
+          "uncertainty": 0.1854,
+          "lowerBound": 0.9495,
+          "signalCount": 40
+        },
+        "safetyClarity": {
+          "mean": 0.9976,
+          "confidence": 0.9575,
+          "disagreement": 0.0097,
+          "uncertainty": 0.0522,
+          "lowerBound": 0.9872,
+          "signalCount": 16
+        },
+        "hierarchy": {
+          "mean": 0.9034,
+          "confidence": 0.785,
+          "disagreement": 0.0121,
+          "uncertainty": 0.2271,
+          "lowerBound": 0.858,
+          "signalCount": 16
+        },
+        "visualCoherence": {
+          "mean": 0.96,
+          "confidence": 0.84,
+          "disagreement": 0,
+          "uncertainty": 0.16,
+          "lowerBound": 0.928,
+          "signalCount": 1
+        },
+        "distinctiveness": {
+          "mean": 0.95,
+          "confidence": 0.78,
+          "disagreement": 0,
+          "uncertainty": 0.22,
+          "lowerBound": 0.906,
+          "signalCount": 1
+        },
+        "responsiveResilience": {
+          "mean": 0.9976,
+          "confidence": 0.9775,
+          "disagreement": 0.0097,
+          "uncertainty": 0.0322,
+          "lowerBound": 0.9912,
+          "signalCount": 16
+        },
+        "maintainability": {
+          "mean": 0.84,
+          "confidence": 0.8,
+          "disagreement": 0,
+          "uncertainty": 0.2,
+          "lowerBound": 0.8,
+          "signalCount": 1
+        }
+      }
+    },
+    {
+      "id": "care-ledger",
+      "title": "Care Ledger",
+      "eligible": true,
+      "pareto": true,
+      "evidenceScore": 0.8806,
+      "pairwiseScore": 0.4691,
+      "diversityScore": 0.9315,
+      "uncertainty": 0.1544,
+      "finalScore": 0.7921,
+      "hardFailures": [],
+      "unresolvedHardObligations": [],
+      "floorFailures": [],
+      "missingDimensions": [],
+      "unknownSignals": [
+        "care-ledger-marketing-desktop-light-webkit-focus",
+        "care-ledger-marketing-mobile-light-webkit-focus",
+        "care-ledger-dashboard-desktop-light-webkit-focus",
+        "care-ledger-dashboard-mobile-light-webkit-focus",
+        "care-ledger-dashboard-desktop-dark-reduced-webkit-focus"
+      ],
+      "dimensions": {
+        "intentAlignment": {
+          "mean": 0.84,
+          "confidence": 0.84,
+          "disagreement": 0,
+          "uncertainty": 0.16,
+          "lowerBound": 0.808,
+          "signalCount": 1
+        },
+        "taskClarity": {
+          "mean": 0.8821,
+          "confidence": 0.8063,
+          "disagreement": 0.0073,
+          "uncertainty": 0.201,
+          "lowerBound": 0.8419,
+          "signalCount": 16
+        },
+        "accessibility": {
+          "mean": 0.9865,
+          "confidence": 0.8363,
+          "disagreement": 0.0217,
+          "uncertainty": 0.1854,
+          "lowerBound": 0.9495,
+          "signalCount": 40
+        },
+        "safetyClarity": {
+          "mean": 0.997,
+          "confidence": 0.9569,
+          "disagreement": 0.0121,
+          "uncertainty": 0.0552,
+          "lowerBound": 0.986,
+          "signalCount": 16
+        },
+        "hierarchy": {
+          "mean": 0.9007,
+          "confidence": 0.7856,
+          "disagreement": 0.0024,
+          "uncertainty": 0.2168,
+          "lowerBound": 0.8573,
+          "signalCount": 16
+        },
+        "visualCoherence": {
+          "mean": 0.9,
+          "confidence": 0.84,
+          "disagreement": 0,
+          "uncertainty": 0.16,
+          "lowerBound": 0.868,
+          "signalCount": 1
+        },
+        "distinctiveness": {
+          "mean": 0.69,
+          "confidence": 0.76,
+          "disagreement": 0,
+          "uncertainty": 0.24,
+          "lowerBound": 0.642,
+          "signalCount": 1
+        },
+        "responsiveResilience": {
+          "mean": 0.997,
+          "confidence": 0.9775,
+          "disagreement": 0.0121,
+          "uncertainty": 0.0346,
+          "lowerBound": 0.9901,
+          "signalCount": 16
+        },
+        "maintainability": {
+          "mean": 0.91,
+          "confidence": 0.88,
+          "disagreement": 0,
+          "uncertainty": 0.12,
+          "lowerBound": 0.886,
+          "signalCount": 1
+        }
+      }
+    },
+    {
+      "id": "daily-compass",
+      "title": "Daily Compass",
+      "eligible": true,
+      "pareto": false,
+      "evidenceScore": 0.8836,
+      "pairwiseScore": 0,
+      "diversityScore": 0.9331,
+      "uncertainty": 0.1627,
+      "finalScore": 0.6912,
+      "hardFailures": [],
+      "unresolvedHardObligations": [],
+      "floorFailures": [],
+      "missingDimensions": [],
+      "unknownSignals": [
+        "daily-compass-marketing-desktop-light-webkit-focus",
+        "daily-compass-marketing-mobile-light-webkit-focus",
+        "daily-compass-dashboard-desktop-light-webkit-focus",
+        "daily-compass-dashboard-mobile-light-webkit-focus",
+        "daily-compass-dashboard-desktop-dark-reduced-webkit-focus"
+      ],
+      "dimensions": {
+        "intentAlignment": {
+          "mean": 0.82,
+          "confidence": 0.82,
+          "disagreement": 0,
+          "uncertainty": 0.18,
+          "lowerBound": 0.784,
+          "signalCount": 1
+        },
+        "taskClarity": {
+          "mean": 0.8787,
+          "confidence": 0.8025,
+          "disagreement": 0.0048,
+          "uncertainty": 0.2023,
+          "lowerBound": 0.8382,
+          "signalCount": 16
+        },
+        "accessibility": {
+          "mean": 0.9865,
+          "confidence": 0.8363,
+          "disagreement": 0.0217,
+          "uncertainty": 0.1854,
+          "lowerBound": 0.9495,
+          "signalCount": 40
+        },
+        "safetyClarity": {
+          "mean": 0.9944,
+          "confidence": 0.9531,
+          "disagreement": 0.0242,
+          "uncertainty": 0.0711,
+          "lowerBound": 0.9802,
+          "signalCount": 16
+        },
+        "hierarchy": {
+          "mean": 0.9021,
+          "confidence": 0.785,
+          "disagreement": 0.0073,
+          "uncertainty": 0.2223,
+          "lowerBound": 0.8576,
+          "signalCount": 16
+        },
+        "visualCoherence": {
+          "mean": 0.93,
+          "confidence": 0.84,
+          "disagreement": 0,
+          "uncertainty": 0.16,
+          "lowerBound": 0.898,
+          "signalCount": 1
+        },
+        "distinctiveness": {
+          "mean": 0.89,
+          "confidence": 0.8,
+          "disagreement": 0,
+          "uncertainty": 0.2,
+          "lowerBound": 0.85,
+          "signalCount": 1
+        },
+        "responsiveResilience": {
+          "mean": 0.9964,
+          "confidence": 0.9775,
+          "disagreement": 0.0145,
+          "uncertainty": 0.037,
+          "lowerBound": 0.989,
+          "signalCount": 16
+        },
+        "maintainability": {
+          "mean": 0.82,
+          "confidence": 0.8,
+          "disagreement": 0,
+          "uncertainty": 0.2,
+          "lowerBound": 0.78,
+          "signalCount": 1
+        }
+      }
+    }
+  ],
+  "diversity": {
+    "floor": 0.42,
+    "pairs": [
+      {
+        "left": "evidence-thread",
+        "right": "care-ledger",
+        "distance": 0.9151,
+        "collapsed": false
+      },
+      {
+        "left": "evidence-thread",
+        "right": "daily-compass",
+        "distance": 0.9182,
+        "collapsed": false
+      },
+      {
+        "left": "care-ledger",
+        "right": "daily-compass",
+        "distance": 0.9479,
+        "collapsed": false
+      }
+    ],
+    "scores": {
+      "evidence-thread": 0.9167,
+      "care-ledger": 0.9315,
+      "daily-compass": 0.9331
+    },
+    "collapsedPairs": []
+  },
+  "selection": {
+    "margin": 0.1449,
+    "pairwiseConfidence": 0.85,
+    "reviewReasons": []
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "marketing-desktop-light": "/?candidate=evidence-thread",
+  "marketing-mobile-light": "/?candidate=evidence-thread",
+  "dashboard-desktop-light": "/app?candidate=evidence-thread",
+  "dashboard-mobile-light": "/app?candidate=evidence-thread",
+  "dashboard-desktop-dark-reduced": "/app?candidate=evidence-thread"
+}

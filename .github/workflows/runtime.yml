@@ -14,13 +14,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm test
-      - run: npm run validate:example
-      - run: npm run evaluate:example
-      - run: npm run plan:example
-      - run: npm run validate:strict
-      - run: npm run evaluate:strict
-      - run: npm run plan:strict
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm build
+      - run: pnpm test
+      - run: pnpm validate:example
+      - run: pnpm evaluate:example
+      - run: pnpm plan:example
+      - run: pnpm validate:strict
+      - run: pnpm evaluate:strict
+      - run: pnpm plan:strict
+      - run: pnpm validate:health
+      - run: pnpm evaluate:health
+      - run: pnpm plan:health

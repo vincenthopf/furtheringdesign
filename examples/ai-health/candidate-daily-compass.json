@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "daily-compass",
+  "intentId": "intent-arcwell-health-experience",
+  "title": "Daily Compass",
+  "direction": {
+    "thesis": "Center the experience on one adaptive daily orientation that turns recent signals into a short, conversational check-in and a single low-pressure action.",
+    "axes": {
+      "composition": "A centered daily compass dominates both marketing and dashboard views, with supporting context arranged as concentric steps and a compact conversation drawer.",
+      "typography": "Large friendly sans headlines, short sentences, generous line height, and oversized state labels prioritize emotional approachability.",
+      "spatialRhythm": "Broad open fields surround one action at a time while secondary evidence waits behind progressive disclosure.",
+      "surface": "Soft colored zones, rounded containers, and gentle tonal transitions create an ambient coaching environment.",
+      "imagery": "Abstract horizon, cadence, and directional marks suggest orientation without literal medical imagery.",
+      "interaction": "A guided check-in asks one question at a time, then reveals the evidence and lets the user save, dismiss, or ask for clinician-preparation help.",
+      "voice": "Supportive, concise, conversational, and careful not to moralize behavior."
+    },
+    "deliberateTradeoffs": [
+      "Progressive disclosure can hide evidence users need before accepting a recommendation.",
+      "A conversational tone risks implying more human understanding or clinical oversight than the product provides."
+    ],
+    "rejectedPatterns": [
+      "Dense record ledger",
+      "Persistent multi-chart dashboard",
+      "Technical source-first marketing",
+      "Alarm-based notification center"
+    ]
+  },
+  "tokens": {
+    "spaceUnit": 8,
+    "readingMeasure": "48ch",
+    "surfaceModel": "ambient-orientation-zones",
+    "accentCount": 3,
+    "motionPurpose": "guide-one-step-at-a-time",
+    "cornerModel": "soft"
+  },
+  "structure": {
+    "pattern": "adaptive-daily-compass",
+    "sections": [
+      "marketing daily orientation",
+      "one-question mechanism",
+      "evidence reveal",
+      "safe action boundary",
+      "simple plan choice",
+      "dashboard current orientation",
+      "guided check-in",
+      "supporting evidence drawer"
+    ]
+  },
+  "decisions": [
+    {
+      "question": "How should the product reduce health-data overload?",
+      "option": "Present one contextual orientation and one optional action before exposing the full evidence set.",
+      "rationale": "A narrow daily focus reduces scanning burden and can make the product feel more usable between appointments.",
+      "tradeoffs": [
+        "Evidence can become secondary to the system's framing.",
+        "The conversational experience needs stronger safeguards against anthropomorphic trust."
+      ]
+    }
+  ],
+  "changeContract": {
+    "baselineRef": "0f35a69dea8fcfb2817876b393dcef642d9f40e5",
+    "allowedPaths": [
+      "src/candidates/daily-compass/**",
+      "examples/ai-health/candidate-daily-compass.json"
+    ],
+    "protectedPaths": [
+      "runtime/**",
+      "tests/**",
+      "research/**",
+      "agent-handoffs/**",
+      ".env*"
+    ],
+    "patchMode": "diff-only"
+  },
+  "supportedStates": [
+    "marketing-desktop-light",
+    "marketing-mobile-light",
+    "dashboard-desktop-light",
+    "dashboard-mobile-light",
+    "dashboard-desktop-dark-reduced"
+  ]
+}

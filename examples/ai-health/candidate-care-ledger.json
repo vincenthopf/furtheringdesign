@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "care-ledger",
+  "intentId": "intent-arcwell-health-experience",
+  "title": "Care Ledger",
+  "direction": {
+    "thesis": "Treat the health application as a precise personal record desk where observations, medications, appointments, sources, and actions are organized into a stable, auditable care ledger.",
+    "axes": {
+      "composition": "A structured two-column record desk uses a compact index, dated ledger rows, and a persistent action panel instead of a narrative timeline.",
+      "typography": "A restrained grotesk family uses strong labels, narrow measures, tabular numerals, and minimal display typography.",
+      "spatialRhythm": "Regular table rows, compact control groups, and consistent section intervals optimize scanning and comparison.",
+      "surface": "Cool white records, crisp rules, squared modules, and minimal color produce an administrative but approachable working surface.",
+      "imagery": "Small schematic data tables, calendars, and source stamps replace decorative illustration and lifestyle photography.",
+      "interaction": "Filters, disclosure rows, checklists, and export controls support deliberate review with few animated transitions.",
+      "voice": "Direct, procedural, neutral, and conservative about interpretation."
+    },
+    "deliberateTradeoffs": [
+      "The familiar record structure can feel administrative rather than emotionally supportive.",
+      "Strong scan efficiency reduces the opportunity for a distinctive narrative experience."
+    ],
+    "rejectedPatterns": [
+      "Editorial health story",
+      "Large emotional hero copy",
+      "Ambient visual metaphor",
+      "Conversational assistant as navigation"
+    ]
+  },
+  "tokens": {
+    "spaceUnit": 4,
+    "readingMeasure": "72ch",
+    "surfaceModel": "structured-record-desk",
+    "accentCount": 1,
+    "motionPurpose": "confirm-filter-and-export",
+    "cornerModel": "square"
+  },
+  "structure": {
+    "pattern": "indexed-care-ledger",
+    "sections": [
+      "marketing product index",
+      "record coverage table",
+      "safety and privacy controls",
+      "workflow checklist",
+      "plan comparison",
+      "dashboard ledger summary",
+      "dated records and source status",
+      "appointment preparation panel"
+    ]
+  },
+  "decisions": [
+    {
+      "question": "How should users manage fragmented health information reliably?",
+      "option": "Use stable record categories, dated rows, visible provenance, and explicit workflow controls.",
+      "rationale": "A ledger makes completeness, gaps, and ownership inspectable without requiring users to decode a visual metaphor.",
+      "tradeoffs": [
+        "The experience can resemble a patient portal.",
+        "Emotional reassurance depends mainly on language rather than composition."
+      ]
+    }
+  ],
+  "changeContract": {
+    "baselineRef": "0f35a69dea8fcfb2817876b393dcef642d9f40e5",
+    "allowedPaths": [
+      "src/candidates/care-ledger/**",
+      "examples/ai-health/candidate-care-ledger.json"
+    ],
+    "protectedPaths": [
+      "runtime/**",
+      "tests/**",
+      "research/**",
+      "agent-handoffs/**",
+      ".env*"
+    ],
+    "patchMode": "diff-only"
+  },
+  "supportedStates": [
+    "marketing-desktop-light",
+    "marketing-mobile-light",
+    "dashboard-desktop-light",
+    "dashboard-mobile-light",
+    "dashboard-desktop-dark-reduced"
+  ]
+}

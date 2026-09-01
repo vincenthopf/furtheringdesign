@@ -1,0 +1,23 @@
+[
+  {
+    "left": "evidence-thread",
+    "right": "care-ledger",
+    "winner": "evidence-thread",
+    "confidence": 0.86,
+    "rationale": "Evidence Thread keeps the safety and scan clarity of the ledger while connecting observation, source, uncertainty, and next action more directly to the product's central user problem."
+  },
+  {
+    "left": "evidence-thread",
+    "right": "daily-compass",
+    "winner": "evidence-thread",
+    "confidence": 0.84,
+    "rationale": "Daily Compass is approachable, but Evidence Thread exposes the basis and limits of AI interpretation earlier and with less risk of anthropomorphic trust."
+  },
+  {
+    "left": "care-ledger",
+    "right": "daily-compass",
+    "winner": "care-ledger",
+    "confidence": 0.76,
+    "rationale": "Care Ledger is less emotionally distinctive, but its record structure makes source gaps, appointments, tasks, and data controls easier to audit than the progressively disclosed compass."
+  }
+]

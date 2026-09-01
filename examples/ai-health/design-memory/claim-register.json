@@ -1,0 +1,48 @@
+{
+  "product": "Arcwell prototype",
+  "claims": [
+    {
+      "id": "organize-data",
+      "approvedText": "Bring wearable readings, daily notes, medications, and appointments into one inspectable view.",
+      "type": "product-function",
+      "evidence": "Implemented prototype behavior",
+      "allowedSurfaces": ["marketing", "dashboard"],
+      "qualification": "Fictional demo data; production integrations are not implemented."
+    },
+    {
+      "id": "non-diagnostic-summary",
+      "approvedText": "Arcwell describes non-diagnostic patterns and helps you prepare questions for a clinician.",
+      "type": "intended-use",
+      "evidence": "Product contract and interface controls",
+      "allowedSurfaces": ["marketing", "dashboard"],
+      "qualification": "Not medical advice, diagnosis, treatment, or emergency monitoring."
+    },
+    {
+      "id": "source-grounded",
+      "approvedText": "Every demonstrated insight includes its source, date range, coverage, and confidence language.",
+      "type": "product-function",
+      "evidence": "Implemented prototype behavior and browser review",
+      "allowedSurfaces": ["marketing", "dashboard"],
+      "qualification": "Source visibility does not establish clinical correctness."
+    },
+    {
+      "id": "user-controls",
+      "approvedText": "Review connected sources, disconnect a source, and access export or deletion controls in the prototype.",
+      "type": "product-function",
+      "evidence": "Implemented prototype interactions",
+      "allowedSurfaces": ["marketing", "dashboard"],
+      "qualification": "The prototype does not connect to a production data service."
+    }
+  ],
+  "prohibitedClaims": [
+    "Diagnoses or rules out a condition",
+    "Detects or predicts an emergency or disease",
+    "Provides medical-grade or clinical-grade accuracy",
+    "Is FDA approved or cleared",
+    "Is HIPAA compliant, SOC 2 certified, or independently audited",
+    "Improves health outcomes or prevents hospitalization",
+    "Is monitored by a clinician or emergency service",
+    "Never shares data or is completely anonymous",
+    "Supports named production integrations"
+  ]
+}
