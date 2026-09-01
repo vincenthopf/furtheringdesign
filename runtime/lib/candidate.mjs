@@ -7,6 +7,7 @@ import {
   requiredString,
   round
 } from "./util.mjs";
+import { validateCandidateCommitments } from "./fidelity.mjs";
 
 const requiredAxes = ["composition", "typography", "spatialRhythm", "surface", "imagery", "interaction", "voice"];
 
@@ -25,6 +26,7 @@ export function validateCandidate(candidate, intent) {
   requiredString(candidate.id, "id", errors);
   requiredString(candidate.intentId, "intentId", errors);
   requiredString(candidate.title, "title", errors);
+  if (candidate.artifactRef !== undefined) requiredString(candidate.artifactRef, "artifactRef", errors);
   if (intent?.id && candidate.intentId !== intent.id) errors.push(`intentId must match intent.id ${intent.id}`);
 
   if (!isRecord(candidate.direction)) {
@@ -86,6 +88,21 @@ export function validateCandidate(candidate, intent) {
     if (unknown.length) errors.push(`supportedStates contains unknown intent states: ${unknown.join(", ")}`);
   }
 
+  if (candidate.supportedWorkflows !== undefined) {
+    validateStringArray(candidate.supportedWorkflows, "supportedWorkflows", errors, 1);
+    const supportedWorkflows = Array.isArray(candidate.supportedWorkflows) ? candidate.supportedWorkflows : [];
+    for (const duplicate of duplicateValues(supportedWorkflows)) errors.push(`supportedWorkflows contains duplicate workflow: ${duplicate}`);
+    const intentWorkflows = new Set((Array.isArray(intent?.workflows) ? intent.workflows : []).map((workflow) => workflow.id));
+    const unknown = supportedWorkflows.filter((workflowId) => !intentWorkflows.has(workflowId));
+    const missing = [...intentWorkflows].filter((workflowId) => !supportedWorkflows.includes(workflowId));
+    if (unknown.length) errors.push(`supportedWorkflows contains unknown workflow: ${unknown.join(", ")}`);
+    if (missing.length) errors.push(`supportedWorkflows is missing intent workflows: ${missing.join(", ")}`);
+  }
+
+  const commitmentResult = validateCandidateCommitments(candidate.commitments, supportedStates);
+  errors.push(...commitmentResult.errors.map((error) => `candidate.${error}`));
+  if (!Array.isArray(candidate.commitments) || !candidate.commitments.length) warnings.push("candidate commitments are missing; implementation fidelity cannot be verified");
+
   if (candidate.direction?.thesis && candidate.direction.thesis.length < 60) warnings.push("direction.thesis is short; verify that it states a defensible user and structural hypothesis");
 
   return { valid: errors.length === 0, errors, warnings };
@@ -118,5 +135,20 @@ export function evaluateDiversity(candidates, floor = 0.42) {
     }
   }
   const scores = Object.fromEntries([...perCandidate.entries()].map(([candidateId, values]) => [candidateId, round(mean(values), 4)]));
-  return { floor, pairs, scores, collapsedPairs: pairs.filter((pair) => pair.collapsed) };
+  const collapsedPairs = pairs.filter((pair) => pair.collapsed);
+  const parents = new Map(candidates.map((candidate) => [candidate.id, candidate.id]));
+  const find = (id) => {
+    const parent = parents.get(id);
+    if (parent === id) return id;
+    const root = find(parent);
+    parents.set(id, root);
+    return root;
+  };
+  for (const pair of collapsedPairs) {
+    const leftRoot = find(pair.left);
+    const rightRoot = find(pair.right);
+    if (leftRoot !== rightRoot) parents.set(rightRoot, leftRoot);
+  }
+  const distinctCandidateCount = new Set([...parents.keys()].map(find)).size;
+  return { mode: "manifest", floor, distinctCandidateCount, pairs, scores, collapsedPairs };
 }

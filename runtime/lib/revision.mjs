@@ -10,6 +10,55 @@ function priorityFor(signal, weight) {
   return round((severityPriority[signal.severity] ?? 0) + (classPriority[signal.class] ?? 0) + statusPriority + weight * 30 + qualityGap + signal.confidence * 5, 2);
 }
 
+function implementationItems(ranking, weights) {
+  const audit = ranking.implementationAudit;
+  if (!audit?.enabled) return [];
+  const results = [...audit.thinkingFidelity.results, ...audit.principleAdherence.results].filter((result) => result.implementation !== "full");
+  return results.map((result) => {
+    const unresolvedStates = result.states.filter((state) => state.implementation !== "full");
+    return {
+      type: "implementation-obligation",
+      signalId: null,
+      obligationRef: result.ref,
+      priority: (severityPriority[result.severity] ?? 0) + (classPriority[result.class] ?? 0) + (weights[result.dimension] ?? 0) * 30 + (1 - result.score) * 35,
+      class: result.class,
+      severity: result.severity,
+      dimension: result.dimension,
+      stateRef: unresolvedStates[0]?.stateRef ?? null,
+      nodeRef: "document",
+      problem: `${result.ref} is ${result.implementation} rather than fully implemented.`,
+      evidence: unresolvedStates.map((state) => `${state.stateRef}: ${state.implementation}${state.signalIds.length ? ` via ${state.signalIds.join(", ")}` : " with no linked evidence"}`).join("; "),
+      recommendation: `Implement ${result.statement} in every required state and attach artifact-bound evidence to ${result.ref}.`,
+      confidence: result.confidence,
+      currentScore: result.score
+    };
+  });
+}
+
+function workflowItems(ranking, weights) {
+  const audit = ranking.workflowAudit;
+  if (!audit?.enabled) return [];
+  return audit.results
+    .filter((result) => result.score < 1 || result.coverage < 1)
+    .flatMap((result) => result.runs.filter((run) => run.status !== "pass").map((run) => ({
+      type: "workflow",
+      signalId: null,
+      workflowRef: result.id,
+      priority: (severityPriority[result.severity] ?? 0) + (classPriority[result.class] ?? 0) + (weights[result.dimension] ?? 0) * 30 + 35,
+      class: result.class,
+      severity: result.severity,
+      dimension: result.dimension,
+      stateRef: null,
+      browser: run.browser,
+      nodeRef: "document",
+      problem: `${result.title} is ${run.status} in ${run.browser}.`,
+      evidence: run.failedSteps.length ? `Failed steps: ${run.failedSteps.join(", ")}.` : "No artifact-bound workflow result was captured.",
+      recommendation: `Repair and rerun workflow ${result.id} in ${run.browser}.`,
+      confidence: run.status === "unknown" ? 0 : 0.99,
+      currentScore: run.status === "pass" ? 1 : 0
+    })));
+}
+
 export function createRevisionPlan(run, options = {}) {
   const report = options.report ?? evaluateRun(run);
   const candidateId = options.candidateId ?? report.selectedCandidateId ?? report.recommendedCandidateId;
@@ -26,24 +75,23 @@ export function createRevisionPlan(run, options = {}) {
   const selectedSignals = record.evidence.signals.filter(
     (signal) => signal.status !== "pass" || signal.normalized < threshold || ranking.floorFailures.some((failure) => failure.dimension === signal.dimension)
   );
-  const items = selectedSignals
-    .map((signal) => ({
-      type: "signal",
-      signalId: signal.id,
-      priority: priorityFor(signal, weights[signal.dimension] ?? 0),
-      class: signal.class,
-      severity: signal.severity,
-      dimension: signal.dimension,
-      stateRef: signal.stateRef,
-      nodeRef: signal.nodeRef,
-      problem: signal.rationale,
-      evidence: signal.evidence,
-      recommendation: signal.recommendation,
-      confidence: signal.confidence,
-      currentScore: signal.normalized
-    }))
-    .sort((left, right) => right.priority - left.priority)
-    .slice(0, limit);
+  const items = selectedSignals.map((signal) => ({
+    type: "signal",
+    signalId: signal.id,
+    priority: priorityFor(signal, weights[signal.dimension] ?? 0),
+    class: signal.class,
+    severity: signal.severity,
+    dimension: signal.dimension,
+    stateRef: signal.stateRef,
+    nodeRef: signal.nodeRef,
+    problem: signal.rationale,
+    evidence: signal.evidence,
+    recommendation: signal.recommendation,
+    confidence: signal.confidence,
+    currentScore: signal.normalized
+  }));
+
+  items.push(...implementationItems(ranking, weights), ...workflowItems(ranking, weights));
 
   for (const dimension of ranking.missingDimensions) {
     items.push({
@@ -63,35 +111,49 @@ export function createRevisionPlan(run, options = {}) {
     });
   }
 
-  items.sort((left, right) => right.priority - left.priority);
+  const unique = new Map();
+  for (const item of items) {
+    const key = item.signalId || item.obligationRef || `${item.type}:${item.workflowRef || item.dimension}:${item.browser || item.stateRef || "all"}`;
+    const existing = unique.get(key);
+    if (!existing || item.priority > existing.priority) unique.set(key, item);
+  }
+  const sortedItems = [...unique.values()].sort((left, right) => right.priority - left.priority);
   const structuralMisalignment = record.evidence.signals.some(
     (signal) => signal.dimension === "intentAlignment" && signal.status === "fail" && signal.normalized < 0.65
-  );
+  ) || ranking.implementationAudit?.thinkingFidelity?.hardFailures?.some((failure) => failure.implementation === "none");
   const changeMode = structuralMisalignment ? "fork-candidate" : "bounded-patch";
-  const affectedStates = [...new Set(items.map((item) => item.stateRef).filter(Boolean))];
-  const affectedDimensions = [...new Set(items.map((item) => item.dimension).filter(Boolean))];
+  const limitedItems = sortedItems.slice(0, limit);
+  const affectedStates = [...new Set(limitedItems.map((item) => item.stateRef).filter(Boolean))];
+  const affectedDimensions = [...new Set(limitedItems.map((item) => item.dimension).filter(Boolean))];
+  const affectedWorkflows = [...new Set(limitedItems.map((item) => item.workflowRef).filter(Boolean))];
 
   return {
-    status: items.length ? "ready" : "no-op",
+    status: limitedItems.length ? "ready" : "no-op",
     candidateId,
     changeMode,
-    reason: items.length
+    reason: limitedItems.length
       ? structuralMisalignment
-        ? "Intent misalignment is structural; preserve the original and create a new candidate."
+        ? "Intent or direction-commitment misalignment is structural; preserve the original and create a new candidate."
         : "Apply the smallest coherent patch that addresses the highest-priority evidence without changing the thesis."
-      : "No signal falls below the revision threshold.",
+      : "No signal or implementation obligation falls below the revision threshold.",
     thesis: record.manifest.direction.thesis,
+    artifactRef: record.manifest.artifactRef ?? null,
     changeContract: record.manifest.changeContract,
-    items: items.slice(0, limit),
+    items: limitedItems,
     evidenceToRecollect: {
       states: affectedStates,
-      dimensions: affectedDimensions
+      dimensions: affectedDimensions,
+      workflows: affectedWorkflows,
+      invalidateArtifactBoundEvidence: limitedItems.length > 0,
+      invalidatePairwiseComparisons: limitedItems.length > 0
     },
     stopConditions: [
       "Stop and fork a new candidate if the direction thesis changes.",
       "Stop if the patch touches a protected path.",
       "Stop if a repaired dimension creates a new hard failure or quality-floor failure.",
-      "Re-evaluate every affected state before accepting the patch."
+      "Assign a new artifact reference after any code change.",
+      "Discard captures, workflow runs, implementation evidence, and pairwise judgments bound to the previous artifact.",
+      "Re-evaluate every affected state and workflow before accepting the patch."
     ]
   };
 }

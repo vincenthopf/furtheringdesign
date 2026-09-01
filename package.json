@@ -1,38 +1,35 @@
 {
-  "name": "furthering-design-protocol",
-  "version": "0.1.0",
+  "name": "furtheringdesign",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.12.3",
-  "engines": {
-    "node": ">=20"
-  },
-  "bin": {
-    "furthering-design": "./runtime/cli.mjs"
-  },
+  "packageManager": "pnpm@10.15.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b",
-    "test": "node --test",
-    "validate:example": "node runtime/cli.mjs validate-intent examples/saas-launch/intent.json",
+    "typecheck": "tsc -b --pretty false",
+    "test": "node --test tests/*.test.mjs",
+    "validate:example": "node examples/saas-launch/command.mjs validate",
     "evaluate:example": "node examples/saas-launch/command.mjs evaluate",
-    "plan:example": "node examples/saas-launch/command.mjs plan safe-grid",
-    "validate:health": "node runtime/cli.mjs validate-intent examples/ai-health/intent.json",
+    "plan:example": "node examples/saas-launch/command.mjs plan",
+    "validate:strict": "node examples/implementation-fidelity/command.mjs validate",
+    "evaluate:strict": "node examples/implementation-fidelity/command.mjs evaluate",
+    "plan:strict": "node examples/implementation-fidelity/command.mjs plan",
+    "validate:health": "node examples/ai-health/command.mjs validate",
     "evaluate:health": "node examples/ai-health/command.mjs evaluate",
     "plan:health": "node examples/ai-health/command.mjs plan"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
+    "lucide-react": "latest",
     "vite": "latest",
-    "typescript": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "lucide-react": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/react": "latest",
-    "@types/react-dom": "latest"
+    "@types/react-dom": "latest",
+    "typescript": "latest"
   }
 }

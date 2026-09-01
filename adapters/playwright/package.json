@@ -1,17 +1,14 @@
 {
-  "name": "@furthering-design/playwright-adapter",
-  "version": "0.1.0",
+  "name": "furthering-design-playwright-adapter",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.12.3",
-  "engines": {
-    "node": ">=20"
-  },
+  "packageManager": "pnpm@10.15.0",
   "scripts": {
-    "capture": "node capture.mjs"
+    "capture": "node capture-route-map.mjs"
   },
   "dependencies": {
-    "@axe-core/playwright": "^4.10.2",
-    "playwright": "^1.55.0"
+    "@axe-core/playwright": "^4.10.1",
+    "playwright": "^1.51.1"
   }
 }

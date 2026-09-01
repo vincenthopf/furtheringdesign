@@ -4,44 +4,126 @@
   "title": "Furthering Design Candidate",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "id", "intentId", "title", "direction", "tokens", "structure", "decisions", "changeContract", "supportedStates"],
+  "required": [
+    "schemaVersion",
+    "id",
+    "intentId",
+    "title",
+    "direction",
+    "tokens",
+    "structure",
+    "decisions",
+    "changeContract",
+    "supportedStates"
+  ],
   "properties": {
-    "schemaVersion": { "const": "1.0.0" },
-    "id": { "type": "string", "minLength": 1 },
-    "intentId": { "type": "string", "minLength": 1 },
-    "title": { "type": "string", "minLength": 1 },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intentId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifactRef": {
+      "type": "string",
+      "minLength": 1
+    },
     "direction": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["thesis", "axes", "deliberateTradeoffs", "rejectedPatterns"],
+      "required": [
+        "thesis",
+        "axes",
+        "deliberateTradeoffs",
+        "rejectedPatterns"
+      ],
       "properties": {
-        "thesis": { "type": "string", "minLength": 1 },
+        "thesis": {
+          "type": "string",
+          "minLength": 1
+        },
         "axes": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["composition", "typography", "spatialRhythm", "surface", "imagery", "interaction", "voice"],
+          "required": [
+            "composition",
+            "typography",
+            "spatialRhythm",
+            "surface",
+            "imagery",
+            "interaction",
+            "voice"
+          ],
           "properties": {
-            "composition": { "type": "string" },
-            "typography": { "type": "string" },
-            "spatialRhythm": { "type": "string" },
-            "surface": { "type": "string" },
-            "imagery": { "type": "string" },
-            "interaction": { "type": "string" },
-            "voice": { "type": "string" }
+            "composition": {
+              "type": "string"
+            },
+            "typography": {
+              "type": "string"
+            },
+            "spatialRhythm": {
+              "type": "string"
+            },
+            "surface": {
+              "type": "string"
+            },
+            "imagery": {
+              "type": "string"
+            },
+            "interaction": {
+              "type": "string"
+            },
+            "voice": {
+              "type": "string"
+            }
           }
         },
-        "deliberateTradeoffs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
-        "rejectedPatterns": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        "deliberateTradeoffs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "rejectedPatterns": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
-    "tokens": { "type": "object", "minProperties": 1 },
+    "tokens": {
+      "type": "object",
+      "minProperties": 1
+    },
     "structure": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["pattern", "sections"],
+      "required": [
+        "pattern",
+        "sections"
+      ],
       "properties": {
-        "pattern": { "type": "string" },
-        "sections": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        "pattern": {
+          "type": "string"
+        },
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "decisions": {
@@ -50,28 +132,187 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["question", "option", "rationale", "tradeoffs"],
+        "required": [
+          "question",
+          "option",
+          "rationale",
+          "tradeoffs"
+        ],
         "properties": {
-          "question": { "type": "string" },
-          "option": { "type": "string" },
-          "rationale": { "type": "string" },
-          "tradeoffs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+          "question": {
+            "type": "string"
+          },
+          "option": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "tradeoffs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
         }
       }
     },
-    "changeContract": { "$ref": "#/$defs/changeContract" },
-    "supportedStates": { "type": "array", "minItems": 2, "items": { "type": "string" }, "uniqueItems": true }
+    "commitments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/obligation"
+      }
+    },
+    "changeContract": {
+      "$ref": "#/$defs/changeContract"
+    },
+    "supportedStates": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "supportedWorkflows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
   },
   "$defs": {
     "changeContract": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["baselineRef", "allowedPaths", "protectedPaths", "patchMode"],
+      "required": [
+        "baselineRef",
+        "allowedPaths",
+        "protectedPaths",
+        "patchMode"
+      ],
       "properties": {
-        "baselineRef": { "type": "string" },
-        "allowedPaths": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
-        "protectedPaths": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
-        "patchMode": { "const": "diff-only" }
+        "baselineRef": {
+          "type": "string"
+        },
+        "allowedPaths": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "protectedPaths": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "patchMode": {
+          "const": "diff-only"
+        }
+      }
+    },
+    "obligation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "statement",
+        "class",
+        "severity",
+        "dimension",
+        "stateRefs",
+        "verification"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "class": {
+          "enum": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "blocker",
+            "major",
+            "minor",
+            "note"
+          ]
+        },
+        "dimension": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stateRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "verification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "automation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "metric",
+            "operator",
+            "expected"
+          ],
+          "properties": {
+            "source": {
+              "const": "playwright"
+            },
+            "metric": {
+              "type": "string",
+              "minLength": 1
+            },
+            "operator": {
+              "enum": [
+                "eq",
+                "neq",
+                "lt",
+                "lte",
+                "gt",
+                "gte",
+                "contains"
+              ]
+            },
+            "expected": {
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
+            },
+            "tolerance": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
       }
     }
   }

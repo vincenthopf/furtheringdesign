@@ -8,6 +8,8 @@ import {
   requiredString,
   round
 } from "./util.mjs";
+import { intentPrincipleRef, validateIntentPrinciples } from "./fidelity.mjs";
+import { validateWorkflows } from "./workflow.mjs";
 
 const scopeLevels = new Set(["product", "flow", "page", "section", "component", "instance"]);
 const referencePolicies = new Set(["abstract-principles-only", "licensed-assets", "original-only"]);
@@ -73,6 +75,8 @@ export function normalizeIntent(input) {
   intent.freedoms.open ??= [];
   intent.freedoms.forbidden ??= [];
   intent.states ??= [];
+  intent.principles ??= [];
+  intent.workflows ??= [];
   intent.content = isRecord(intent.content) ? intent.content : {};
   intent.risks ??= [];
   intent.assumptions ??= [];
@@ -244,6 +248,7 @@ export function validateIntent(input) {
     if (!colorSchemes.has(state.colorScheme)) errors.push(`states[${index}].colorScheme must be one of ${[...colorSchemes].join(", ")}`);
     if (typeof state.reducedMotion !== "boolean") errors.push(`states[${index}].reducedMotion must be boolean`);
     requiredString(state.locale, `states[${index}].locale`, errors);
+    if (state.path !== undefined) requiredString(state.path, `states[${index}].path`, errors);
     if (state.id) stateIds.push(state.id);
   });
   for (const duplicate of duplicateValues(stateIds)) errors.push(`state id must be unique: ${duplicate}`);
@@ -251,6 +256,15 @@ export function validateIntent(input) {
   if (!states.some((state) => state?.viewport?.width >= 1024)) warnings.push("states should include a desktop viewport at or above 1024px");
   if (!states.some((state) => state?.reducedMotion === true)) warnings.push("states should include reduced motion");
   if (!states.some((state) => state?.colorScheme === "dark")) warnings.push("states should include dark color scheme when the product supports it");
+
+  const principleResult = validateIntentPrinciples(intent.principles, states);
+  errors.push(...principleResult.errors.map((error) => `intent.${error}`));
+  if (!intent.principles.length) warnings.push("intent principles are missing; principle adherence cannot be verified");
+
+  const principleRefs = new Set(intent.principles.map((principle) => intentPrincipleRef(principle.id)));
+  const workflowResult = validateWorkflows(intent.workflows, intent.audiences, states, principleRefs);
+  errors.push(...workflowResult.errors.map((error) => `intent.${error}`));
+  warnings.push(...workflowResult.warnings.map((warning) => `intent.${warning}`));
 
   requiredString(intent.content.sourceOfTruth, "content.sourceOfTruth", errors);
   if (!missingPolicies.has(intent.content.missingPolicy)) errors.push(`content.missingPolicy must be one of ${[...missingPolicies].join(", ")}`);
