@@ -1,69 +1,101 @@
 # furtheringdesign
 
-Teaching AI to *reason* about design, not copy patterns.
+Teaching AI to reason about design, verify that reasoning in the artifact, and refuse unsupported UI decisions.
 
-A multi-agent system for design reasoning. Replaces rule-based UI generation with intent-anchored reasoning, mismatch detection, and structural grounding.
+The repository combines design-cognition research with an executable protocol for framing intent, exploring materially different directions, building safely, capturing browser evidence, evaluating implementation and workflows, and selecting under uncertainty.
 
 ## Status
 
-Early. Research-heavy, evolving. Foundations 1–3 have completed recursive research with knowledge bundles. Design phase pending. Layers 4–7 scoped, not yet dispatched.
+Runtime v0.2 is executable. It supports legacy protocol records and adds a strict path that closes four major gaps: rationale without implementation, broken user journeys hidden by screenshots, differently worded versions of the same rendered template, and rankings based on stale or singular taste judgments.
 
-## Why
+Foundational research for Intent Schema, Design Reasoning, and Mismatch Detection is complete. Flow, training data, structural grounding, and orchestration research remain active areas, but their essential runtime contracts are now represented in code.
 
-Current AI UI tools (Figma AI, Midjourney, Galileo) copy visual patterns without reasoning about *why*. The existing Tailwind/UI skill we work with has 39 rule files and produces mediocre output because it applies rules mechanically. Anthropic's own research shows specific rules damage LLM generalization. Expert designers reason in patterns, not rules.
+## What is implemented
 
-This repo is the work of figuring out:
-1. What design thinking actually is (cognitive science of expert design)
-2. What the formalizable parts are
-3. How to encode them as a multi-agent system instead of a skill
+- computable intent, candidate, evidence, and run validation
+- explicit intent principles and candidate commitments
+- Thinking Fidelity Score and Principle Adherence Score across required states
+- Class A hard gates, Class B measurable scoring, and Class C calibrated critique
+- browser-executed critical workflows with complete step and assertion evidence
+- content-addressed captures and artifact-bound evidence
+- rendered direction fingerprints for layout, palette, typography, and density
+- distinct-direction clustering and incomplete render-matrix detection
+- uncertainty penalties, quality floors, Pareto filtering, and bounded selection
+- independently sourced pairwise evaluator quorum with disagreement handling
+- bounded revision planning that invalidates stale evidence after every patch
+- JSON schemas, tests, prompts, examples, and an optional Playwright adapter
 
-## Structure
+## Run the protocol
 
+Node.js 20 or newer is required.
+
+```bash
+npm test
+npm run validate:example
+npm run evaluate:example
+npm run plan:example
 ```
-docs/                  ← high-level overview, comparisons with other approaches
-agent-handoffs/        ← prompts/specs for each agent in the system
-research/
-  knowledge-bundles/   ← deep research outputs (recursive research cycles)
-  external-research/   ← adjacent research not tied to a specific agent
-references/            ← raw external material (other people's work)
+
+The strict fixture demonstrates implementation fidelity, executable workflows, rendered diversity, capture hashes, and evaluator quorum:
+
+```bash
+npm run validate:strict
+npm run evaluate:strict
+npm run plan:strict
 ```
 
-### Read in this order
+The command-line interface can validate user-owned records and produce a phase-separated design packet:
 
-1. `docs/methodology-overview.md` — what the system is
-2. `research/knowledge-bundles/ai-design-thinking/knowledge-bundle.md` — the foundational research that started this
-3. `agent-handoffs/00-index.md` — the agent dispatch map
-4. `docs/comparison-with-orchestration-approach.md` — how this compares to a parallel orchestration-focused effort
+```bash
+node runtime/cli.mjs validate-intent path/to/intent.json
+node runtime/cli.mjs validate-candidate path/to/candidate.json --intent path/to/intent.json
+node runtime/cli.mjs evaluate path/to/run.json --format markdown
+node runtime/cli.mjs plan-revision path/to/run.json --candidate candidate-id
+node runtime/cli.mjs packet path/to/intent.json --out path/to/packet
+```
 
-## The Agents
+## Browser evidence
 
-| # | Agent | Status |
-|---|---|---|
-| F1 | Intent Schema | Research done, design pending |
-| F2 | Design Reasoning Framework | Research done, design pending |
-| F3 | Mismatch Detection | Research done, design pending |
-| L4 | Flow Understanding | Scoped |
-| L5 | Training Data Pipeline | Scoped |
-| L6 | Structural Grounding | Scoped |
-| L7 | Orchestration | Scoped |
+The optional Playwright adapter captures Chromium, Firefox, and WebKit states, axe output, focus traces, clipping, overlap, overflow, target-size and structure signals, rendered fingerprints, obligation checks, and executable workflows.
 
-## Core Principles
+```bash
+node adapters/playwright/capture.mjs \
+  --url http://127.0.0.1:3000 \
+  --intent path/to/intent.json \
+  --manifest path/to/candidate.json \
+  --artifact-ref git:candidate-commit \
+  --out artifacts/candidate-id
+```
 
-1. Reasoning patterns, not rules
-2. Intent is the anchor
-3. Nondeterminism is real (confidence tiering, not fake certainty)
-4. Specialized agents with focused context
-5. Structural grounding over pixel grounding
-6. Phased: generate → score → validate (don't mix)
+## Core decision
 
-## Conventions
+UI generation is treated as constrained search, not one completion and not a universal beauty score.
 
-- Every agent runs a recursive research gate before designing anything
-- Every agent reports understanding for alignment before researching
-- Every agent reports findings for confirmation before building
-- Every deep research run produces a knowledge bundle artifact
-- Knowledge bundles are durable — they outlive sessions
+1. Frame product intent and executable user tasks.
+2. Generate at least three materially different directions.
+3. Build each direction from the same immutable baseline.
+4. Capture structural, visual, accessibility, and workflow evidence from the rendered artifact.
+5. Verify that candidate rationale and intent principles were actually implemented.
+6. Reject hard failures and quality-floor failures.
+7. Compare only eligible, Pareto-efficient candidates with calibrated pairwise evidence.
+8. Select only when the margin, coverage, diversity, quorum, and uncertainty thresholds support it.
+9. Repair through bounded patches and recollect stale evidence.
+
+The correct outcome can be `invalid`, `blocked`, `human-review`, or `selected`. The runtime does not manufacture a winner when evidence is incomplete or judgment legitimately disagrees.
+
+## Read next
+
+1. [`docs/furthering-design-protocol.md`](docs/furthering-design-protocol.md)
+2. [`docs/runtime-v0.2-implementation-fidelity.md`](docs/runtime-v0.2-implementation-fidelity.md)
+3. [`docs/implementation-guide.md`](docs/implementation-guide.md)
+4. [`research/field-audit-2026-09-implementation-fidelity.md`](research/field-audit-2026-09-implementation-fidelity.md)
+5. [`research/knowledge-bundles/ai-design-thinking/knowledge-bundle.md`](research/knowledge-bundles/ai-design-thinking/knowledge-bundle.md)
+6. [`agent-handoffs/00-index.md`](agent-handoffs/00-index.md)
+
+## Limits
+
+The runtime does not prove business impact before release, infer cultural appropriateness from browser metrics, or replace user research and expert review. Pairwise evaluators can still share training bias. Workflow tests cover declared paths, not every real path. Production use still requires calibrated thresholds, real content, screen-reader review, performance evidence, product analytics, and preference data from the people the product serves.
 
 ## License
 
-CC BY-SA 4.0 — see [LICENSE](./LICENSE).
+CC BY-SA 4.0. See [`LICENSE`](LICENSE).

@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "intent-observability-launch",
+  "title": "Observability platform launch page",
+  "scope": {
+    "level": "page",
+    "surface": "marketing-site",
+    "parentIntentId": null
+  },
+  "outcome": {
+    "problem": "Engineering leaders cannot quickly distinguish the product from generic observability vendors or verify that it fits high-stakes incident response.",
+    "desiredChange": "A qualified engineering leader understands the operational advantage, trusts the claims, and requests a technical evaluation.",
+    "antiGoals": [
+      "Maximize raw sign-up volume",
+      "Imitate a named competitor",
+      "Use visual spectacle that obscures evidence"
+    ]
+  },
+  "audiences": [
+    {
+      "id": "engineering-leader",
+      "label": "VP Engineering or platform lead",
+      "context": "Arrives from a peer recommendation or technical article while comparing tools under time pressure.",
+      "needs": [
+        "Understand the product mechanism",
+        "Verify technical credibility",
+        "Estimate migration risk"
+      ],
+      "anxieties": [
+        "Marketing claims without proof",
+        "Hidden implementation cost",
+        "Another dashboard that adds noise"
+      ],
+      "capabilities": [
+        "Reads architecture diagrams",
+        "Evaluates operational tradeoffs",
+        "Can sponsor a technical pilot"
+      ]
+    }
+  ],
+  "tasks": {
+    "primary": {
+      "actorId": "engineering-leader",
+      "action": "request",
+      "object": "a technical evaluation",
+      "completionSignal": "the evaluation form is submitted with company and stack context"
+    },
+    "secondary": [
+      {
+        "actorId": "engineering-leader",
+        "action": "inspect",
+        "object": "the evidence behind the product claims",
+        "completionSignal": "the architecture and incident evidence sections are viewed"
+      }
+    ]
+  },
+  "brand": {
+    "values": [
+      {
+        "name": "operational clarity",
+        "expression": "Evidence is legible and causal relationships are explicit.",
+        "avoid": "Decorative complexity or abstract claims."
+      },
+      {
+        "name": "calm authority",
+        "expression": "Measured language, controlled contrast, and precise technical detail.",
+        "avoid": "Urgency theatre, inflated certainty, or aggressive conversion pressure."
+      },
+      {
+        "name": "earned distinctiveness",
+        "expression": "A recognizable evidence-led composition built from product truth.",
+        "avoid": "Generic gradient cards, glowing orbs, and copied category conventions."
+      }
+    ],
+    "voice": ["direct", "technical", "measured"],
+    "distinctiveAssets": ["incident trace topology", "evidence spine", "annotated system transitions"],
+    "referencePolicy": "abstract-principles-only"
+  },
+  "experience": {
+    "emotionalRegister": ["calm", "precise", "credible"],
+    "density": "dense where evidence is useful, spacious where decisions need emphasis",
+    "familiarity": "conventional navigation and forms with a distinctive evidence-led page structure",
+    "motion": "purposeful state explanation with a complete reduced-motion alternative",
+    "hierarchy": "one dominant evaluation action supported by progressively deeper proof"
+  },
+  "success": {
+    "criteria": [
+      {
+        "id": "qualified-evaluation",
+        "signal": "Qualified technical evaluation requests",
+        "direction": "increase",
+        "target": "At least 12 percent of qualified sessions",
+        "weight": 0.65
+      },
+      {
+        "id": "proof-engagement",
+        "signal": "Qualified visitors who inspect architecture or incident evidence",
+        "direction": "increase",
+        "target": "At least 55 percent",
+        "weight": 0.35
+      }
+    ],
+    "qualityProfile": {
+      "weights": {
+        "intentAlignment": 0.2,
+        "taskClarity": 0.13,
+        "accessibility": 0.15,
+        "hierarchy": 0.12,
+        "visualCoherence": 0.12,
+        "distinctiveness": 0.1,
+        "responsiveResilience": 0.1,
+        "maintainability": 0.08
+      },
+      "floors": {
+        "accessibility": 0.85,
+        "taskClarity": 0.75,
+        "responsiveResilience": 0.75
+      },
+      "uncertaintyPenalty": 0.18
+    }
+  },
+  "constraints": {
+    "hard": [
+      {
+        "id": "a11y",
+        "category": "accessibility",
+        "statement": "Meet WCAG 2.2 AA for the tested states and preserve complete keyboard operation.",
+        "verification": "axe-core, keyboard trace, contrast measurement, and manual review"
+      },
+      {
+        "id": "claims",
+        "category": "content",
+        "statement": "Every performance or reliability claim must point to approved evidence.",
+        "verification": "claim-to-source review"
+      },
+      {
+        "id": "safe-change",
+        "category": "implementation",
+        "statement": "Do not overwrite protected application, infrastructure, or content files.",
+        "verification": "baseline hash, path allowlist, and diff review"
+      }
+    ],
+    "soft": [
+      {
+        "id": "performance",
+        "category": "performance",
+        "statement": "Keep the launch page inside the agreed Core Web Vitals budget.",
+        "verification": "browser trace and field monitoring"
+      },
+      {
+        "id": "reuse",
+        "category": "maintainability",
+        "statement": "Express recurring visual decisions as tokens and components.",
+        "verification": "code review"
+      }
+    ]
+  },
+  "freedoms": {
+    "fixed": ["Approved product claims", "Primary evaluation action", "Existing wordmark", "Required legal copy"],
+    "open": ["Page composition", "Typography within licensed families", "Evidence visualization", "Interaction motif"],
+    "forbidden": ["Fabricated customer evidence", "Copied competitor layout", "Autoplay motion without reduced-motion handling"]
+  },
+  "states": [
+    {
+      "id": "desktop-light",
+      "viewport": { "width": 1440, "height": 900 },
+      "colorScheme": "light",
+      "reducedMotion": false,
+      "locale": "en-AU"
+    },
+    {
+      "id": "mobile-light",
+      "viewport": { "width": 390, "height": 844 },
+      "colorScheme": "light",
+      "reducedMotion": false,
+      "locale": "en-AU"
+    },
+    {
+      "id": "desktop-dark-reduced",
+      "viewport": { "width": 1440, "height": 900 },
+      "colorScheme": "dark",
+      "reducedMotion": true,
+      "locale": "en-AU"
+    }
+  ],
+  "content": {
+    "sourceOfTruth": "approved launch copy and product evidence repository",
+    "missingPolicy": "mark-todo",
+    "claimsRequireEvidence": true
+  },
+  "risks": [
+    {
+      "id": "false-authority",
+      "severity": "high",
+      "statement": "Visual confidence could overstate incomplete evidence.",
+      "control": "Require claim provenance and separate confidence from visual emphasis."
+    },
+    {
+      "id": "design-drift",
+      "severity": "high",
+      "statement": "Later AI edits could flatten the direction into generic components.",
+      "control": "Persist candidate decisions, tokens, protected paths, and baseline reference."
+    }
+  ],
+  "assumptions": [
+    "Qualified visitors understand common observability concepts.",
+    "The product team can provide approved incident evidence before release."
+  ],
+  "openQuestions": [
+    "Which proof artifact produces the strongest evaluation intent?",
+    "Does the dark state ship at launch or remain an evaluation state?"
+  ]
+}

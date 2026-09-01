@@ -1,0 +1,21 @@
+{
+  "name": "furthering-design-protocol",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "furthering-design": "./runtime/cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "validate:example": "node runtime/cli.mjs validate-intent examples/saas-launch/intent.json",
+    "evaluate:example": "node examples/saas-launch/command.mjs evaluate",
+    "plan:example": "node examples/saas-launch/command.mjs plan safe-grid",
+    "validate:strict": "node examples/implementation-fidelity/command.mjs validate",
+    "evaluate:strict": "node examples/implementation-fidelity/command.mjs evaluate",
+    "plan:strict": "node examples/implementation-fidelity/command.mjs plan rationale-only"
+  }
+}

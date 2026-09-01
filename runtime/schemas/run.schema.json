@@ -1,0 +1,377 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://furthering.design/schemas/run.schema.json",
+  "title": "Furthering Design Run",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "intent",
+    "policy",
+    "candidates",
+    "pairwise"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string"
+    },
+    "intent": {
+      "$ref": "intent.schema.json"
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selectionWeights",
+        "diversityFloor",
+        "uncertaintyPenalty",
+        "reviewMargin",
+        "maxUncertainty",
+        "hardGateSeverities"
+      ],
+      "properties": {
+        "selectionWeights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "evidence",
+            "pairwise",
+            "diversity"
+          ],
+          "properties": {
+            "evidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "pairwise": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "diversity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "diversityFloor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "uncertaintyPenalty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reviewMargin": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "maxUncertainty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "hardGateSeverities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "blocker",
+              "major",
+              "minor",
+              "note"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "requireBoundEvidence": {
+          "type": "boolean"
+        },
+        "implementationAudit": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "requireCommitments": {
+              "type": "boolean"
+            },
+            "requirePrinciples": {
+              "type": "boolean"
+            },
+            "thinkingFidelityFloor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "principleAdherenceFloor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "minimumCoverage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "uncertaintyPenalty": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "renderedDiversity": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "required": {
+              "type": "boolean"
+            },
+            "floor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "minimumCoverage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "weights": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "layout",
+                "palette",
+                "typography",
+                "density"
+              ],
+              "properties": {
+                "layout": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "palette": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "typography": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "density": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "minimumDistinctCandidates": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 20
+            },
+            "requiredBrowsers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "enum": [
+                  "chromium",
+                  "firefox",
+                  "webkit",
+                  "other"
+                ]
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "workflowAudit": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "minimumCoverage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "completionFloor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "requiredBrowsers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "enum": [
+                  "chromium",
+                  "firefox",
+                  "webkit",
+                  "other"
+                ]
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "pairwiseAudit": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "required": {
+              "type": "boolean"
+            },
+            "minimumEvaluators": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "minimumIndependentEvaluators": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10
+            },
+            "requireArtifactBinding": {
+              "type": "boolean"
+            },
+            "requireCriteria": {
+              "type": "boolean"
+            },
+            "maximumDisagreement": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "requiredPreferenceProfiles": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "minimumIndependentSources": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10
+            }
+          }
+        },
+        "requireCaptureHashes": {
+          "type": "boolean"
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "manifest",
+          "evidence"
+        ],
+        "properties": {
+          "manifest": {
+            "$ref": "candidate.schema.json"
+          },
+          "evidence": {
+            "$ref": "evidence.schema.json"
+          }
+        }
+      }
+    },
+    "pairwise": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "left",
+          "right",
+          "winner",
+          "confidence",
+          "rationale"
+        ],
+        "properties": {
+          "left": {
+            "type": "string"
+          },
+          "right": {
+            "type": "string"
+          },
+          "winner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "evaluatorId": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "independent": {
+            "type": "boolean"
+          },
+          "preferenceProfileId": {
+            "type": "string"
+          },
+          "leftArtifactRef": {
+            "type": "string"
+          },
+          "rightArtifactRef": {
+            "type": "string"
+          },
+          "criteria": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

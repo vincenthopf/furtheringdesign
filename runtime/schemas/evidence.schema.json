@@ -1,0 +1,400 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://furthering.design/schemas/evidence.schema.json",
+  "title": "Furthering Design Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "candidateId",
+    "captures",
+    "signals"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "candidateId": {
+      "type": "string"
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "capturedAt",
+        "tool"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string"
+        },
+        "capturedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tool": {
+          "type": "string"
+        }
+      }
+    },
+    "captures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "browser",
+          "stateRef",
+          "url",
+          "viewport"
+        ],
+        "properties": {
+          "browser": {
+            "enum": [
+              "chromium",
+              "firefox",
+              "webkit",
+              "other"
+            ]
+          },
+          "stateRef": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "viewport": {
+            "type": "object",
+            "required": [
+              "width",
+              "height"
+            ],
+            "properties": {
+              "width": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "screenshot": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nodeMap": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "screenshotSha256": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{64}$"
+          },
+          "nodeMapSha256": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{64}$"
+          }
+        }
+      }
+    },
+    "renderProfiles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/renderProfile"
+      }
+    },
+    "workflowRuns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/workflowRun"
+      }
+    },
+    "signals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "class",
+          "dimension",
+          "source",
+          "status",
+          "normalized",
+          "confidence",
+          "severity",
+          "stateRef",
+          "nodeRef",
+          "evidence",
+          "rationale",
+          "recommendation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "class": {
+            "enum": [
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          "dimension": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "fail",
+              "unknown"
+            ]
+          },
+          "normalized": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "severity": {
+            "enum": [
+              "blocker",
+              "major",
+              "minor",
+              "note"
+            ]
+          },
+          "stateRef": {
+            "type": "string"
+          },
+          "nodeRef": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string"
+          },
+          "obligationRefs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "implementation": {
+            "enum": [
+              "full",
+              "partial",
+              "none",
+              "unknown"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "renderProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "browser",
+        "stateRef",
+        "artifactRef",
+        "vectors"
+      ],
+      "properties": {
+        "browser": {
+          "type": "string"
+        },
+        "stateRef": {
+          "type": "string"
+        },
+        "artifactRef": {
+          "type": "string"
+        },
+        "vectors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "layout",
+            "palette",
+            "typography",
+            "density"
+          ],
+          "properties": {
+            "layout": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "palette": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "typography": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "density": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "workflowRun": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "workflowRef",
+        "browser",
+        "stateRef",
+        "artifactRef",
+        "status",
+        "durationMs",
+        "steps",
+        "assertions"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "workflowRef": {
+          "type": "string"
+        },
+        "browser": {
+          "enum": [
+            "chromium",
+            "firefox",
+            "webkit",
+            "other"
+          ]
+        },
+        "stateRef": {
+          "type": "string"
+        },
+        "artifactRef": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "durationMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "screenshot": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "screenshotSha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resultItem"
+          }
+        },
+        "assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resultItem"
+          }
+        },
+        "error": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "resultItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status",
+        "nodeRef",
+        "evidence",
+        "durationMs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "skipped"
+          ]
+        },
+        "nodeRef": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "durationMs": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

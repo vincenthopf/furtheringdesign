@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "signal-foundry",
+  "intentId": "intent-observability-launch",
+  "title": "Signal Foundry",
+  "direction": {
+    "thesis": "Build the page as an evidence spine: each product claim immediately exposes the system event, proof artifact, and operational consequence behind it.",
+    "axes": {
+      "composition": "A narrow vertical evidence spine intersects wide technical exhibits and a persistent evaluation rail.",
+      "typography": "Compact neo-grotesk body paired with a restrained mono evidence layer and oversized numerical anchors.",
+      "spatialRhythm": "Alternating compressed proof bands and generous decision pauses create a measured diagnostic cadence.",
+      "surface": "Flat mineral surfaces with hairline topology, minimal elevation, and stateful data planes.",
+      "imagery": "Original incident traces, architecture fragments, and annotated system transitions replace stock imagery.",
+      "interaction": "Users reveal causal depth in place; motion explains state change and collapses cleanly under reduced motion.",
+      "voice": "Specific claims, explicit limits, and calm technical conviction."
+    },
+    "deliberateTradeoffs": [
+      "More information density than a conventional campaign page",
+      "Requires disciplined evidence production"
+    ],
+    "rejectedPatterns": [
+      "Centered gradient hero",
+      "Logo cloud as primary proof",
+      "Floating glass cards",
+      "Generic bento feature grid"
+    ]
+  },
+  "tokens": {
+    "spaceUnit": 6,
+    "readingMeasure": "68ch",
+    "surfaceModel": "flat-data-planes",
+    "accentCount": 1,
+    "motionPurpose": "explain-state"
+  },
+  "structure": {
+    "pattern": "evidence-spine-with-evaluation-rail",
+    "sections": [
+      "measured promise",
+      "incident mechanism",
+      "proof ledger",
+      "migration boundary",
+      "technical evaluation"
+    ]
+  },
+  "decisions": [
+    {
+      "question": "How should a skeptical engineering leader build confidence?",
+      "option": "Build the page as an evidence spine: each product claim immediately exposes the system event, proof artifact, and operational consequence behind it.",
+      "rationale": "The option turns product evidence into the page structure instead of applying a category template.",
+      "tradeoffs": [
+        "More information density than a conventional campaign page",
+        "Requires disciplined evidence production"
+      ]
+    }
+  ],
+  "changeContract": {
+    "baselineRef": "launch-baseline-2026-09-01",
+    "allowedPaths": [
+      "app/marketing/**",
+      "components/marketing/**",
+      "styles/marketing/**",
+      "public/launch/**"
+    ],
+    "protectedPaths": [
+      "app/api/**",
+      "infra/**",
+      ".env*",
+      "content/approved-claims.json"
+    ],
+    "patchMode": "diff-only"
+  },
+  "supportedStates": [
+    "desktop-light",
+    "mobile-light",
+    "desktop-dark-reduced"
+  ]
+}
