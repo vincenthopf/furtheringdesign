@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://furthering.design/schemas/revision-plan.schema.json",
+  "title": "Furthering Design Revision Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "candidateId", "reason", "items"],
+  "properties": {
+    "status": { "enum": ["invalid", "blocked", "ready", "no-op"] },
+    "candidateId": { "type": ["string", "null"] },
+    "changeMode": { "enum": ["bounded-patch", "fork-candidate"] },
+    "reason": { "type": "string" },
+    "thesis": { "type": "string" },
+    "changeContract": { "$ref": "candidate.schema.json#/$defs/changeContract" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "signalId", "priority", "class", "severity", "dimension", "stateRef", "nodeRef", "problem", "evidence", "recommendation", "confidence", "currentScore"],
+        "properties": {
+          "type": { "enum": ["signal", "missing-evidence"] },
+          "signalId": { "type": ["string", "null"] },
+          "priority": { "type": "number" },
+          "class": { "enum": ["A", "B", "C"] },
+          "severity": { "enum": ["blocker", "major", "minor", "note"] },
+          "dimension": { "type": "string" },
+          "stateRef": { "type": ["string", "null"] },
+          "nodeRef": { "type": "string" },
+          "problem": { "type": "string" },
+          "evidence": { "type": "string" },
+          "recommendation": { "type": "string" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "currentScore": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "evidenceToRecollect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["states", "dimensions"],
+      "properties": {
+        "states": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "dimensions": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "stopConditions": { "type": "array", "items": { "type": "string" } }
+  }
+}
