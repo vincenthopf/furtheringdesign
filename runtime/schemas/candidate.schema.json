@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://furthering.design/schemas/candidate.schema.json",
+  "title": "Furthering Design Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "intentId", "title", "direction", "tokens", "structure", "decisions", "changeContract", "supportedStates"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "id": { "type": "string", "minLength": 1 },
+    "intentId": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "direction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["thesis", "axes", "deliberateTradeoffs", "rejectedPatterns"],
+      "properties": {
+        "thesis": { "type": "string", "minLength": 1 },
+        "axes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["composition", "typography", "spatialRhythm", "surface", "imagery", "interaction", "voice"],
+          "properties": {
+            "composition": { "type": "string" },
+            "typography": { "type": "string" },
+            "spatialRhythm": { "type": "string" },
+            "surface": { "type": "string" },
+            "imagery": { "type": "string" },
+            "interaction": { "type": "string" },
+            "voice": { "type": "string" }
+          }
+        },
+        "deliberateTradeoffs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "rejectedPatterns": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "tokens": { "type": "object", "minProperties": 1 },
+    "structure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pattern", "sections"],
+      "properties": {
+        "pattern": { "type": "string" },
+        "sections": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["question", "option", "rationale", "tradeoffs"],
+        "properties": {
+          "question": { "type": "string" },
+          "option": { "type": "string" },
+          "rationale": { "type": "string" },
+          "tradeoffs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        }
+      }
+    },
+    "changeContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baselineRef", "allowedPaths", "protectedPaths", "patchMode"],
+      "properties": {
+        "baselineRef": { "type": "string" },
+        "allowedPaths": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
+        "protectedPaths": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
+        "patchMode": { "const": "diff-only" }
+      }
+    },
+    "supportedStates": { "type": "array", "minItems": 2, "items": { "type": "string" }, "uniqueItems": true }
+  }
+}

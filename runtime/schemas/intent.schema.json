@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://furthering.design/schemas/intent.schema.json",
+  "title": "Furthering Design Intent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "title",
+    "scope",
+    "outcome",
+    "audiences",
+    "tasks",
+    "brand",
+    "experience",
+    "success",
+    "constraints",
+    "freedoms",
+    "states",
+    "content",
+    "risks",
+    "assumptions",
+    "openQuestions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "surface"],
+      "properties": {
+        "level": { "enum": ["product", "flow", "page", "section", "component", "instance"] },
+        "surface": { "type": "string", "minLength": 1 },
+        "parentIntentId": { "type": ["string", "null"] }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem", "desiredChange", "antiGoals"],
+      "properties": {
+        "problem": { "type": "string", "minLength": 1 },
+        "desiredChange": { "type": "string", "minLength": 1 },
+        "antiGoals": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
+    "audiences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "context", "needs", "anxieties", "capabilities"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
+          "context": { "type": "string", "minLength": 1 },
+          "needs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "anxieties": { "type": "array", "items": { "type": "string" } },
+          "capabilities": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "tasks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": { "$ref": "#/$defs/task" },
+        "secondary": { "type": "array", "items": { "$ref": "#/$defs/task" } }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["values", "voice", "distinctiveAssets", "referencePolicy"],
+      "properties": {
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "expression", "avoid"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "expression": { "type": "string", "minLength": 1 },
+              "avoid": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "voice": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "distinctiveAssets": { "type": "array", "items": { "type": "string" } },
+        "referencePolicy": { "enum": ["abstract-principles-only", "licensed-assets", "original-only"] }
+      }
+    },
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["emotionalRegister", "density", "familiarity", "motion", "hierarchy"],
+      "properties": {
+        "emotionalRegister": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "density": { "type": "string", "minLength": 1 },
+        "familiarity": { "type": "string", "minLength": 1 },
+        "motion": { "type": "string", "minLength": 1 },
+        "hierarchy": { "type": "string", "minLength": 1 }
+      }
+    },
+    "success": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["criteria", "qualityProfile"],
+      "properties": {
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "signal", "direction", "target", "weight"],
+            "properties": {
+              "id": { "type": "string" },
+              "signal": { "type": "string" },
+              "direction": { "enum": ["increase", "decrease", "hold", "binary"] },
+              "target": { "type": "string" },
+              "weight": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "qualityProfile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["weights", "floors", "uncertaintyPenalty"],
+          "properties": {
+            "weights": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 } },
+            "floors": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 } },
+            "uncertaintyPenalty": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hard", "soft"],
+      "properties": {
+        "hard": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/constraint" } },
+        "soft": { "type": "array", "items": { "$ref": "#/$defs/constraint" } }
+      }
+    },
+    "freedoms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fixed", "open", "forbidden"],
+      "properties": {
+        "fixed": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
+        "open": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
+        "forbidden": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "states": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "viewport", "colorScheme", "reducedMotion", "locale"],
+        "properties": {
+          "id": { "type": "string" },
+          "viewport": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["width", "height"],
+            "properties": {
+              "width": { "type": "integer", "minimum": 1 },
+              "height": { "type": "integer", "minimum": 1 }
+            }
+          },
+          "colorScheme": { "enum": ["light", "dark", "no-preference"] },
+          "reducedMotion": { "type": "boolean" },
+          "locale": { "type": "string" }
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceOfTruth", "missingPolicy", "claimsRequireEvidence"],
+      "properties": {
+        "sourceOfTruth": { "type": "string" },
+        "missingPolicy": { "enum": ["mark-todo", "fail", "use-approved-placeholder"] },
+        "claimsRequireEvidence": { "type": "boolean" }
+      }
+    },
+    "risks": { "type": "array", "items": { "$ref": "#/$defs/risk" } },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "openQuestions": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorId", "action", "object", "completionSignal"],
+      "properties": {
+        "actorId": { "type": "string" },
+        "action": { "type": "string" },
+        "object": { "type": "string" },
+        "completionSignal": { "type": "string" }
+      }
+    },
+    "constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "category", "statement", "verification"],
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string" },
+        "statement": { "type": "string" },
+        "verification": { "type": "string" }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "severity", "statement", "control"],
+      "properties": {
+        "id": { "type": "string" },
+        "severity": { "enum": ["critical", "high", "medium", "low"] },
+        "statement": { "type": "string" },
+        "control": { "type": "string" }
+      }
+    }
+  }
+}
