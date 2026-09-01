@@ -9,8 +9,8 @@ const names = ["evidence-thread", "care-ledger", "daily-compass"];
 const readJson = async (name) => JSON.parse(await readFile(new URL(name, directory), "utf8"));
 
 const legacyEvidenceWarnings = [
-  "intent has no principles; rationale fidelity cannot be verified",
-  "intent has no executable workflows; functional task completion cannot be verified"
+  "intent principles are missing; principle adherence cannot be verified",
+  "intent.workflows are empty; functional task completion cannot be verified"
 ];
 
 test("AI health intent validates with explicit legacy evidence limits", async () => {
