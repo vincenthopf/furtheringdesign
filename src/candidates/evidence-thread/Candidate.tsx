@@ -687,7 +687,7 @@ export function EvidenceThreadDashboard({ onOpenDashboard, onOpenMarketing }: Ca
                   <span className="et-module-heading__date">Apr 15–May 13</span>
                 </div>
                 <div className="et-thread-workspace">
-                  <div className="et-observation-list" role="list" aria-label="Recent observations">
+                  <div className="et-observation-list" role="group" aria-label="Recent observations">
                     {observations.map((observation) => {
                       const selected = activeObservation === observation.id;
                       return (

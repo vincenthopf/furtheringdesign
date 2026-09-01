@@ -38,3 +38,5 @@ TODO.local.md
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+dist/
+artifacts/

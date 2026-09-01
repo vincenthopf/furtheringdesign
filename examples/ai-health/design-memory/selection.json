@@ -1,0 +1,63 @@
+{
+  "runId": "run-arcwell-health-001",
+  "selectedCandidateId": "evidence-thread",
+  "selectedAt": "2026-09-01",
+  "implementationCommitPending": true,
+  "decision": "Evidence Thread is the selected direction because it keeps every AI interpretation connected to its observation, source, date range, confidence limit, and next decision while meeting the intent's accessibility, safety, task, and responsive floors.",
+  "ranking": [
+    {
+      "candidateId": "evidence-thread",
+      "eligible": true,
+      "pareto": true,
+      "evidenceScore": 0.9189,
+      "pairwiseScore": 1,
+      "diversityScore": 0.9167,
+      "uncertainty": 0.1511,
+      "finalScore": 0.9374
+    },
+    {
+      "candidateId": "care-ledger",
+      "eligible": true,
+      "pareto": true,
+      "evidenceScore": 0.8808,
+      "pairwiseScore": 0.4691,
+      "diversityScore": 0.9315,
+      "uncertainty": 0.1543,
+      "finalScore": 0.7924
+    },
+    {
+      "candidateId": "daily-compass",
+      "eligible": true,
+      "pareto": false,
+      "evidenceScore": 0.8838,
+      "pairwiseScore": 0,
+      "diversityScore": 0.9331,
+      "uncertainty": 0.163,
+      "finalScore": 0.6913
+    }
+  ],
+  "preserve": [
+    "Longitudinal observation-to-evidence-to-action composition",
+    "Visible AI-generated, non-diagnostic, and emergency boundaries",
+    "Source, date range, coverage, confidence language, and data-gap disclosure on insights",
+    "Warm paper, forest, and coral token system",
+    "Marketing and dashboard continuity",
+    "User-controlled clinician preparation, source management, export, and deletion entry points"
+  ],
+  "knownWeaknesses": [
+    "Manual Safari full-keyboard-access review remains required because Playwright WebKit does not advance Tab focus under the current macOS environment.",
+    "Direct user comprehension, clinical-safety, screen-reader, legal, privacy, security, and regulatory reviews are still required before real-world release.",
+    "The prototype uses fictional data and local state rather than production services, authentication, or health integrations.",
+    "The root bundle includes all three test candidates and should be split or reduced for a production deployment."
+  ],
+  "rejectedDirections": [
+    {
+      "candidateId": "care-ledger",
+      "reason": "Strong auditability and scan efficiency, but the administrative record structure is less distinctive and less directly expresses the relationship between observation and interpretation."
+    },
+    {
+      "candidateId": "daily-compass",
+      "reason": "Approachable and memorable, but progressive disclosure and conversational orientation create more risk that users accept the system framing before inspecting evidence."
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "status": "ready",
+  "candidateId": "evidence-thread",
+  "changeMode": "bounded-patch",
+  "reason": "Apply the smallest coherent patch that addresses the highest-priority evidence without changing the thesis.",
+  "thesis": "Organize the product as a longitudinal health thread where every observed change, AI interpretation, source, confidence limit, and next decision remains visibly connected.",
+  "changeContract": {
+    "baselineRef": "0f35a69dea8fcfb2817876b393dcef642d9f40e5",
+    "allowedPaths": [
+      "src/candidates/evidence-thread/**",
+      "examples/ai-health/candidate-evidence-thread.json"
+    ],
+    "protectedPaths": [
+      "runtime/**",
+      "tests/**",
+      "research/**",
+      "agent-handoffs/**",
+      ".env*"
+    ],
+    "patchMode": "diff-only"
+  },
+  "items": [
+    {
+      "type": "signal",
+      "signalId": "evidence-thread-marketing-desktop-light-webkit-focus",
+      "priority": 117.25,
+      "class": "A",
+      "severity": "minor",
+      "dimension": "accessibility",
+      "stateRef": "marketing-desktop-light",
+      "nodeRef": "document",
+      "problem": "Playwright WebKit on macOS follows Safari's full-keyboard-access limitation, so this automated Tab trace is unresolved rather than evidence that controls are absent.",
+      "evidence": "37 interactive targets are present, but Playwright WebKit did not advance focus with Tab.",
+      "recommendation": "Use Chromium and Firefox traces plus manual Safari full-keyboard-access review.",
+      "confidence": 0.99,
+      "currentScore": 0.5
+    },
+    {
+      "type": "signal",
+      "signalId": "evidence-thread-marketing-mobile-light-webkit-focus",
+      "priority": 117.25,
+      "class": "A",
+      "severity": "minor",
+      "dimension": "accessibility",
+      "stateRef": "marketing-mobile-light",
+      "nodeRef": "document",
+      "problem": "Playwright WebKit on macOS follows Safari's full-keyboard-access limitation, so this automated Tab trace is unresolved rather than evidence that controls are absent.",
+      "evidence": "32 interactive targets are present, but Playwright WebKit did not advance focus with Tab.",
+      "recommendation": "Use Chromium and Firefox traces plus manual Safari full-keyboard-access review.",
+      "confidence": 0.99,
+      "currentScore": 0.5
+    },
+    {
+      "type": "signal",
+      "signalId": "evidence-thread-dashboard-desktop-light-webkit-focus",
+      "priority": 117.25,
+      "class": "A",
+      "severity": "minor",
+      "dimension": "accessibility",
+      "stateRef": "dashboard-desktop-light",
+      "nodeRef": "document",
+      "problem": "Playwright WebKit on macOS follows Safari's full-keyboard-access limitation, so this automated Tab trace is unresolved rather than evidence that controls are absent.",
+      "evidence": "33 interactive targets are present, but Playwright WebKit did not advance focus with Tab.",
+      "recommendation": "Use Chromium and Firefox traces plus manual Safari full-keyboard-access review.",
+      "confidence": 0.99,
+      "currentScore": 0.5
+    },
+    {
+      "type": "signal",
+      "signalId": "evidence-thread-dashboard-mobile-light-webkit-focus",
+      "priority": 117.25,
+      "class": "A",
+      "severity": "minor",
+      "dimension": "accessibility",
+      "stateRef": "dashboard-mobile-light",
+      "nodeRef": "document",
+      "problem": "Playwright WebKit on macOS follows Safari's full-keyboard-access limitation, so this automated Tab trace is unresolved rather than evidence that controls are absent.",
+      "evidence": "25 interactive targets are present, but Playwright WebKit did not advance focus with Tab.",
+      "recommendation": "Use Chromium and Firefox traces plus manual Safari full-keyboard-access review.",
+      "confidence": 0.99,
+      "currentScore": 0.5
+    },
+    {
+      "type": "signal",
+      "signalId": "evidence-thread-dashboard-desktop-dark-reduced-webkit-focus",
+      "priority": 117.25,
+      "class": "A",
+      "severity": "minor",
+      "dimension": "accessibility",
+      "stateRef": "dashboard-desktop-dark-reduced",
+      "nodeRef": "document",
+      "problem": "Playwright WebKit on macOS follows Safari's full-keyboard-access limitation, so this automated Tab trace is unresolved rather than evidence that controls are absent.",
+      "evidence": "33 interactive targets are present, but Playwright WebKit did not advance focus with Tab.",
+      "recommendation": "Use Chromium and Firefox traces plus manual Safari full-keyboard-access review.",
+      "confidence": 0.99,
+      "currentScore": 0.5
+    },
+    {
+      "type": "signal",
+      "signalId": "evidence-thread-review-maintainability",
+      "priority": 39.2,
+      "class": "B",
+      "severity": "note",
+      "dimension": "maintainability",
+      "stateRef": "dashboard-desktop-light",
+      "nodeRef": "main",
+      "problem": "maintainability was reviewed against the validated intent and implemented state matrix.",
+      "evidence": "The candidate is isolated, tokenized in CSS, typechecked, and preserves the protocol runtime outside declared paths.",
+      "recommendation": "Preserve the current maintainability decision and verify it in direct user research.",
+      "confidence": 0.8,
+      "currentScore": 0.84
+    }
+  ],
+  "evidenceToRecollect": {
+    "states": [
+      "marketing-desktop-light",
+      "marketing-mobile-light",
+      "dashboard-desktop-light",
+      "dashboard-mobile-light",
+      "dashboard-desktop-dark-reduced"
+    ],
+    "dimensions": [
+      "accessibility",
+      "maintainability"
+    ]
+  },
+  "stopConditions": [
+    "Stop and fork a new candidate if the direction thesis changes.",
+    "Stop if the patch touches a protected path.",
+    "Stop if a repaired dimension creates a new hard failure or quality-floor failure.",
+    "Re-evaluate every affected state before accepting the patch."
+  ]
+}

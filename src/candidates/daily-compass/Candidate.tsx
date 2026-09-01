@@ -731,19 +731,19 @@ export function DailyCompassDashboard({ onOpenMarketing }: CandidateProps) {
             <div className="dc-source-row" role="row">
               <div role="cell"><span className="dc-source-icon"><Watch aria-hidden="true" /></span><span><strong>Garmin wearable</strong><small>Sleep, activity, heart rate</small></span></div>
               <div role="cell"><strong className="dc-current"><span /> Current</strong><small>Synced today, 7:42 am</small></div>
-              <div role="cell"><button className={`dc-switch${aiSourceUse.wearable ? " is-on" : ""}`} type="button" role="switch" aria-checked={aiSourceUse.wearable} onClick={() => toggleAiUse("wearable")} disabled={!sourceConnected.wearable}><span /></button><small>{aiSourceUse.wearable ? "Included" : "Paused"}</small></div>
+              <div role="cell"><button className={`dc-switch${aiSourceUse.wearable ? " is-on" : ""}`} type="button" role="switch" aria-label="Use Garmin wearable in AI briefs" aria-checked={aiSourceUse.wearable} onClick={() => toggleAiUse("wearable")} disabled={!sourceConnected.wearable}><span /></button><small>{aiSourceUse.wearable ? "Included" : "Paused"}</small></div>
               <div role="cell"><button className="dc-row-action" type="button" onClick={() => toggleConnection("wearable")}><Unplug size={15} aria-hidden="true" />{sourceConnected.wearable ? "Disconnect" : "Reconnect"}</button></div>
             </div>
             <div className="dc-source-row" role="row">
               <div role="cell"><span className="dc-source-icon dc-source-icon--lilac"><Clipboard aria-hidden="true" /></span><span><strong>Check-in notes</strong><small>Symptoms and context</small></span></div>
               <div role="cell"><strong className="dc-current"><span /> Current</strong><small>Updated today</small></div>
-              <div role="cell"><button className={`dc-switch${aiSourceUse.notes ? " is-on" : ""}`} type="button" role="switch" aria-checked={aiSourceUse.notes} onClick={() => toggleAiUse("notes")} disabled={!sourceConnected.notes}><span /></button><small>{aiSourceUse.notes ? "Included" : "Paused"}</small></div>
+              <div role="cell"><button className={`dc-switch${aiSourceUse.notes ? " is-on" : ""}`} type="button" role="switch" aria-label="Use check-in notes in AI briefs" aria-checked={aiSourceUse.notes} onClick={() => toggleAiUse("notes")} disabled={!sourceConnected.notes}><span /></button><small>{aiSourceUse.notes ? "Included" : "Paused"}</small></div>
               <div role="cell"><button className="dc-row-action" type="button" onClick={() => toggleConnection("notes")}><Unplug size={15} aria-hidden="true" />{sourceConnected.notes ? "Disconnect" : "Reconnect"}</button></div>
             </div>
             <div className="dc-source-row" role="row">
               <div role="cell"><span className="dc-source-icon dc-source-icon--ochre"><CalendarDays aria-hidden="true" /></span><span><strong>Calendar</strong><small>Appointments only</small></span></div>
               <div role="cell"><strong className="dc-limited"><CircleAlert /> Limited</strong><small>Permission ends Jun 1</small></div>
-              <div role="cell"><button className={`dc-switch${aiSourceUse.calendar ? " is-on" : ""}`} type="button" role="switch" aria-checked={aiSourceUse.calendar} onClick={() => toggleAiUse("calendar")} disabled={!sourceConnected.calendar}><span /></button><small>{aiSourceUse.calendar ? "Included" : "Not included"}</small></div>
+              <div role="cell"><button className={`dc-switch${aiSourceUse.calendar ? " is-on" : ""}`} type="button" role="switch" aria-label="Use calendar in AI briefs" aria-checked={aiSourceUse.calendar} onClick={() => toggleAiUse("calendar")} disabled={!sourceConnected.calendar}><span /></button><small>{aiSourceUse.calendar ? "Included" : "Not included"}</small></div>
               <div role="cell"><button className="dc-row-action" type="button" onClick={() => toggleConnection("calendar")}><Unplug size={15} aria-hidden="true" />{sourceConnected.calendar ? "Disconnect" : "Reconnect"}</button></div>
             </div>
           </div>

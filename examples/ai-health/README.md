@@ -36,3 +36,5 @@ pnpm plan:health
 ```
 
 The selected implementation and design memory live in `design-memory/`. Evidence is generated from browser captures and protocol critique, then collected into `run.json` by `command.mjs`.
+
+The protocol selected `evidence-thread`. All three candidates passed the tested hard gates and quality floors after bounded accessibility repair. Manual Safari full-keyboard-access review remains open because automated Playwright WebKit Tab navigation is unavailable under the current macOS environment.

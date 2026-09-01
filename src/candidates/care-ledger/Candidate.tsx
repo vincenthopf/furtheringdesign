@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -114,7 +114,7 @@ const faqs = [
 
 function CareLedgerMark({ compact = false }: { compact?: boolean }) {
   return (
-    <span className={`cl-mark${compact ? " cl-mark--compact" : ""}`} aria-label="Care Ledger">
+    <span className={`cl-mark${compact ? " cl-mark--compact" : ""}`}>
       <span className="cl-mark__device" aria-hidden="true">
         <span>CL</span>
         <i />
@@ -624,28 +624,45 @@ export function CareLedgerDashboard({ onOpenMarketing }: CandidateProps) {
                       ))}
                     </div>
                   </div>
-                  <div className="cl-evidence-table" role="table" aria-label="Supporting evidence">
-                    <div className="cl-evidence-table__head" role="row">
-                      <span role="columnheader">Date</span><span role="columnheader">Recorded item</span><span role="columnheader">Source</span><span role="columnheader">Quality</span><span />
-                    </div>
-                    {filteredEvidence.map((row) => {
-                      const isOpen = openRecord === row.id;
-                      return (
-                        <div className={`cl-evidence-row${isOpen ? " is-open" : ""}`} role="rowgroup" key={row.id}>
-                          <button type="button" aria-expanded={isOpen} onClick={() => setOpenRecord(isOpen ? null : row.id)}>
-                            <time>{row.date}</time><span>{row.observation}</span><span>{row.source}</span><span>{row.quality}</span>{isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-                          </button>
-                          {isOpen && (
-                            <div className="cl-evidence-detail">
-                              <div><span>Record ID</span><strong>{row.id}</strong></div>
-                              <div><span>Received</span><strong>{row.date}, 08:14 local</strong></div>
-                              <div><span>Use in brief</span><strong>{row.id.startsWith("GAP") ? "Excluded and named as a gap" : "Included in comparison"}</strong></div>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <table className="cl-evidence-table">
+                    <caption>Supporting evidence</caption>
+                    <thead>
+                      <tr className="cl-evidence-table__head">
+                        <th scope="col">Date</th><th scope="col">Recorded item</th><th scope="col">Source</th><th scope="col">Quality</th><th scope="col"><span className="cl-visually-hidden">Details</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredEvidence.map((row) => {
+                        const isOpen = openRecord === row.id;
+                        return (
+                          <Fragment key={row.id}>
+                            <tr className={`cl-evidence-row${isOpen ? " is-open" : ""}`}>
+                              <td><time>{row.date}</time></td>
+                              <th scope="row">{row.observation}</th>
+                              <td>{row.source}</td>
+                              <td>{row.quality}</td>
+                              <td>
+                                <button type="button" aria-expanded={isOpen} aria-label={`${isOpen ? "Hide" : "Show"} details for ${row.observation}`} onClick={() => setOpenRecord(isOpen ? null : row.id)}>
+                                  {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                                </button>
+                              </td>
+                            </tr>
+                            {isOpen && (
+                              <tr className="cl-evidence-detail-row">
+                                <td colSpan={5}>
+                                  <div className="cl-evidence-detail">
+                                    <div><span>Record ID</span><strong>{row.id}</strong></div>
+                                    <div><span>Received</span><strong>{row.date}, 08:14 local</strong></div>
+                                    <div><span>Use in brief</span><strong>{row.id.startsWith("GAP") ? "Excluded and named as a gap" : "Included in comparison"}</strong></div>
+                                  </div>
+                                </td>
+                              </tr>
+                            )}
+                          </Fragment>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
               )}
             </article>
@@ -676,12 +693,12 @@ export function CareLedgerDashboard({ onOpenMarketing }: CandidateProps) {
                 <div><span>SLEEP DURATION</span><strong>{trendRange === "7D" ? "6h 29m" : "6h 47m"} <small>average</small></strong><p>{trendRange === "7D" ? "18m below prior 7 days" : "13 of 30 nights below 6h 30m"}</p></div>
               </div>
               <div className="cl-chart-key"><span><i className="cl-key-sleep" /> Sleep duration</span><span><i className="cl-key-heart" /> Resting heart rate</span></div>
-              <div className="cl-trend-chart" aria-label="Seven day sleep and resting heart rate chart">
+              <div className="cl-trend-chart" role="img" aria-label={`Seven day sleep and resting heart rate chart. ${trendData.map((point) => `${point.day}: ${point.sleep} hours sleep and ${point.heart} beats per minute`).join("; ")}.`}>
                 {trendData.map((point) => (
-                  <div className="cl-trend-day" key={point.day}>
+                  <div className="cl-trend-day" aria-hidden="true" key={point.day}>
                     <div className="cl-trend-day__plot">
-                      <span className="cl-heart-marker" style={{ bottom: `${(point.heart - 55) * 6 + 18}px` }} aria-label={`${point.heart} beats per minute`}>{point.heart}</span>
-                      <span className="cl-sleep-bar" style={{ height: `${point.sleep * 14}px` }} aria-label={`${point.sleep} hours sleep`} />
+                      <span className="cl-heart-marker" style={{ bottom: `${(point.heart - 55) * 6 + 18}px` }}>{point.heart}</span>
+                      <span className="cl-sleep-bar" style={{ height: `${point.sleep * 14}px` }} />
                     </div>
                     <strong>{point.day}</strong>
                     <small>{point.sleep}h</small>
@@ -744,19 +761,24 @@ export function CareLedgerDashboard({ onOpenMarketing }: CandidateProps) {
             <div><span>04 / MEDICATIONS + CARE TASKS</span><h2 id="cl-tasks-title">Today’s register</h2></div>
             <time>May 19</time>
           </div>
-          <div className="cl-task-table" role="table" aria-label="Medication and care tasks">
-            <div className="cl-task-table__head" role="row"><span>Done</span><span>Time</span><span>Record</span><span>Schedule</span><span>Source</span></div>
-            {[
-              { time: "8:00 AM", title: "Vitamin D · 1 tablet", schedule: "Daily", source: "Self-entered medication" },
-              { time: "12:30 PM", title: "10-minute walk", schedule: "Weekdays", source: "Care task" },
-              { time: "8:30 PM", title: "Daily check-in", schedule: "Daily", source: "Care Ledger" }
-            ].map((task, index) => (
-              <button className={tasks[index] ? "is-complete" : ""} type="button" role="row" aria-pressed={tasks[index]} onClick={() => toggleTask(index)} key={task.title}>
-                <span role="cell" className="cl-task-check">{tasks[index] && <Check size={14} />}</span>
-                <time role="cell">{task.time}</time><strong role="cell">{task.title}</strong><span role="cell">{task.schedule}</span><span role="cell">{task.source}</span>
-              </button>
-            ))}
-          </div>
+          <table className="cl-task-table">
+            <caption>Medication and care tasks</caption>
+            <thead>
+              <tr className="cl-task-table__head"><th scope="col">Done</th><th scope="col">Time</th><th scope="col">Record</th><th scope="col">Schedule</th><th scope="col">Source</th></tr>
+            </thead>
+            <tbody>
+              {[
+                { time: "8:00 AM", title: "Vitamin D · 1 tablet", schedule: "Daily", source: "Self-entered medication" },
+                { time: "12:30 PM", title: "10-minute walk", schedule: "Weekdays", source: "Care task" },
+                { time: "8:30 PM", title: "Daily check-in", schedule: "Daily", source: "Care Ledger" }
+              ].map((task, index) => (
+                <tr className={tasks[index] ? "is-complete" : ""} key={task.title}>
+                  <td><button className="cl-task-check" type="button" aria-pressed={tasks[index]} aria-label={`Mark ${task.title} ${tasks[index] ? "incomplete" : "complete"}`} onClick={() => toggleTask(index)}>{tasks[index] && <Check size={14} />}</button></td>
+                  <td><time>{task.time}</time></td><th scope="row">{task.title}</th><td>{task.schedule}</td><td>{task.source}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <p className="cl-register-note"><Pill size={16} /> Medication entries are organizational records, not dosing instructions. Follow your clinician’s directions and medication label.</p>
         </section>
 

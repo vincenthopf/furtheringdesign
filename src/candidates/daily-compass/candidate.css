@@ -170,7 +170,7 @@
   transform: translateY(-2px);
 }
 
-.dc-button--dark {
+.dc-site .dc-button--dark {
   color: #ffffff;
   background: var(--dc-ink);
 }
@@ -179,7 +179,7 @@
   background: #35413c;
 }
 
-.dc-button--ink {
+.dc-site .dc-button--ink {
   color: #ffffff;
   background: #263e48;
 }
@@ -1086,6 +1086,10 @@
   max-width: 12ch;
 }
 
+.dc-pricing-intro > p {
+  color: #59635f;
+}
+
 .dc-price-plan {
   display: grid;
   padding: 45px;
@@ -1119,7 +1123,7 @@
 }
 
 .dc-price-plan > div > p:last-child {
-  color: #7d7663;
+  color: #746d5b;
   font-size: 11px;
 }
 
@@ -1297,9 +1301,11 @@
 
 .dc-footer-main a,
 .dc-footer-main button {
-  display: block;
-  margin: 12px 0;
-  padding: 0;
+  display: flex;
+  min-height: 24px;
+  margin: 8px 0;
+  padding: 2px 0;
+  align-items: center;
   border: 0;
   color: #d5dcd8;
   background: transparent;
@@ -1326,7 +1332,14 @@
 
 .dc-footer-bottom div {
   display: flex;
-  gap: 22px;
+  gap: 16px;
+}
+
+.dc-footer-bottom a {
+  display: inline-flex;
+  min-height: 24px;
+  padding: 4px 3px;
+  align-items: center;
 }
 
 .dc-skip-link {
@@ -1620,7 +1633,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  color: #68736e;
+  color: #606c66;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -1978,7 +1991,7 @@
   padding: 4px 7px 25px 0;
   flex-direction: column;
   justify-content: space-between;
-  color: #8a938f;
+  color: #626c67;
   font-size: 9px;
   text-align: right;
 }
@@ -2033,7 +2046,7 @@
   left: 0;
   display: flex;
   justify-content: space-between;
-  color: #77817c;
+  color: #626c67;
   font-size: 9px;
 }
 
@@ -2194,7 +2207,8 @@
 }
 
 .dc-care-tasks-heading button {
-  padding: 3px;
+  min-height: 24px;
+  padding: 3px 5px;
   border: 0;
   color: #416171;
   background: transparent;
@@ -2205,8 +2219,8 @@
 
 .dc-task-row {
   display: grid;
-  padding: 17px 20px;
-  grid-template-columns: 20px 1fr auto;
+  padding: 14px 20px;
+  grid-template-columns: 24px 1fr auto;
   align-items: center;
   gap: 11px;
   border-bottom: 1px solid var(--dc-line);
@@ -2214,8 +2228,9 @@
 }
 
 .dc-task-row input {
-  width: 17px;
-  height: 17px;
+  width: 24px;
+  height: 24px;
+  margin: 0;
   accent-color: var(--dc-sage);
 }
 
@@ -2296,7 +2311,7 @@
   min-height: 40px;
   padding-top: 9px;
   padding-bottom: 9px;
-  color: #79827e;
+  color: #626c67;
   background: #f1f0eb;
   font-size: 9px;
   font-weight: 800;
@@ -2380,18 +2395,18 @@
 
 .dc-source-row > div:nth-child(3) {
   display: grid;
-  grid-template-columns: 36px 1fr;
+  grid-template-columns: 44px 1fr;
   align-items: center;
   gap: 7px;
 }
 
 .dc-switch {
   position: relative;
-  width: 36px;
-  height: 20px;
+  width: 44px;
+  height: 24px;
   padding: 0;
   border: 1px solid #9da5a1;
-  border-radius: 12px;
+  border-radius: 13px;
   background: #dfe2df;
   cursor: pointer;
 }
@@ -2400,8 +2415,8 @@
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
@@ -2414,7 +2429,7 @@
 }
 
 .dc-switch.is-on > span {
-  transform: translateX(16px);
+  transform: translateX(20px);
 }
 
 .dc-switch:disabled {
@@ -2570,6 +2585,8 @@
 
 .dc-emergency-boundary button {
   display: inline-flex;
+  min-height: 24px;
+  padding: 3px 0;
   align-items: center;
   gap: 5px;
   border: 0;
@@ -2591,6 +2608,8 @@
 }
 
 .dc-dashboard-footer button {
+  min-height: 24px;
+  padding: 4px 0;
   border: 0;
   color: #3a5c6a;
   background: transparent;
@@ -3817,7 +3836,7 @@
 
   .dc-source-row > div:nth-child(3) {
     display: grid !important;
-    grid-template-columns: 36px 1fr;
+    grid-template-columns: 44px 1fr;
     justify-content: start;
   }
 
@@ -3969,6 +3988,11 @@
     background: #1c2320;
   }
 
+  .dc-dashboard .dc-sidebar nav a,
+  .dc-dashboard .dc-sidebar-bottom > button:not(.dc-profile-button) {
+    color: #a7b1ac;
+  }
+
   .dc-dashboard .dc-sidebar nav a:hover,
   .dc-dashboard .dc-sidebar-bottom > button:hover,
   .dc-dashboard .dc-source-row--header {
@@ -3978,6 +4002,10 @@
   .dc-dashboard .dc-sidebar nav a.is-active {
     color: #d7e7df;
     background: #2b4037;
+  }
+
+  .dc-dashboard .dc-kicker {
+    color: #b7c1bc;
   }
 
   .dc-dashboard .dc-dashboard-topbar {
@@ -4027,10 +4055,23 @@
     background: #292635;
   }
 
+  .dc-dashboard .dc-check-in-number {
+    color: #d3cbea;
+  }
+
   .dc-dashboard .dc-check-in-options button {
     color: #e7e2f3;
     border-color: #736b89;
     background: #343043;
+  }
+
+  .dc-dashboard .dc-brief-meta,
+  .dc-dashboard .dc-chart-y,
+  .dc-dashboard .dc-chart-days,
+  .dc-dashboard .dc-chart-caption,
+  .dc-dashboard .dc-source-row--header,
+  .dc-dashboard .dc-task-status {
+    color: #aeb8b3;
   }
 
   .dc-dashboard .dc-chart-plot svg,
@@ -4057,6 +4098,10 @@
     color: #cba99e;
   }
 
+  .dc-dashboard .dc-emergency-boundary button {
+    color: #f2c2b4;
+  }
+
   .dc-dashboard .dc-source-row,
   .dc-dashboard .dc-source-table,
   .dc-dashboard .dc-trend-main,
@@ -4065,6 +4110,23 @@
   .dc-dashboard .dc-care-tasks,
   .dc-dashboard .dc-summary-paper {
     background: var(--dc-dashboard-panel);
+  }
+
+  .dc-dashboard .dc-calendar-date {
+    color: #e0d8f2;
+  }
+
+  .dc-dashboard .dc-appointment-details > span {
+    color: #c9c0dc;
+  }
+
+  .dc-dashboard .dc-care-tasks-heading button,
+  .dc-dashboard .dc-dashboard-footer button {
+    color: #9fc6d8;
+  }
+
+  .dc-dashboard .dc-limited {
+    color: #e5ad91;
   }
 
   .dc-dashboard .dc-data-control-actions > button:hover {
