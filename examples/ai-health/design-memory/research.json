@@ -1,0 +1,100 @@
+{
+  "researchDate": "2026-09-01",
+  "market": "United States consumer AI health and wellness web application",
+  "productBoundary": "Organizes wearable and user-reported data, generates non-diagnostic summaries, and prepares clinician questions. It does not diagnose, treat, prescribe, triage disease, or monitor emergencies.",
+  "findings": [
+    {
+      "id": "fda-boundary",
+      "decision": "Keep product claims and functions within record organization, general wellness context, and clinician-question preparation unless a deliberate medical-device path is completed.",
+      "implementation": [
+        "Use organizes, summarizes, shows wellness trends, and helps prepare questions.",
+        "Do not use detects, diagnoses, screens, predicts disease, treats, prevents, medical-grade, or real-time emergency alerts.",
+        "Place the non-diagnostic and emergency boundary next to primary actions and generated insights."
+      ],
+      "sources": [
+        "https://www.fda.gov/medical-devices/device-software-functions-including-mobile-medical-applications/examples-software-functions-are-not-medical-devices",
+        "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-decision-support-software",
+        "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title21-section360j&num=0&edition=prelim"
+      ]
+    },
+    {
+      "id": "privacy-boundary",
+      "decision": "Treat consumer health data as sensitive even when HIPAA does not apply, and make permissions, connected sources, export, deletion, and sharing directly controllable.",
+      "implementation": [
+        "Avoid HIPAA, anonymous, never shared, or secure certification claims in the prototype.",
+        "Show source scopes, sync freshness, optional AI processing, care-partner access, export, disconnect, and deletion controls.",
+        "Do not place advertising trackers or collect health details in marketing forms."
+      ],
+      "sources": [
+        "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+        "https://www.hhs.gov/sites/default/files/ocr-health-app-developer-scenarios-2-2016.pdf",
+        "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+        "https://www.ftc.gov/business-guidance/resources/mobile-health-app-developers-ftc-best-practices"
+      ]
+    },
+    {
+      "id": "health-literacy",
+      "decision": "Lead with the action, use plain language, keep one clear next step, and progressively disclose detailed evidence.",
+      "implementation": [
+        "Describe the observation before the chart.",
+        "Explain date range, source, coverage, missing data, and comparison basis.",
+        "Use descriptive headings, short explanations, accessible tables, and no color-only meaning."
+      ],
+      "sources": [
+        "https://odphp.health.gov/our-work/national-health-initiatives/health-literacy/health-literacy-online",
+        "https://www.ahrq.gov/health-literacy/improve/precautions/index.html",
+        "https://www.w3.org/TR/WCAG22/"
+      ]
+    },
+    {
+      "id": "dashboard-priority",
+      "decision": "Order the product around urgency, today's tasks, what changed, care preparation, and data quality rather than a wall of metrics.",
+      "implementation": [
+        "One ranked weekly brief leads the dashboard.",
+        "AI output remains below clinician-authored instructions and explicit emergency guidance.",
+        "Appointments, medication or care tasks, clinician questions, and source-quality states remain directly reachable."
+      ],
+      "sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6785326/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7800164/",
+        "https://www.jmir.org/2024/1/e49320",
+        "https://hl7.org/fhir/R5/observation.html"
+      ]
+    },
+    {
+      "id": "ai-evidence",
+      "decision": "Treat generated language as an explanatory layer over visible facts, not as a source of medical facts.",
+      "implementation": [
+        "Every insight exposes source, time range, data cutoff, coverage, and confidence language.",
+        "Use not enough reliable data instead of filling a gap.",
+        "Provide This is wrong, add context, and report controls in a real product."
+      ],
+      "sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10723541/",
+        "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+        "https://www.who.int/publications/i/item/9789240029200"
+      ]
+    },
+    {
+      "id": "marketing-trust",
+      "decision": "Build trust as a proof sequence, not as a logo wall or badge row.",
+      "implementation": [
+        "State intended user, exact job, mechanism, human boundary, evidence, limitations, data behavior, price, and lowest-risk next step.",
+        "Keep material qualifications adjacent to claims on desktop and mobile.",
+        "Do not fabricate adoption, outcomes, testimonials, certifications, integrations, or regulatory status."
+      ],
+      "sources": [
+        "https://www.ftc.gov/business-guidance/resources/health-products-compliance-guidance",
+        "https://www.abridge.com/ai/science-ai-evaluation",
+        "https://about.ada.com/research-and-publications/",
+        "https://www.springhealth.com/faq"
+      ]
+    }
+  ],
+  "knownLimits": [
+    "This research does not replace legal, privacy, security, clinical-safety, or regulatory review for a real release.",
+    "The current protocol schema represents routes and data states through state IDs and route maps rather than first-class fields.",
+    "Automated browser evidence does not establish medical safety, clinical validity, screen-reader usability, or user comprehension.",
+    "The product name and commercial model are prototype decisions, not trademark or market validation."
+  ]
+}
