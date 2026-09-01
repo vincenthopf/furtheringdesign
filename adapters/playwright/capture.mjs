@@ -12,6 +12,7 @@ const required = (name) => {
   if (!result) throw new Error(`Missing ${name}`);
   return result;
 };
+const routeMap = value("--route-map") ? JSON.parse(await readFile(resolve(value("--route-map")), "utf8")) : {};
 
 function nodeRef(element) {
   if (!element) return "document";
@@ -49,7 +50,8 @@ async function structure(page) {
       landmarks: [...document.querySelectorAll("header,nav,main,aside,footer,[role]")].filter(visible).map(ref),
       duplicateIds,
       smallTargets: targets.filter((target) => target.width < 24 || target.height < 24),
-      horizontalOverflowPx: Math.max(0, Math.round(document.documentElement.scrollWidth - document.documentElement.clientWidth))
+      horizontalOverflowPx: Math.max(0, Math.round(document.documentElement.scrollWidth - document.documentElement.clientWidth)),
+      safetyBoundary: /not (medical advice|a diagnosis|for emergencies|monitored for emergencies)|call 911|emergency services/i.test(document.body.innerText)
     };
   }, nodeRef.toString());
 }
@@ -91,7 +93,7 @@ function signal(candidateId, stateRef, browser, id, signalClass, dimension, stat
   };
 }
 
-function signals(candidateId, state, browser, axe, outline, focus) {
+function signals(candidateId, state, browser, axe, outline, focus, url) {
   const serious = axe.violations.filter((violation) => ["critical", "serious"].includes(violation.impact));
   const invisibleFocus = focus.filter((entry) => !entry.visible);
   return [
@@ -99,7 +101,9 @@ function signals(candidateId, state, browser, axe, outline, focus) {
     signal(candidateId, state.id, browser, "focus", "A", "accessibility", !focus.length || invisibleFocus.length ? "fail" : "pass", !focus.length || invisibleFocus.length ? 0.4 : 0.95, 0.9, !focus.length || invisibleFocus.length ? "major" : "note", invisibleFocus[0]?.ref || focus[0]?.ref || "document", `${focus.length} focus stops; ${invisibleFocus.length} invisible.`, "The task needs a visible keyboard path.", !focus.length || invisibleFocus.length ? "Repair focusability, order, and visibility." : "Run task-specific keyboard review."),
     signal(candidateId, state.id, browser, "overflow", "B", "responsiveResilience", outline.horizontalOverflowPx ? "fail" : "pass", outline.horizontalOverflowPx ? 0.4 : 1, 0.98, outline.horizontalOverflowPx ? "major" : "note", "document", `${outline.horizontalOverflowPx}px horizontal overflow.`, "The state must fit its declared viewport.", outline.horizontalOverflowPx ? "Find the overflowing semantic region and re-compose it." : "Retain as a regression check."),
     signal(candidateId, state.id, browser, "structure", "B", "hierarchy", outline.headings.length && outline.landmarks.length ? "pass" : "unknown", outline.headings.length && outline.landmarks.length ? 0.9 : 0.5, 0.78, "minor", "document", `${outline.headings.length} headings, ${outline.landmarks.length} landmarks, ${outline.duplicateIds.length} duplicate ids.`, "Semantic structure should support the visible hierarchy.", "Review heading order, landmarks, duplicate ids, and visual salience together."),
-    signal(candidateId, state.id, browser, "targets", "B", "accessibility", outline.smallTargets.length ? "unknown" : "pass", outline.smallTargets.length ? 0.7 : 1, 0.65, "minor", outline.smallTargets[0]?.ref || "document", `${outline.smallTargets.length} targets are below 24px in at least one dimension.`, "Target-size exceptions require contextual review.", "Review spacing and equivalent controls manually.")
+    signal(candidateId, state.id, browser, "targets", "B", "accessibility", outline.smallTargets.length ? "unknown" : "pass", outline.smallTargets.length ? 0.7 : 1, 0.65, "minor", outline.smallTargets[0]?.ref || "document", `${outline.smallTargets.length} targets are below 24px in at least one dimension.`, "Target-size exceptions require contextual review.", "Review spacing and equivalent controls manually."),
+    signal(candidateId, state.id, browser, "safety", "A", "safetyClarity", outline.safetyBoundary ? "pass" : "fail", outline.safetyBoundary ? 1 : 0.3, 0.96, outline.safetyBoundary ? "note" : "major", "document", outline.safetyBoundary ? "A visible non-diagnostic or emergency boundary was found." : "No visible non-diagnostic or emergency boundary was found.", "Health-AI scope and escalation must be visible in every tested surface.", outline.safetyBoundary ? "Retain the boundary and complete content review." : "Add an explicit non-diagnostic and emergency boundary to the tested surface."),
+    signal(candidateId, state.id, browser, "route", "B", "taskClarity", url.includes("/app") ? "pass" : "pass", 0.88, 0.8, "note", "main", `Captured ${url.includes("/app") ? "dashboard" : "marketing"} route for ${state.id}.`, "The declared state must resolve to the intended product surface.", "Pair this structural capture with a task walkthrough.")
   ];
 }
 
@@ -123,7 +127,9 @@ async function main() {
           locale: state.locale
         });
         const page = await context.newPage();
-        await page.goto(url, { waitUntil: "networkidle" });
+        const route = routeMap[state.id] ?? "";
+        const destination = new URL(route, url).toString();
+        await page.goto(destination, { waitUntil: "networkidle" });
         const directory = resolve(output, browserName, state.id);
         await mkdir(directory, { recursive: true });
         const screenshot = resolve(directory, "page.png");
@@ -133,8 +139,8 @@ async function main() {
         const axe = await new AxeBuilder({ page }).analyze();
         const nodeMap = resolve(directory, "evidence.json");
         await writeFile(nodeMap, `${JSON.stringify({ outline, focus, axe }, null, 2)}\n`);
-        captures.push({ browser: browserName, stateRef: state.id, url, viewport: state.viewport, screenshot, nodeMap });
-        evidenceSignals.push(...signals(candidateId, state, browserName, axe, outline, focus));
+        captures.push({ browser: browserName, stateRef: state.id, url: destination, viewport: state.viewport, screenshot, nodeMap });
+        evidenceSignals.push(...signals(candidateId, state, browserName, axe, outline, focus, destination));
         await context.close();
       }
     } finally {

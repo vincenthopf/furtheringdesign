@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.12.3",
   "engines": {
     "node": ">=20"
   },
@@ -10,7 +11,7 @@
     "capture": "node capture.mjs"
   },
   "dependencies": {
-    "@axe-core/playwright": ">=4.10 <5",
-    "playwright": ">=1.45 <2"
+    "@axe-core/playwright": "^4.10.2",
+    "playwright": "^1.55.0"
   }
 }

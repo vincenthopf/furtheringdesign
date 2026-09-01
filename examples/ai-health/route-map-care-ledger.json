@@ -1,0 +1,7 @@
+{
+  "marketing-desktop-light": "/?candidate=care-ledger",
+  "marketing-mobile-light": "/?candidate=care-ledger",
+  "dashboard-desktop-light": "/app?candidate=care-ledger",
+  "dashboard-mobile-light": "/app?candidate=care-ledger",
+  "dashboard-desktop-dark-reduced": "/app?candidate=care-ledger"
+}

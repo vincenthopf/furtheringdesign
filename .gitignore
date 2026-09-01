@@ -33,3 +33,8 @@ node_modules/
 # Local notes that shouldn't be public
 NOTES.local.md
 TODO.local.md
+
+# Build output
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
