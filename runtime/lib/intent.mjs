@@ -55,13 +55,16 @@ export function detectIntentConflicts(input) {
     ["open", "forbidden"]
   ];
   for (const [leftName, rightName] of groups) {
-    const left = new Map(intent.freedoms[leftName].map((value) => [normalizedText(value), value]));
-    for (const value of intent.freedoms[rightName]) {
+    const leftValues = Array.isArray(intent.freedoms[leftName]) ? intent.freedoms[leftName] : [];
+    const rightValues = Array.isArray(intent.freedoms[rightName]) ? intent.freedoms[rightName] : [];
+    const left = new Map(leftValues.map((value) => [normalizedText(value), value]));
+    for (const value of rightValues) {
       const key = normalizedText(value);
       if (key && left.has(key)) conflicts.push(`freedoms.${leftName} conflicts with freedoms.${rightName}: ${value}`);
     }
   }
-  for (const brandValue of intent.brand.values) {
+  const brandValues = Array.isArray(intent.brand.values) ? intent.brand.values : [];
+  for (const brandValue of brandValues) {
     if (!isRecord(brandValue)) continue;
     const expression = normalizedText(brandValue.expression);
     const avoid = normalizedText(brandValue.avoid);
@@ -92,8 +95,9 @@ export function validateIntent(input) {
   requiredArray(intent.outcome.antiGoals, "outcome.antiGoals", errors);
 
   requiredArray(intent.audiences, "audiences", errors);
+  const audiences = Array.isArray(intent.audiences) ? intent.audiences : [];
   const audienceIds = [];
-  intent.audiences.forEach((audience, index) => {
+  audiences.forEach((audience, index) => {
     if (!isRecord(audience)) {
       errors.push(`audiences[${index}] must be an object`);
       return;
@@ -119,7 +123,8 @@ export function validateIntent(input) {
   }
 
   requiredArray(intent.brand.values, "brand.values", errors);
-  intent.brand.values.forEach((value, index) => {
+  const brandValues = Array.isArray(intent.brand.values) ? intent.brand.values : [];
+  brandValues.forEach((value, index) => {
     if (!isRecord(value)) {
       errors.push(`brand.values[${index}] must be an object`);
       return;
@@ -140,7 +145,8 @@ export function validateIntent(input) {
   requiredString(intent.experience.hierarchy, "experience.hierarchy", errors);
 
   requiredArray(intent.success.criteria, "success.criteria", errors);
-  intent.success.criteria.forEach((criterion, index) => {
+  const criteria = Array.isArray(intent.success.criteria) ? intent.success.criteria : [];
+  criteria.forEach((criterion, index) => {
     if (!isRecord(criterion)) {
       errors.push(`success.criteria[${index}] must be an object`);
       return;
@@ -174,7 +180,8 @@ export function validateIntent(input) {
   numberInRange(intent.success.qualityProfile.uncertaintyPenalty, "success.qualityProfile.uncertaintyPenalty", errors);
 
   requiredArray(intent.constraints.hard, "constraints.hard", errors);
-  intent.constraints.hard.forEach((constraint, index) => {
+  const hardConstraints = Array.isArray(intent.constraints.hard) ? intent.constraints.hard : [];
+  hardConstraints.forEach((constraint, index) => {
     if (!isRecord(constraint)) {
       errors.push(`constraints.hard[${index}] must be an object`);
       return;
@@ -188,8 +195,9 @@ export function validateIntent(input) {
   for (const key of ["fixed", "open", "forbidden"]) requiredArray(intent.freedoms[key], `freedoms.${key}`, errors);
 
   requiredArray(intent.states, "states", errors, 2);
+  const states = Array.isArray(intent.states) ? intent.states : [];
   const stateIds = [];
-  intent.states.forEach((state, index) => {
+  states.forEach((state, index) => {
     if (!isRecord(state)) {
       errors.push(`states[${index}] must be an object`);
       return;
@@ -207,10 +215,10 @@ export function validateIntent(input) {
     stateIds.push(state.id);
   });
   for (const duplicate of duplicateValues(stateIds)) errors.push(`state id must be unique: ${duplicate}`);
-  if (!intent.states.some((state) => state?.viewport?.width <= 480)) warnings.push("states should include a mobile viewport at or below 480px");
-  if (!intent.states.some((state) => state?.viewport?.width >= 1024)) warnings.push("states should include a desktop viewport at or above 1024px");
-  if (!intent.states.some((state) => state?.reducedMotion === true)) warnings.push("states should include reduced motion");
-  if (!intent.states.some((state) => state?.colorScheme === "dark")) warnings.push("states should include dark color scheme when the product supports it");
+  if (!states.some((state) => state?.viewport?.width <= 480)) warnings.push("states should include a mobile viewport at or below 480px");
+  if (!states.some((state) => state?.viewport?.width >= 1024)) warnings.push("states should include a desktop viewport at or above 1024px");
+  if (!states.some((state) => state?.reducedMotion === true)) warnings.push("states should include reduced motion");
+  if (!states.some((state) => state?.colorScheme === "dark")) warnings.push("states should include dark color scheme when the product supports it");
 
   requiredString(intent.content.sourceOfTruth, "content.sourceOfTruth", errors);
   requiredString(intent.content.missingPolicy, "content.missingPolicy", errors);

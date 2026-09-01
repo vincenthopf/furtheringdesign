@@ -23,9 +23,10 @@ export function validateEvidence(evidence, intent, candidate) {
   if (candidate?.id && evidence.candidateId !== candidate.id) errors.push(`evidence.candidateId must match candidate.id ${candidate.id}`);
 
   requiredArray(evidence.captures, "evidence.captures", errors);
+  const captures = Array.isArray(evidence.captures) ? evidence.captures : [];
   const captureKeys = [];
   const capturedStates = new Set();
-  evidence.captures?.forEach((capture, index) => {
+  captures.forEach((capture, index) => {
     if (!isRecord(capture)) {
       errors.push(`evidence.captures[${index}] must be an object`);
       return;
@@ -39,16 +40,17 @@ export function validateEvidence(evidence, intent, candidate) {
   });
   for (const duplicate of duplicateValues(captureKeys)) errors.push(`duplicate browser/state capture: ${duplicate}`);
 
-  const stateIds = new Set((intent?.states ?? []).map((state) => state.id));
+  const stateIds = new Set((Array.isArray(intent?.states) ? intent.states : []).map((state) => state.id));
   for (const stateId of capturedStates) {
     if (stateIds.size && !stateIds.has(stateId)) errors.push(`capture references unknown state: ${stateId}`);
   }
-  const missingStates = (candidate?.supportedStates ?? []).filter((stateId) => !capturedStates.has(stateId));
+  const missingStates = (Array.isArray(candidate?.supportedStates) ? candidate.supportedStates : []).filter((stateId) => !capturedStates.has(stateId));
   if (missingStates.length) errors.push(`evidence is missing captures for candidate states: ${missingStates.join(", ")}`);
 
   requiredArray(evidence.signals, "evidence.signals", errors);
+  const signals = Array.isArray(evidence.signals) ? evidence.signals : [];
   const signalIds = [];
-  evidence.signals?.forEach((signal, index) => {
+  signals.forEach((signal, index) => {
     if (!isRecord(signal)) {
       errors.push(`evidence.signals[${index}] must be an object`);
       return;
@@ -79,8 +81,10 @@ export function aggregateEvidence(evidence, qualityProfile, policy = {}) {
   const floors = qualityProfile?.floors ?? {};
   const uncertaintyPenalty = policy.uncertaintyPenalty ?? qualityProfile?.uncertaintyPenalty ?? 0.18;
   const hardGateSeverities = new Set(policy.hardGateSeverities ?? ["blocker", "major"]);
+  const signals = Array.isArray(evidence?.signals) ? evidence.signals : [];
   const groups = new Map();
-  for (const signal of evidence.signals ?? []) {
+  for (const signal of signals) {
+    if (signal.status === "unknown") continue;
     if (!groups.has(signal.dimension)) groups.set(signal.dimension, []);
     groups.get(signal.dimension).push(signal);
   }
@@ -90,17 +94,17 @@ export function aggregateEvidence(evidence, qualityProfile, policy = {}) {
   let weightedUncertainty = 0;
   const missingDimensions = [];
   for (const [dimension, weight] of Object.entries(weights)) {
-    const signals = groups.get(dimension) ?? [];
-    if (!signals.length) {
+    const dimensionSignals = groups.get(dimension) ?? [];
+    if (!dimensionSignals.length) {
       dimensions[dimension] = { mean: 0, confidence: 0, disagreement: 0, uncertainty: 1, lowerBound: 0, signalCount: 0 };
       missingDimensions.push(dimension);
       weightedUncertainty += weight;
       continue;
     }
-    const confidenceWeight = signals.reduce((sum, signal) => sum + Math.max(signal.confidence, 0.01), 0);
-    const weightedMean = signals.reduce((sum, signal) => sum + signal.normalized * Math.max(signal.confidence, 0.01), 0) / confidenceWeight;
-    const confidence = mean(signals.map((signal) => signal.confidence));
-    const disagreement = standardDeviation(signals.map((signal) => signal.normalized));
+    const confidenceWeight = dimensionSignals.reduce((sum, signal) => sum + Math.max(signal.confidence, 0.01), 0);
+    const weightedMean = dimensionSignals.reduce((sum, signal) => sum + signal.normalized * Math.max(signal.confidence, 0.01), 0) / confidenceWeight;
+    const confidence = mean(dimensionSignals.map((signal) => signal.confidence));
+    const disagreement = standardDeviation(dimensionSignals.map((signal) => signal.normalized));
     const uncertainty = clamp(1 - confidence + disagreement);
     const lowerBound = clamp(weightedMean - uncertaintyPenalty * uncertainty);
     dimensions[dimension] = {
@@ -109,13 +113,13 @@ export function aggregateEvidence(evidence, qualityProfile, policy = {}) {
       disagreement: round(disagreement, 4),
       uncertainty: round(uncertainty, 4),
       lowerBound: round(lowerBound, 4),
-      signalCount: signals.length
+      signalCount: dimensionSignals.length
     };
     weightedEvidence += weight * lowerBound;
     weightedUncertainty += weight * uncertainty;
   }
 
-  const hardFailures = (evidence.signals ?? []).filter(
+  const hardFailures = signals.filter(
     (signal) => signal.class === "A" && signal.status === "fail" && hardGateSeverities.has(signal.severity)
   );
   const floorFailures = Object.entries(floors)
