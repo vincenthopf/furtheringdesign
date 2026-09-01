@@ -23,6 +23,27 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          cat > /tmp/runtime-v02-parts.sha256 <<'EOF'
+          6c1319167198644627561d3fed901603ccb3ab6e13731c64ce00cd45715f1bb3  .github/runtime-v02-payload/part-000
+          36656c7016710c590820257069355d7652b2b150433d0e90aaf047148f01acb5  .github/runtime-v02-payload/part-001
+          2973329b6d0700abd8882b1f8d364d1f13e583409c03cf145c445fccd64285be  .github/runtime-v02-payload/part-002
+          72f93a41ae287f38fc7d684a3ee008ff9569210a3064d463374cae3a234181f9  .github/runtime-v02-payload/part-003
+          56e4672e8401fb91644cd39368a3b10a55f46217a616816818cc59e32c514ea3  .github/runtime-v02-payload/part-004a
+          32adbc692affa23fc686066abd5e2cfac2cad71b3805816db3d57d71bff634d1  .github/runtime-v02-payload/part-004b
+          34ef4ef67f38f19e5a386f4cc0486dcb78a0675ca76d280bff1857e01e08fb9b  .github/runtime-v02-payload/part-004c
+          67b4947b6e3972634910d8a9bfa4c51688c638af9f47b99054dc4f17e5c40a28  .github/runtime-v02-payload/part-005
+          6cc753f4034aa20a51bc44c7e892760a970219cf0002fb41fc9bb80e28ec5d8f  .github/runtime-v02-payload/part-006
+          ed3aeaa8f9f54a9476f6123ebdb16ed1e162926a202409973f6b07113f1fff44  .github/runtime-v02-payload/part-007
+          d894fa3e8f2b2232b89554fbae891ef048460c60d7d911a5dbd5e20863e53456  .github/runtime-v02-payload/part-008
+          31b7930d822a70b1df0076abf252673d13c4b965add4f1160e36ac07d413a934  .github/runtime-v02-payload/part-009
+          5efe33f92da8d2b63eaacbe4715ad61d2ea46af1102871f8031842e027b48b4b  .github/runtime-v02-payload/part-010
+          7d14cd634af75c4643a59ef3af7e37f22a45412576fae4a6a2c7b26a30f63fd7  .github/runtime-v02-payload/part-011
+          e9ac7363ce720db67625eb7150639409d44002a2049cb01e7140aa93cebc81b1  .github/runtime-v02-payload/part-012
+          392b4ef17e04c42a2b2eac8baa4319f689e24ca64c0298fb9f17652700405930  .github/runtime-v02-payload/part-013
+          949bb2beff0947fba9f05b7d06cd750d6e73f90122827d07c92103adf0886bf6  .github/runtime-v02-payload/part-014
+          EOF
+          sed -i 's/^          //' /tmp/runtime-v02-parts.sha256
+          sha256sum -c /tmp/runtime-v02-parts.sha256
           cat \
             .github/runtime-v02-payload/part-000 \
             .github/runtime-v02-payload/part-001 \
@@ -41,7 +62,10 @@ jobs:
             .github/runtime-v02-payload/part-012 \
             .github/runtime-v02-payload/part-013 \
             .github/runtime-v02-payload/part-014 \
-            | base64 -d > /tmp/runtime-v02.tar.gz
+            > /tmp/runtime-v02.b64
+          test "$(wc -c < /tmp/runtime-v02.b64)" -eq 88852
+          echo "4224ad866b7131b47e5b3ecde2b0df574121abaf08fba3b1ee7902533e34468c  /tmp/runtime-v02.b64" | sha256sum -c -
+          base64 -d /tmp/runtime-v02.b64 > /tmp/runtime-v02.tar.gz
           echo "169f06a4397d95797ca9e97a42ea06fdb383baf7f44c2feb54eb53322786b0f5  /tmp/runtime-v02.tar.gz" | sha256sum -c -
           python - <<'PY'
           import tarfile
