@@ -42,7 +42,12 @@ jobs:
           392b4ef17e04c42a2b2eac8baa4319f689e24ca64c0298fb9f17652700405930  .github/runtime-v02-payload/part-013
           58b1604a78e7b9143a33a13bb1bf5602a5b114002659460ee18c838debc81fee  .github/runtime-v02-payload/part-014a
           e9cef27e24ff63e442c9f8b425073a63fe8268aedecd1eed361af9aa09ecefe6  .github/runtime-v02-payload/part-014b
-          d4e6d3a009e8cc6eed42e7acd6aec2d8bd292840327dd9a5e531555f1808b643  .github/runtime-v02-payload/part-014c
+          7d12a502694ce5f698eb7e5064e7f2c8a4d6e356e22262dcbb7dee39982806fb  .github/runtime-v02-payload/part-014c1
+          43e3112b1c588d18ff1503bab8f9902537ebcfe9ba4da8aba596e842159b6770  .github/runtime-v02-payload/part-014c2
+          9bb3fba09dbe6584c872d49a274217def5dbe683c7049f28464c1a8683fb2128  .github/runtime-v02-payload/part-014c3
+          502d969b1b486dafbcaff6d5f57608f699788e46b2436e51d63de0c20647e785  .github/runtime-v02-payload/part-014c4
+          01572a2a174659a1e9a95584a7388c3bb870a6444ed1415e4caaf21da07a3cf8  .github/runtime-v02-payload/part-014c5
+          0f46bb1826bbdb612334fa00a8387204dc383f74c00f33bb17f4fd4bfd7572c2  .github/runtime-v02-payload/part-014c6
           EOF
           sed -i 's/^          //' /tmp/runtime-v02-parts.sha256
           sha256sum -c /tmp/runtime-v02-parts.sha256
@@ -65,7 +70,12 @@ jobs:
             .github/runtime-v02-payload/part-013 \
             .github/runtime-v02-payload/part-014a \
             .github/runtime-v02-payload/part-014b \
-            .github/runtime-v02-payload/part-014c \
+            .github/runtime-v02-payload/part-014c1 \
+            .github/runtime-v02-payload/part-014c2 \
+            .github/runtime-v02-payload/part-014c3 \
+            .github/runtime-v02-payload/part-014c4 \
+            .github/runtime-v02-payload/part-014c5 \
+            .github/runtime-v02-payload/part-014c6 \
             > /tmp/runtime-v02.b64
           test "$(wc -c < /tmp/runtime-v02.b64)" -eq 88852
           echo "4224ad866b7131b47e5b3ecde2b0df574121abaf08fba3b1ee7902533e34468c  /tmp/runtime-v02.b64" | sha256sum -c -
