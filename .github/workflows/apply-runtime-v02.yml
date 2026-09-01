@@ -23,7 +23,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .github/runtime-v02-payload/part-* | base64 -d > /tmp/runtime-v02.tar.gz
+          for part in .github/runtime-v02-payload/part-*; do
+            if [[ "$(basename "$part")" == "part-004" ]]; then
+              continue
+            fi
+            cat "$part"
+          done | base64 -d > /tmp/runtime-v02.tar.gz
           echo "169f06a4397d95797ca9e97a42ea06fdb383baf7f44c2feb54eb53322786b0f5  /tmp/runtime-v02.tar.gz" | sha256sum -c -
           python - <<'PY'
           import tarfile
