@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.12.3",
   "engines": {
     "node": ">=20"
   },
@@ -10,9 +11,28 @@
     "furthering-design": "./runtime/cli.mjs"
   },
   "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
     "test": "node --test",
     "validate:example": "node runtime/cli.mjs validate-intent examples/saas-launch/intent.json",
     "evaluate:example": "node examples/saas-launch/command.mjs evaluate",
-    "plan:example": "node examples/saas-launch/command.mjs plan safe-grid"
+    "plan:example": "node examples/saas-launch/command.mjs plan safe-grid",
+    "validate:health": "node runtime/cli.mjs validate-intent examples/ai-health/intent.json",
+    "evaluate:health": "node examples/ai-health/command.mjs evaluate",
+    "plan:health": "node examples/ai-health/command.mjs plan"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "typescript": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest"
   }
 }

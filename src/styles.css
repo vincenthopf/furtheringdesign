@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap");
+
+:root {
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: #17211e;
+  background: #f4f1e8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #ef6c45;
+  outline-offset: 3px;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+.candidate-switcher {
+  position: fixed;
+  z-index: 1000;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
+  color: #f8faf9;
+  background: #14201c;
+  border: 1px solid rgb(255 255 255 / 18%);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 20%);
+}
+
+.candidate-switcher__label {
+  padding-left: 8px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.candidate-switcher__options {
+  display: flex;
+  gap: 2px;
+}
+
+.candidate-switcher button {
+  min-height: 34px;
+  padding: 0 10px;
+  color: #f8faf9;
+  background: transparent;
+  border: 1px solid transparent;
+  font-size: 12px;
+}
+
+.candidate-switcher button:hover {
+  background: rgb(255 255 255 / 9%);
+}
+
+.candidate-switcher button.is-active {
+  color: #17211e;
+  background: #f5d868;
+  border-color: #f5d868;
+}
+
+.candidate-switcher__short {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .candidate-switcher {
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .candidate-switcher__label {
+    font-size: 9px;
+  }
+
+  .candidate-switcher__options {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .candidate-switcher button {
+    padding: 0 8px;
+  }
+
+  .candidate-switcher__full {
+    display: none;
+  }
+
+  .candidate-switcher__short {
+    display: inline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

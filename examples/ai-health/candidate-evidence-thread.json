@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "evidence-thread",
+  "intentId": "intent-arcwell-health-experience",
+  "title": "Evidence Thread",
+  "direction": {
+    "thesis": "Organize the product as a longitudinal health thread where every observed change, AI interpretation, source, confidence limit, and next decision remains visibly connected.",
+    "axes": {
+      "composition": "A vertical health thread crosses editorial marketing sections and becomes the dashboard's primary timeline, with evidence opening beside the current observation.",
+      "typography": "Warm humanist serif headlines pair with compact neutral sans text and tabular numerals for evidence, dates, and measurements.",
+      "spatialRhythm": "Large decision pauses alternate with compressed source clusters, creating a calm sequence from observation to context to action.",
+      "surface": "Paper-like warm fields, direct ink lines, low-radius panels, and source bands replace floating cards and decorative elevation.",
+      "imagery": "Original linework combines sleep, activity, symptom, and care events into one abstract longitudinal signal field without literal anatomy or stock photography.",
+      "interaction": "Selecting an observation reveals its evidence in place; source freshness, confidence, and next-step controls stay bound to that observation.",
+      "voice": "Plain, specific, measured, and explicit about what is known, inferred, missing, and outside product scope."
+    },
+    "deliberateTradeoffs": [
+      "The longitudinal structure is less immediately familiar than a standard metric-card dashboard.",
+      "Evidence remains visible, increasing information density around each important insight."
+    ],
+    "rejectedPatterns": [
+      "Single opaque readiness score",
+      "Centered gradient hero with floating app screenshot",
+      "Uniform bento metric grid",
+      "Chatbot as the main health interface"
+    ]
+  },
+  "tokens": {
+    "spaceUnit": 6,
+    "readingMeasure": "64ch",
+    "surfaceModel": "warm-paper-and-ink",
+    "accentCount": 2,
+    "motionPurpose": "reveal-source-and-time",
+    "cornerModel": "restrained"
+  },
+  "structure": {
+    "pattern": "longitudinal-evidence-thread",
+    "sections": [
+      "marketing promise and scope",
+      "connected observation mechanism",
+      "evidence and safety ledger",
+      "clinician preparation flow",
+      "pricing and product boundary",
+      "dashboard weekly brief",
+      "observation timeline",
+      "care preparation and data controls"
+    ]
+  },
+  "decisions": [
+    {
+      "question": "How should a user trust an AI health interpretation without treating it as a diagnosis?",
+      "option": "Keep every interpretation physically connected to its observation, sources, date range, confidence, missing data, and safe next step.",
+      "rationale": "Trust comes from inspectable evidence and visible boundaries rather than visual authority or a global score.",
+      "tradeoffs": [
+        "The interface shows more context than a simple wellness score.",
+        "The product needs disciplined source metadata for every insight."
+      ]
+    },
+    {
+      "question": "How should marketing and product feel like one system?",
+      "option": "Carry the health-thread composition, source chips, and evidence language from the public page into the dashboard.",
+      "rationale": "The public promise is demonstrated by the product structure instead of changing into a generic authenticated dashboard.",
+      "tradeoffs": [
+        "The marketing page must explain a novel composition clearly.",
+        "The dashboard cannot rely on generic reusable card grids alone."
+      ]
+    }
+  ],
+  "changeContract": {
+    "baselineRef": "0f35a69dea8fcfb2817876b393dcef642d9f40e5",
+    "allowedPaths": [
+      "src/candidates/evidence-thread/**",
+      "examples/ai-health/candidate-evidence-thread.json"
+    ],
+    "protectedPaths": [
+      "runtime/**",
+      "tests/**",
+      "research/**",
+      "agent-handoffs/**",
+      ".env*"
+    ],
+    "patchMode": "diff-only"
+  },
+  "supportedStates": [
+    "marketing-desktop-light",
+    "marketing-mobile-light",
+    "dashboard-desktop-light",
+    "dashboard-mobile-light",
+    "dashboard-desktop-dark-reduced"
+  ]
+}
