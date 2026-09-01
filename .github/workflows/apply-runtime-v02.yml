@@ -23,12 +23,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for part in .github/runtime-v02-payload/part-*; do
-            if [[ "$(basename "$part")" == "part-004" ]]; then
-              continue
-            fi
-            cat "$part"
-          done | base64 -d > /tmp/runtime-v02.tar.gz
+          cat \
+            .github/runtime-v02-payload/part-000 \
+            .github/runtime-v02-payload/part-001 \
+            .github/runtime-v02-payload/part-002 \
+            .github/runtime-v02-payload/part-003 \
+            .github/runtime-v02-payload/part-004a \
+            .github/runtime-v02-payload/part-004b \
+            .github/runtime-v02-payload/part-004c \
+            .github/runtime-v02-payload/part-005 \
+            .github/runtime-v02-payload/part-006 \
+            .github/runtime-v02-payload/part-007 \
+            .github/runtime-v02-payload/part-008 \
+            .github/runtime-v02-payload/part-009 \
+            .github/runtime-v02-payload/part-010 \
+            .github/runtime-v02-payload/part-011 \
+            .github/runtime-v02-payload/part-012 \
+            .github/runtime-v02-payload/part-013 \
+            .github/runtime-v02-payload/part-014 \
+            | base64 -d > /tmp/runtime-v02.tar.gz
           echo "169f06a4397d95797ca9e97a42ea06fdb383baf7f44c2feb54eb53322786b0f5  /tmp/runtime-v02.tar.gz" | sha256sum -c -
           python - <<'PY'
           import tarfile
