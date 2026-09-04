@@ -1,0 +1,354 @@
+{
+  "generated_at": "2026-09-04T21:41:03.746840+00:00",
+  "mode": "in-memory rendering",
+  "browser": "Chromium 144.0.7559.96",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "widths": [
+    320,
+    390,
+    768,
+    1024,
+    1440,
+    1920
+  ],
+  "checks": [
+    {
+      "name": "index: one main landmark",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: one page heading",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: no duplicate IDs",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: all buttons have names",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: no horizontal overflow at 320px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: no horizontal overflow at 390px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: no horizontal overflow at 768px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: no horizontal overflow at 1024px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: no horizontal overflow at 1440px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: no horizontal overflow at 1920px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "index: no JavaScript exceptions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: one main landmark",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: one page heading",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: no duplicate IDs",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: all buttons have names",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: no horizontal overflow at 320px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: no horizontal overflow at 390px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: no horizontal overflow at 768px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: no horizontal overflow at 1024px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: no horizontal overflow at 1440px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: no horizontal overflow at 1920px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: no JavaScript exceptions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: one main landmark",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: one page heading",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no duplicate IDs",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: all buttons have names",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no horizontal overflow at 320px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no horizontal overflow at 390px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no horizontal overflow at 768px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no horizontal overflow at 1024px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no horizontal overflow at 1440px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no horizontal overflow at 1920px",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no JavaScript exceptions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: finish changes artwork and accessible description",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: light changes visible and accessible state",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: detail receives initial focus",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: dialog focus containment Tab step 36",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: dialog focus containment Tab step 37",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: dialog focus containment Shift+Tab step 38",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: dialog focus containment Tab step 39",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: save updates collection",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: confirmation is inside the modal",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: unavailable storage is explained",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: Escape restores originating focus",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: removal and empty state",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: removal preserves a useful focus target",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: empty state leads to the collection",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: reduced motion removes dialog animation",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: a different trigger gets its own focus back",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: interaction path has no JavaScript exceptions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "objects: malformed saved state is safely ignored",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: no audio context or playback on load",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: audio clock advances",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: synthesizer produces a nonzero audio signal",
+      "passed": true,
+      "details": "Digital signal only. This does not verify speaker output or listening quality."
+    },
+    {
+      "name": "listening: pause holds position",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: seeking while paused updates position",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: playback resumes from the selected position",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: mute changes control state",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: volume changes application gain setting",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: track change updates artwork and timing",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: next preserves playing state",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: previous preserves paused state",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: piece ends without autoplaying another",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: about dialog restores focus",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: interaction path has no JavaScript exceptions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "name": "listening: audio failure retains an enabled retry",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "not_run": [
+    "Real HTTP navigation and link-following",
+    "Object and sound deep links, Back, Forward, and reload integration",
+    "Persistent browser storage across navigation and browser restart",
+    "Physical-device audio and mobile virtual keyboards",
+    "Safari, Firefox, screen-reader testing, and complete accessibility audit",
+    "Human preference study or claim of aesthetic superiority"
+  ]
+}

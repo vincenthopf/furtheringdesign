@@ -4,6 +4,12 @@ Teaching AI to *reason* about design, not copy patterns.
 
 A multi-agent system for design reasoning. Replaces rule-based UI generation with intent-anchored reasoning, mismatch detection, and structural grounding.
 
+## Working interfaces
+
+[Authored UI](beautiful-ui/README.md) adds two original, working interface studies and a reusable production method focused on visual and experiential quality. Explore Soma's sculptural objects and Interval's listening room, then read the [design method](beautiful-ui/METHOD.md), [decisions](beautiful-ui/DESIGN.md), and [research and risks](research/ui-quality-2026-09-05.md).
+
+Run `python3 -m http.server 8000 --directory beautiful-ui` from this repository and open `http://localhost:8000`. No build or runtime dependencies are required. The [review record](beautiful-ui/evidence/REVIEW.md) states the executed checks and their limits. This extension does not implement the proposed seven-agent architecture or claim a universal measure of beauty.
+
 ## Status
 
 Early. Research-heavy, evolving. Foundations 1–3 have completed recursive research with knowledge bundles. Design phase pending. Layers 4–7 scoped, not yet dispatched.
